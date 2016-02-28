@@ -7553,15 +7553,15 @@ Connector</text>
 </net>
 <net name="USBMON" class="0">
 <segment>
-<pinref part="U1" gate="A" pin="GPIO10/EPWM6A/*ADCSOCBO"/>
-<wire x1="228.6" y1="144.78" x2="233.68" y2="144.78" width="0.1524" layer="91"/>
-<label x="233.68" y="144.78" size="1.016" layer="95" xref="yes"/>
-</segment>
-<segment>
 <pinref part="U2" gate="A" pin="A"/>
 <wire x1="375.92" y1="78.74" x2="375.92" y2="68.58" width="0.1524" layer="91"/>
 <wire x1="375.92" y1="68.58" x2="373.38" y2="68.58" width="0.1524" layer="91"/>
 <label x="373.38" y="68.58" size="1.016" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="U1" gate="A" pin="GPIO23/EQEP1I/MFSXA/SCIRXDB"/>
+<wire x1="228.6" y1="109.22" x2="233.68" y2="109.22" width="0.1524" layer="91"/>
+<label x="233.68" y="109.22" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="N$2" class="0">
@@ -7582,17 +7582,17 @@ Connector</text>
 <label x="452.12" y="81.28" size="1.016" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U1" gate="A" pin="GPIO20/EQEP1A/MDXA/COMP1OUT"/>
-<wire x1="45.72" y1="22.86" x2="40.64" y2="22.86" width="0.1524" layer="91"/>
-<label x="40.64" y="22.86" size="1.016" layer="95" rot="R180" xref="yes"/>
-</segment>
-<segment>
 <pinref part="U10" gate="A" pin="OE"/>
 <pinref part="R7" gate="G$1" pin="2"/>
 <wire x1="233.68" y1="271.78" x2="248.92" y2="271.78" width="0.1524" layer="91"/>
 <wire x1="248.92" y1="271.78" x2="248.92" y2="269.24" width="0.1524" layer="91"/>
 <wire x1="248.92" y1="271.78" x2="254" y2="271.78" width="0.1524" layer="91"/>
 <label x="254" y="271.78" size="1.016" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="U1" gate="A" pin="GPIO4/EPWM3A"/>
+<wire x1="228.6" y1="35.56" x2="233.68" y2="35.56" width="0.1524" layer="91"/>
+<label x="233.68" y="35.56" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="SPICLK" class="0">
@@ -7638,9 +7638,9 @@ Connector</text>
 <label x="383.54" y="139.7" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U1" gate="A" pin="GPIO22/EQEP1S/MCLKXA/SCITXDB"/>
-<wire x1="228.6" y1="114.3" x2="233.68" y2="114.3" width="0.1524" layer="91"/>
-<label x="233.68" y="114.3" size="1.016" layer="95" xref="yes"/>
+<pinref part="U1" gate="A" pin="GPIO15/ECAP2/SCIRXDB/*SPISTEB"/>
+<wire x1="228.6" y1="83.82" x2="233.68" y2="83.82" width="0.1524" layer="91"/>
+<label x="233.68" y="83.82" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="!FLASHWP!" class="0">
@@ -7650,9 +7650,9 @@ Connector</text>
 <label x="429.26" y="152.4" size="1.016" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U1" gate="A" pin="GPIO32/SDAA/EPWMSYNCI/*ADCSOCAO"/>
-<wire x1="228.6" y1="139.7" x2="233.68" y2="139.7" width="0.1524" layer="91"/>
-<label x="233.68" y="139.7" size="1.016" layer="95" xref="yes"/>
+<pinref part="U1" gate="A" pin="GPIO0/EPWM1A"/>
+<wire x1="228.6" y1="40.64" x2="233.68" y2="40.64" width="0.1524" layer="91"/>
+<label x="233.68" y="40.64" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="!FLASHHOLD!" class="0">
@@ -7662,9 +7662,9 @@ Connector</text>
 <label x="429.26" y="149.86" size="1.016" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U1" gate="A" pin="GPIO33/SCLA/EPWMSYNCO/*ADCSOCBO"/>
-<wire x1="228.6" y1="147.32" x2="233.68" y2="147.32" width="0.1524" layer="91"/>
-<label x="233.68" y="147.32" size="1.016" layer="95" xref="yes"/>
+<pinref part="U1" gate="A" pin="GPIO22/EQEP1S/MCLKXA/SCITXDB"/>
+<wire x1="228.6" y1="114.3" x2="233.68" y2="114.3" width="0.1524" layer="91"/>
+<label x="233.68" y="114.3" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="!ENEXT!" class="0">
@@ -8351,9 +8351,9 @@ Connector</text>
 <label x="469.9" y="17.78" size="1.016" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U1" gate="A" pin="GPIO23/EQEP1I/MFSXA/SCIRXDB"/>
-<wire x1="228.6" y1="109.22" x2="233.68" y2="109.22" width="0.1524" layer="91"/>
-<label x="233.68" y="109.22" size="1.016" layer="95" xref="yes"/>
+<pinref part="U1" gate="A" pin="GPIO20/EQEP1A/MDXA/COMP1OUT"/>
+<wire x1="45.72" y1="22.86" x2="40.64" y2="22.86" width="0.1524" layer="91"/>
+<label x="40.64" y="22.86" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="N$13" class="0">
