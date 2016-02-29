@@ -7858,9 +7858,9 @@ Connector</text>
 <label x="482.6" y="218.44" size="1.016" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U1" gate="A" pin="GPIO18/SPICLKA/SCITXDB/XCLKOUT"/>
-<wire x1="228.6" y1="88.9" x2="233.68" y2="88.9" width="0.1524" layer="91"/>
-<label x="233.68" y="88.9" size="1.016" layer="95" xref="yes"/>
+<pinref part="U1" gate="A" pin="GPIO28/SCIRXDA/SDAA/*TZ2"/>
+<wire x1="228.6" y1="124.46" x2="233.68" y2="124.46" width="0.1524" layer="91"/>
+<label x="233.68" y="124.46" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="BIN7" class="0">
@@ -7894,9 +7894,9 @@ Connector</text>
 <label x="482.6" y="210.82" size="1.016" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U1" gate="A" pin="GPIO28/SCIRXDA/SDAA/*TZ2"/>
-<wire x1="228.6" y1="124.46" x2="233.68" y2="124.46" width="0.1524" layer="91"/>
-<label x="233.68" y="124.46" size="1.016" layer="95" xref="yes"/>
+<pinref part="U1" gate="A" pin="GPIO18/SPICLKA/SCITXDB/XCLKOUT"/>
+<wire x1="228.6" y1="88.9" x2="233.68" y2="88.9" width="0.1524" layer="91"/>
+<label x="233.68" y="88.9" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="BIN3" class="0">
@@ -7918,9 +7918,9 @@ Connector</text>
 <label x="345.44" y="203.2" size="1.016" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U1" gate="A" pin="GPIO29/SCITXDA/SCLA/*TZ3"/>
-<wire x1="228.6" y1="121.92" x2="233.68" y2="121.92" width="0.1524" layer="91"/>
-<label x="233.68" y="121.92" size="1.016" layer="95" xref="yes"/>
+<pinref part="U1" gate="A" pin="GPIO25/ECAP2/SPISOMIB"/>
+<wire x1="228.6" y1="76.2" x2="233.68" y2="76.2" width="0.1524" layer="91"/>
+<label x="233.68" y="76.2" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="BIN4" class="0">
@@ -7942,9 +7942,9 @@ Connector</text>
 <label x="345.44" y="195.58" size="1.016" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U1" gate="A" pin="GPIO30/CANRXA/EPWM7A"/>
-<wire x1="228.6" y1="132.08" x2="233.68" y2="132.08" width="0.1524" layer="91"/>
-<label x="233.68" y="132.08" size="1.016" layer="95" xref="yes"/>
+<pinref part="U1" gate="A" pin="GPIO31/CANTXA/EPWM8A"/>
+<wire x1="228.6" y1="129.54" x2="233.68" y2="129.54" width="0.1524" layer="91"/>
+<label x="233.68" y="129.54" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="BIN2" class="0">
@@ -7966,9 +7966,9 @@ Connector</text>
 <label x="279.4" y="205.74" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U1" gate="A" pin="GPIO25/ECAP2/SPISOMIB"/>
-<wire x1="228.6" y1="76.2" x2="233.68" y2="76.2" width="0.1524" layer="91"/>
-<label x="233.68" y="76.2" size="1.016" layer="95" xref="yes"/>
+<pinref part="U1" gate="A" pin="GPIO30/CANRXA/EPWM7A"/>
+<wire x1="228.6" y1="132.08" x2="233.68" y2="132.08" width="0.1524" layer="91"/>
+<label x="233.68" y="132.08" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="BIN1" class="0">
@@ -7990,9 +7990,9 @@ Connector</text>
 <label x="279.4" y="198.12" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U1" gate="A" pin="GPIO31/CANTXA/EPWM8A"/>
-<wire x1="228.6" y1="129.54" x2="233.68" y2="129.54" width="0.1524" layer="91"/>
-<label x="233.68" y="129.54" size="1.016" layer="95" xref="yes"/>
+<pinref part="U1" gate="A" pin="GPIO29/SCITXDA/SCLA/*TZ3"/>
+<wire x1="228.6" y1="121.92" x2="233.68" y2="121.92" width="0.1524" layer="91"/>
+<label x="233.68" y="121.92" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="IBUFOUT1" class="0">
@@ -8392,42 +8392,6 @@ Connector</text>
 <wire x1="68.58" y1="233.68" x2="58.42" y2="233.68" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$17" class="0">
-<segment>
-<pinref part="U8" gate="A" pin="2Y4"/>
-<wire x1="71.12" y1="218.44" x2="60.96" y2="218.44" width="0.1524" layer="91"/>
-<wire x1="60.96" y1="218.44" x2="60.96" y2="220.98" width="0.1524" layer="91"/>
-<pinref part="U$4" gate="G$1" pin="8"/>
-<wire x1="60.96" y1="220.98" x2="58.42" y2="220.98" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$18" class="0">
-<segment>
-<pinref part="U8" gate="A" pin="2Y3"/>
-<wire x1="71.12" y1="220.98" x2="63.5" y2="220.98" width="0.1524" layer="91"/>
-<wire x1="63.5" y1="220.98" x2="63.5" y2="223.52" width="0.1524" layer="91"/>
-<pinref part="U$4" gate="G$1" pin="7"/>
-<wire x1="63.5" y1="223.52" x2="58.42" y2="223.52" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$19" class="0">
-<segment>
-<pinref part="U8" gate="A" pin="2Y2"/>
-<wire x1="71.12" y1="223.52" x2="66.04" y2="223.52" width="0.1524" layer="91"/>
-<wire x1="66.04" y1="223.52" x2="66.04" y2="226.06" width="0.1524" layer="91"/>
-<pinref part="U$4" gate="G$1" pin="6"/>
-<wire x1="66.04" y1="226.06" x2="58.42" y2="226.06" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$20" class="0">
-<segment>
-<pinref part="U8" gate="A" pin="2Y1"/>
-<wire x1="71.12" y1="226.06" x2="68.58" y2="226.06" width="0.1524" layer="91"/>
-<wire x1="68.58" y1="226.06" x2="68.58" y2="228.6" width="0.1524" layer="91"/>
-<pinref part="U$4" gate="G$1" pin="5"/>
-<wire x1="68.58" y1="228.6" x2="58.42" y2="228.6" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="N$21" class="0">
 <segment>
 <pinref part="U7" gate="A" pin="1A1"/>
@@ -8498,6 +8462,41 @@ Connector</text>
 <wire x1="289.56" y1="261.62" x2="289.56" y2="264.16" width="0.1524" layer="91"/>
 <pinref part="U$8" gate="G$1" pin="5"/>
 <wire x1="289.56" y1="264.16" x2="279.4" y2="264.16" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$17" class="0">
+<segment>
+<pinref part="U8" gate="A" pin="2Y4"/>
+<wire x1="71.12" y1="218.44" x2="63.5" y2="218.44" width="0.1524" layer="91"/>
+<wire x1="63.5" y1="218.44" x2="63.5" y2="228.6" width="0.1524" layer="91"/>
+<pinref part="U$4" gate="G$1" pin="5"/>
+<wire x1="63.5" y1="228.6" x2="58.42" y2="228.6" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$18" class="0">
+<segment>
+<pinref part="U8" gate="A" pin="2Y3"/>
+<wire x1="71.12" y1="220.98" x2="66.04" y2="220.98" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="220.98" x2="66.04" y2="226.06" width="0.1524" layer="91"/>
+<pinref part="U$4" gate="G$1" pin="6"/>
+<wire x1="66.04" y1="226.06" x2="58.42" y2="226.06" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$19" class="0">
+<segment>
+<pinref part="U8" gate="A" pin="2Y2"/>
+<pinref part="U$4" gate="G$1" pin="7"/>
+<wire x1="71.12" y1="223.52" x2="58.42" y2="223.52" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$20" class="0">
+<segment>
+<pinref part="U8" gate="A" pin="2Y1"/>
+<wire x1="71.12" y1="226.06" x2="71.12" y2="231.14" width="0.1524" layer="91"/>
+<wire x1="71.12" y1="231.14" x2="60.96" y2="231.14" width="0.1524" layer="91"/>
+<wire x1="60.96" y1="231.14" x2="60.96" y2="220.98" width="0.1524" layer="91"/>
+<pinref part="U$4" gate="G$1" pin="8"/>
+<wire x1="60.96" y1="220.98" x2="58.42" y2="220.98" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
