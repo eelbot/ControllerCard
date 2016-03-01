@@ -7510,33 +7510,6 @@ Connector</text>
 <wire x1="304.8" y1="147.32" x2="307.34" y2="147.32" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="USBDM" class="0">
-<segment>
-<pinref part="U1" gate="A" pin="GPIO27/HRCAP2/*SPISTEB/USB0DM"/>
-<wire x1="228.6" y1="66.04" x2="233.68" y2="66.04" width="0.1524" layer="91"/>
-<label x="233.68" y="66.04" size="1.016" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="JP2" gate="G$1" pin="D-"/>
-<wire x1="464.82" y1="60.96" x2="459.74" y2="60.96" width="0.1524" layer="91"/>
-<label x="459.74" y="60.96" size="1.016" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="USBDP" class="0">
-<segment>
-<pinref part="U1" gate="A" pin="GPIO26/ECAP3/SPICLKB/USB0DP"/>
-<wire x1="228.6" y1="63.5" x2="233.68" y2="63.5" width="0.1524" layer="91"/>
-<label x="233.68" y="63.5" size="1.016" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="JP2" gate="G$1" pin="D+"/>
-<wire x1="464.82" y1="63.5" x2="462.28" y2="63.5" width="0.1524" layer="91"/>
-<label x="459.74" y="63.5" size="1.016" layer="95" rot="R180" xref="yes"/>
-<pinref part="R4" gate="G$1" pin="1"/>
-<wire x1="462.28" y1="63.5" x2="459.74" y2="63.5" width="0.1524" layer="91"/>
-<wire x1="462.28" y1="66.04" x2="462.28" y2="63.5" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="5V" class="0">
 <segment>
 <pinref part="JP1" gate="G$1" pin="PWR"/>
@@ -8542,6 +8515,33 @@ Connector</text>
 <wire x1="60.96" y1="231.14" x2="60.96" y2="220.98" width="0.1524" layer="91"/>
 <pinref part="U$4" gate="G$1" pin="8"/>
 <wire x1="60.96" y1="220.98" x2="58.42" y2="220.98" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="USB_N" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="GPIO27/HRCAP2/*SPISTEB/USB0DM"/>
+<wire x1="228.6" y1="66.04" x2="233.68" y2="66.04" width="0.1524" layer="91"/>
+<label x="233.68" y="66.04" size="1.016" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="JP2" gate="G$1" pin="D-"/>
+<wire x1="464.82" y1="60.96" x2="459.74" y2="60.96" width="0.1524" layer="91"/>
+<label x="459.74" y="60.96" size="1.016" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="USB_P" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="GPIO26/ECAP3/SPICLKB/USB0DP"/>
+<wire x1="228.6" y1="63.5" x2="233.68" y2="63.5" width="0.1524" layer="91"/>
+<label x="233.68" y="63.5" size="1.016" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="JP2" gate="G$1" pin="D+"/>
+<wire x1="464.82" y1="63.5" x2="462.28" y2="63.5" width="0.1524" layer="91"/>
+<label x="459.74" y="63.5" size="1.016" layer="95" rot="R180" xref="yes"/>
+<pinref part="R4" gate="G$1" pin="1"/>
+<wire x1="462.28" y1="63.5" x2="459.74" y2="63.5" width="0.1524" layer="91"/>
+<wire x1="462.28" y1="66.04" x2="462.28" y2="63.5" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
