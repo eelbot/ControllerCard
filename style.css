@@ -67,6 +67,20 @@ body {
 .sub-temp a:hover{
     color:#F0F0F0;
 }
+
+.sub-temp2{
+    background-color:#202020;
+    padding-bottom:20px;
+    padding-top:20px;
+}
+.sub-temp2 a{
+    text-decoration:none;
+    color: #FFFFFF;
+}
+.sub-temp2 a:hover{
+    color:#19B5FE;
+}
+
 .smaller{
     font-family: 'Open Sans', sans-serif;
 	text-align:center;
