@@ -37,17 +37,16 @@ table {
 body {
     width: 100%;
     text-align:center;
-    background-color: #202020;
 }
 
 /*-----------------Temporary Animation-----------------*/
 .temp{
 	width:100%;
-	font-family: 'Segoe UI';
+	font-family: 'Open Sans', sans-serif;
 	text-align:center;
 	font-size:8em;
     background-color:#19B5FE;
-	color:#FFFFFF;
+    font-weight: 100;
 	position:absolute;
 	top:30%;
 	-webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
@@ -62,14 +61,14 @@ body {
     padding-top:20px;
 }
 .sub-temp a{
-    color:#FFFFFF;
     text-decoration:none;
+    color: #202020;
 }
 .sub-temp a:hover{
-    color:#202020;
+    color:#F0F0F0;
 }
 .smaller{
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 	text-align:center;
 	font-size:0.2em; !important
 	color:#202020;
@@ -103,4 +102,13 @@ body {
 @-o-keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
+}
+
+@media screen and (max-width: 800px) {
+    .temp {
+        font-size: 4em;
+    }
+    .smaller {
+        font-size: 0.4em;
+    }
 }
