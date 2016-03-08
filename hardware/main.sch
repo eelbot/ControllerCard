@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -6156,7 +6156,8 @@ and Regulator</text>
 <wire x1="477.52" y1="45.72" x2="449.58" y2="45.72" width="0.1524" layer="97"/>
 <wire x1="363.22" y1="185.42" x2="398.78" y2="185.42" width="0.1524" layer="97"/>
 <wire x1="398.78" y1="185.42" x2="447.04" y2="185.42" width="0.1524" layer="97"/>
-<wire x1="447.04" y1="185.42" x2="447.04" y2="109.22" width="0.1524" layer="97"/>
+<wire x1="447.04" y1="185.42" x2="447.04" y2="172.72" width="0.1524" layer="97"/>
+<wire x1="447.04" y1="172.72" x2="447.04" y2="109.22" width="0.1524" layer="97"/>
 <wire x1="363.22" y1="172.72" x2="398.78" y2="172.72" width="0.1524" layer="97"/>
 <wire x1="398.78" y1="172.72" x2="398.78" y2="185.42" width="0.1524" layer="97"/>
 <text x="373.38" y="177.8" size="2.54" layer="97">SPI Flash</text>
@@ -6166,7 +6167,8 @@ and Regulator</text>
 <wire x1="264.16" y1="320.04" x2="320.04" y2="320.04" width="0.1524" layer="97"/>
 <wire x1="320.04" y1="320.04" x2="568.96" y2="320.04" width="0.1524" layer="97"/>
 <wire x1="568.96" y1="320.04" x2="568.96" y2="185.42" width="0.1524" layer="97"/>
-<wire x1="568.96" y1="185.42" x2="447.04" y2="185.42" width="0.1524" layer="97"/>
+<wire x1="568.96" y1="185.42" x2="480.06" y2="185.42" width="0.1524" layer="97"/>
+<wire x1="480.06" y1="185.42" x2="447.04" y2="185.42" width="0.1524" layer="97"/>
 <wire x1="264.16" y1="297.18" x2="320.04" y2="297.18" width="0.1524" layer="97"/>
 <wire x1="320.04" y1="297.18" x2="320.04" y2="320.04" width="0.1524" layer="97"/>
 <text x="284.48" y="307.34" size="2.54" layer="97">INPUT</text>
@@ -6187,6 +6189,10 @@ Connector</text>
 <wire x1="568.96" y1="185.42" x2="599.44" y2="185.42" width="0.1524" layer="97"/>
 <wire x1="599.44" y1="185.42" x2="599.44" y2="45.72" width="0.1524" layer="97"/>
 <wire x1="599.44" y1="45.72" x2="482.6" y2="45.72" width="0.1524" layer="97"/>
+<wire x1="447.04" y1="172.72" x2="480.06" y2="172.72" width="0.1524" layer="97"/>
+<wire x1="480.06" y1="172.72" x2="480.06" y2="185.42" width="0.1524" layer="97"/>
+<text x="452.12" y="175.26" size="2.54" layer="97">LED Indicators
+DIP Switch</text>
 </plain>
 <instances>
 <instance part="U1" gate="A" x="45.72" y="144.78"/>
