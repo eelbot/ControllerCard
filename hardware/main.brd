@@ -9,7 +9,7 @@
 <grid distance="0.5" unitdist="mm" unit="mm" style="lines" multiple="1" display="no" altdistance="0.1" altunitdist="mm" altunit="mm"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
-<layer number="2" name="Route2" color="1" fill="3" visible="no" active="yes"/>
+<layer number="2" name="Route2" color="1" fill="3" visible="yes" active="yes"/>
 <layer number="3" name="Route3" color="4" fill="3" visible="no" active="no"/>
 <layer number="4" name="Route4" color="1" fill="4" visible="no" active="no"/>
 <layer number="5" name="Route5" color="4" fill="4" visible="no" active="no"/>
@@ -22,7 +22,7 @@
 <layer number="12" name="Route12" color="1" fill="5" visible="no" active="no"/>
 <layer number="13" name="Route13" color="4" fill="5" visible="no" active="no"/>
 <layer number="14" name="Route14" color="1" fill="6" visible="no" active="no"/>
-<layer number="15" name="Route15" color="4" fill="6" visible="no" active="yes"/>
+<layer number="15" name="Route15" color="4" fill="6" visible="yes" active="yes"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
 <layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
@@ -908,7 +908,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <class number="0" name="default" width="0" drill="0">
 </class>
 </classes>
-<designrules name="Elecrow_4-layer_PCB_eagle_rule">
+<designrules name="Elecrow_4-layer_PCB_eagle_rule *">
 <description language="de">&lt;b&gt;EAGLE Design Rules&lt;/b&gt;
 &lt;p&gt;
 Die Standard-Design-Rules sind so gewählt, dass sie für 
@@ -928,23 +928,23 @@ design rules under a new name.</description>
 <param name="layerSetup" value="(1*2*15*16)"/>
 <param name="mtCopper" value="0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm"/>
 <param name="mtIsolate" value="0.2mm 1.2mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm"/>
-<param name="mdWireWire" value="6mil"/>
-<param name="mdWirePad" value="6mil"/>
-<param name="mdWireVia" value="6mil"/>
-<param name="mdPadPad" value="6mil"/>
-<param name="mdPadVia" value="6mil"/>
-<param name="mdViaVia" value="8mil"/>
+<param name="mdWireWire" value="8mil"/>
+<param name="mdWirePad" value="8mil"/>
+<param name="mdWireVia" value="8mil"/>
+<param name="mdPadPad" value="8mil"/>
+<param name="mdPadVia" value="8mil"/>
+<param name="mdViaVia" value="10mil"/>
 <param name="mdSmdPad" value="0mil"/>
 <param name="mdSmdVia" value="0mil"/>
 <param name="mdSmdSmd" value="0mil"/>
 <param name="mdViaViaSameLayer" value="8mil"/>
 <param name="mnLayersViaInSmd" value="2"/>
-<param name="mdCopperDimension" value="20mil"/>
-<param name="mdDrill" value="10mil"/>
+<param name="mdCopperDimension" value="22mil"/>
+<param name="mdDrill" value="12mil"/>
 <param name="mdSmdStop" value="0mil"/>
-<param name="msWidth" value="6mil"/>
-<param name="msDrill" value="12mil"/>
-<param name="msMicroVia" value="12mil"/>
+<param name="msWidth" value="10mil"/>
+<param name="msDrill" value="14mil"/>
+<param name="msMicroVia" value="14mil"/>
 <param name="msBlindViaRatio" value="0.5"/>
 <param name="rvPadTop" value="0.25"/>
 <param name="rvPadInner" value="0.25"/>
@@ -1679,10 +1679,10 @@ design rules under a new name.</description>
 <via x="81" y="37.5" extent="1-16" drill="0.6"/>
 <wire x1="81" y1="37.5" x2="80.1" y2="38.4" width="0.254" layer="16"/>
 <wire x1="80.1" y1="38.4" x2="78.5" y2="38.4" width="0.254" layer="16"/>
-<wire x1="72.5" y1="34.5" x2="74" y2="34.5" width="0.254" layer="1"/>
-<wire x1="74" y1="34.5" x2="75" y2="35.5" width="0.254" layer="1"/>
-<via x="75" y="35.5" extent="1-16" drill="0.6"/>
-<wire x1="75" y1="35.5" x2="72.4" y2="35.5" width="0.254" layer="16"/>
+<wire x1="72.5" y1="34.5" x2="73.5" y2="34.5" width="0.254" layer="1"/>
+<wire x1="73.5" y1="34.5" x2="74.5" y2="35.5" width="0.254" layer="1"/>
+<via x="74.5" y="35.5" extent="1-16" drill="0.6"/>
+<wire x1="74.5" y1="35.5" x2="72.4" y2="35.5" width="0.254" layer="16"/>
 <wire x1="72.4899875" y1="33.0333" x2="72.5" y2="33.0433125" width="0.254" layer="1"/>
 <wire x1="72.5" y1="33.0433125" x2="72.5" y2="34.5" width="0.254" layer="1"/>
 <polygon width="0.254" layer="2" isolate="0.254">
