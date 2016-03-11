@@ -7361,6 +7361,27 @@ DIP Switch</text>
 <wire x1="424.18" y1="66.04" x2="426.72" y2="66.04" width="0.1524" layer="91"/>
 </segment>
 </net>
+<net name="CE3" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="GPIO15/ECAP2/SCIRXDB/*SPISTEB"/>
+<wire x1="228.6" y1="83.82" x2="233.68" y2="83.82" width="0.1524" layer="91"/>
+<label x="233.68" y="83.82" size="1.016" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="CE2" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="GPIO0/EPWM1A"/>
+<wire x1="228.6" y1="40.64" x2="233.68" y2="40.64" width="0.1524" layer="91"/>
+<label x="233.68" y="40.64" size="1.016" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="CE1" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="GPIO2/EPWM2A"/>
+<wire x1="228.6" y1="38.1" x2="233.68" y2="38.1" width="0.1524" layer="91"/>
+<label x="233.68" y="38.1" size="1.016" layer="95" xref="yes"/>
+</segment>
+</net>
 </nets>
 </sheet>
 </sheets>
