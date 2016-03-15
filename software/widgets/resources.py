@@ -1,12 +1,13 @@
 from PyQt4 import QtGui, QtCore
 import os
 
+
 class BrowseWidget(QtGui.QWidget):
     """ A wrapper widget that appears in a dock, allowing the user to
         browse libraries and files.
     """
 
-    def __init__(self, workspace = 'C:/', libraries = []):
+    def __init__(self, workspace='C:/', libraries=[]):
         """ Parameters
             workspace: The initial file path displayed in the file tree
         """
@@ -47,14 +48,13 @@ class FileBrowser(QtGui.QTreeView):
 
         # If the workspace path does not exist, create it
         if not os.path.isdir(current_path):
-            os.makedirs(current_path, exist_ok = True)
+            os.makedirs(current_path, exist_ok=True)
 
         # Create a generic file model and display it in tree view
         file_model = QtGui.QFileSystemModel()
         self.setModel(file_model)
         self.setRootIndex(file_model.index(current_path))
         file_model.setRootPath(QtCore.QDir.currentPath())
-
 
 
 class LibraryBrowser(QtGui.QWidget):

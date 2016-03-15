@@ -16,8 +16,8 @@ class main_app(QtGui.QMainWindow):
         statusbar = self.statusBar()
         menubar = self.menuBar()
 
+        self.init_view()
         self.create_file_menu(menubar)
-        self.set_inital_view()
 
         self.setWindowTitle('PicoCommander')
         self.showMaximized()
@@ -30,7 +30,8 @@ class main_app(QtGui.QMainWindow):
         new_blank_file = QtGui.QAction('New Empty File', self)
         new_blank_file.setShortcut('Ctrl+Shift+N')
         new_blank_file.setStatusTip('Create a new blank file')
-        new_blank_file.triggered.connect(fileop.create_blank_file)
+        new_blank_file.triggered.connect(
+                lambda: fileop.create_blank_file(self.workspace))
 
         # New Project Menu Option
         new_proj = QtGui.QAction('Create New Project', self)
@@ -52,7 +53,8 @@ class main_app(QtGui.QMainWindow):
                                   'Open File', self)
         open_file.setShortcut('Ctrl+O')
         open_file.setStatusTip('Open a file')
-        open_file.triggered.connect(fileop.open_file)
+        open_file.triggered.connect(
+                lambda: fileop.open_file(self, self.work_path, self.workspace))
 
         # Import Project Menu Option
         import_proj = QtGui.QAction(QtGui.QIcon('import_proj.png'),
@@ -92,20 +94,22 @@ class main_app(QtGui.QMainWindow):
         file_menu.addAction(save_file)
         file_menu.addAction(exit_app)
 
-    def set_inital_view(self):
+    def init_view(self):
         """ Initializes, wraps, and adds widgets to the main window """
 
         # Initialize the resource browser dock widget (left side)
         # BrowseWidget() defined in widgets/fbrowse.py
-        resource_browser = BrowseWidget('C:/Users/ajans/Documents/workspace')
+        self.work_path = 'C:/Users/ajans/Documents/workspace'
+        self.resource_browser = BrowseWidget(
+                    'C:/Users/ajans/Documents/workspace')
         resource_browser_wrap = QtGui.QDockWidget('Resource Browse', self)
-        resource_browser_wrap.setWidget(resource_browser)
+        resource_browser_wrap.setWidget(self.resource_browser)
 
         # Initialize the workspace main widget (Central Widget)
         # Workspace() defined in widgets/fedit.py
-        workspace = Workspace()
+        self.workspace = Workspace()
         workspace_wrap = QtGui.QDockWidget('Workspace', self)
-        workspace_wrap.setWidget(workspace)
+        workspace_wrap.setWidget(self.workspace)
 
         # Set central widget and add dock widgets
         self.setCentralWidget(workspace_wrap)
