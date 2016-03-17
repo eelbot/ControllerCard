@@ -64,17 +64,17 @@ class main_app(QtGui.QMainWindow):
 
         # Save File Menu Option
         save_file = QtGui.QAction(QtGui.QIcon('save_file.png'),
-                                  'Save File', self)
+                                  'Save', self)
         save_file.setShortcut('Ctrl+S')
         save_file.setStatusTip('Save current file')
-        save_file.triggered.connect(fileop.save_file)
-        save_file.setEnabled(False)
+        save_file.triggered.connect(
+                lambda: fileop.save_file(self, self.work_path, self.workspace))
 
         # Save As File Menu Option
-        save_file = QtGui.QAction('Save As', self)
-        save_file.setStatusTip('Save current file')
-        save_file.triggered.connect(fileop.save_as_file)
-        save_file.setEnabled(False)
+        save_as_file = QtGui.QAction('Save As', self)
+        save_as_file.setStatusTip('Save current file')
+        save_as_file.triggered.connect(
+                lambda: fileop.save_as_file(self, self.workspace))
 
         # Exit Main app Menu Option
         exit_app = QtGui.QAction(QtGui.QIcon('exit.png'), 'Exit', self)
@@ -92,6 +92,7 @@ class main_app(QtGui.QMainWindow):
         file_menu.addAction(open_file)
         file_menu.addAction(import_proj)
         file_menu.addAction(save_file)
+        file_menu.addAction(save_as_file)
         file_menu.addAction(exit_app)
 
     def init_view(self):
