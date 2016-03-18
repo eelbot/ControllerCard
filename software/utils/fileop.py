@@ -68,9 +68,16 @@ def save_file(parent, work_path, workspace):
         f.close()
         i = workspace.main_tabs.currentIndex()
         workspace.main_tabs.removeTab(i)
-############################################################OPENS IN WRONG TAB INDEX
-        workspace.add_file(new_save_path)
+        workspace.add_file(new_save_path, i)
+    workspace.save_state_change(True)
 
-
-def save_as_file(parent, workspace):
-    pass
+def save_as(parent, workspace):
+    new_save_path = QtGui.QFileDialog.getSaveFileName(
+            parent, 'Open File', work_path)
+    with open(new_save_path, 'w') as f:
+        f.write(text)
+    f.close()
+    i = workspace.main_tabs.currentIndex()
+    workspace.main_tabs.removeTab(i)
+    workspace.add_file(new_save_path, i)
+    workspace.save_state_change(True)

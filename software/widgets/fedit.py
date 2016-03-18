@@ -24,7 +24,7 @@ class TextEditor(QtGui.QWidget):
         """ Initializes the view of the file editor widget
 
             Parameters
-            fname: Name of the file being edited
+            name: Name of the file being edited
             ext: Extension of the file being edited
         """
 

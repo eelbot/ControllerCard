@@ -11,12 +11,14 @@ class Workspace(QtGui.QWidget):
         Widget is initialized with a single blank file
     """
 
-    def add_file(self, file_path):
+    def add_file(self, file_path, index=0):
 
         """ Adds a file in the workspace, and allows editing via the drag
             and drop or text based editing windows
 
             file_path: The path to the file, with the extension
+            index: The location of the tab to be inserted. If index
+                   is equal to 0, the tab is added onto the end.
         """
 
         # Extract the extension and title from the file_path
@@ -34,9 +36,33 @@ class Workspace(QtGui.QWidget):
             added_file.fileName += ' ' + str(self.num_of_untitled)
             self.num_of_untitled += 1
 
-        # Add as a tab
-        self.main_tabs.addTab(added_file, added_file.fileName)
-        self.main_tabs.setCurrentIndex(self.main_tabs.count() - 1)
+        # Add as a tab, at a certain index if indicated
+        if index:
+            self.main_tabs.insertTab(index, added_file, added_file.fileName)
+            self.main_tabs.setCurrentIndex(index)
+        else:
+            self.main_tabs.addTab(added_file, added_file.fileName)
+            self.main_tabs.setCurrentIndex(self.main_tabs.count() - 1)
+
+        # Add a checker and updater to check for changes (saved vs. unsaved)
+        added_file.text_editor.textChanged.connect(lambda: self.save_state_change(False))
+
+    def save_state_change(self, isSaved):
+        """ Adds or removes an asterisk from the current tab when text changes
+            or the file is saved to denote to the user if their changes are
+            currently saved.
+
+            isSaved: Whether the file has become saved (True) or unsaved (False)
+        """
+        i = self.main_tabs.currentIndex()
+        current_name = self.main_tabs.tabText(i)
+        if isSaved and '*' in current_name:
+            self.main_tabs.setTabText(i, current_name[:-1])
+            self.main_tabs.currentWidget().isSaved = True
+        else:
+            if '*' not in current_name:
+                self.main_tabs.setTabText(i, current_name + '*')
+                self.main_tabs.currentWidget().isSaved = False
 
     def __init__(self):
         super(Workspace, self).__init__()
