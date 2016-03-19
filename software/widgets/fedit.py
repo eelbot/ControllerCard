@@ -1,7 +1,7 @@
 from PyQt4 import QtGui
 
 
-class TextEditor(QtGui.QWidget):
+class TextEditor(QtGui.QTextEdit):
     """ A file editor widget. Files are edited as text. """
 
     def __init__(self, name=None, ext=None, path='', saved=False):
@@ -28,14 +28,12 @@ class TextEditor(QtGui.QWidget):
             ext: Extension of the file being edited
         """
 
-        self.text_editor = QtGui.QTextEdit(self)
-
         # Try to open a file and display it's contents.
         # If the file cannot be opened, let the user know it does not exist.
         # If it can be opened, display the contents of the file as text
         try:
             with open(path, "rt") as file:
-                self.text_editor.setText(file.read())
+                self.setText(file.read())
             self.isSaved = True
         except FileNotFoundError:
             if name == "untitled":
@@ -46,7 +44,6 @@ class TextEditor(QtGui.QWidget):
 
         # Create final layout and display widget
         layout = QtGui.QGridLayout()
-        layout.addWidget(self.text_editor)
         self.setLayout(layout)
 
         self.show()

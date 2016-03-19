@@ -2,7 +2,7 @@ from PyQt4 import QtGui, QtCore
 import os
 
 
-class BrowseWidget(QtGui.QWidget):
+class BrowseWidget(QtGui.QTabWidget):
     """ A wrapper widget that appears in a dock, allowing the user to
         browse libraries and files.
     """
@@ -26,18 +26,19 @@ class BrowseWidget(QtGui.QWidget):
         lib_browser = LibraryBrowser()
 
         # Create tabs at the top of the widget for different information
-        tabs = QtGui.QTabWidget()
-        tabs.addTab(file_browser, "Files")
-        tabs.addTab(lib_browser, "Library")
+        self.addTab(file_browser, "Files")
+        self.addTab(lib_browser, "Library")
 
         # Set layout and add the "tabs" structure
         layout = QtGui.QGridLayout()
-        layout.addWidget(tabs)
         self.setLayout(layout)
 
 
 class FileBrowser(QtGui.QTreeView):
     """Initializes the contents and look of the File Browser widget"""
+
+    def open_file(self):
+        pass
 
     def __init__(self, current_path):
         """ Parameters
@@ -45,6 +46,8 @@ class FileBrowser(QtGui.QTreeView):
             current_path: Initial file path for tree view
         """
         super(FileBrowser, self).__init__()
+
+        self.doubleClicked.connect(self.open_file)
 
         # If the workspace path does not exist, create it
         if not os.path.isdir(current_path):
