@@ -1,7 +1,7 @@
 # FIXED
 
 F2806x_PieCtrl.obj: C:/ti/controlSUITE/device_support/f2806x/v150/F2806x_common/source/F2806x_PieCtrl.c
-F2806x_PieCtrl.obj: C:/Users/ajans/Documents/workspace/PicoCommander/firmware/sys_includes/F2806x_Device.h
+F2806x_PieCtrl.obj: C:/ti/controlSUITE/device_support/f2806x/v150/F2806x_headers/include/F2806x_Device.h
 F2806x_PieCtrl.obj: C:/ti/controlSUITE/device_support/f2806x/v150/F2806x_headers/include/F2806x_Adc.h
 F2806x_PieCtrl.obj: C:/ti/controlSUITE/device_support/f2806x/v150/F2806x_headers/include/F2806x_BootVars.h
 F2806x_PieCtrl.obj: C:/ti/controlSUITE/device_support/f2806x/v150/F2806x_headers/include/F2806x_Cla.h
@@ -34,7 +34,7 @@ F2806x_PieCtrl.obj: C:/ti/controlSUITE/device_support/f2806x/v150/F2806x_common/
 F2806x_PieCtrl.obj: C:/ti/controlSUITE/device_support/f2806x/v150/F2806x_common/include/F2806x_DefaultISR.h
 
 C:/ti/controlSUITE/device_support/f2806x/v150/F2806x_common/source/F2806x_PieCtrl.c: 
-C:/Users/ajans/Documents/workspace/PicoCommander/firmware/sys_includes/F2806x_Device.h: 
+C:/ti/controlSUITE/device_support/f2806x/v150/F2806x_headers/include/F2806x_Device.h: 
 C:/ti/controlSUITE/device_support/f2806x/v150/F2806x_headers/include/F2806x_Adc.h: 
 C:/ti/controlSUITE/device_support/f2806x/v150/F2806x_headers/include/F2806x_BootVars.h: 
 C:/ti/controlSUITE/device_support/f2806x/v150/F2806x_headers/include/F2806x_Cla.h: 

@@ -31,16 +31,6 @@
 			<locationURI>TI_PRODUCTS_DIR/controlSUITE/device_support/f2806x/v150/F2806x_common/cmd/F28069.cmd</locationURI>
 		</link>
 		<link>
-			<name>F2806x_CodeStartBranch.asm</name>
-			<type>1</type>
-			<locationURI>TI_PRODUCTS_DIR/controlSUITE/device_support/f2806x/v150/F2806x_common/source/F2806x_CodeStartBranch.asm</locationURI>
-		</link>
-		<link>
-			<name>F2806x_CpuTimers.c</name>
-			<type>1</type>
-			<locationURI>TI_PRODUCTS_DIR/controlSUITE/device_support/f2806x/v150/F2806x_common/source/F2806x_CpuTimers.c</locationURI>
-		</link>
-		<link>
 			<name>F2806x_DefaultIsr.c</name>
 			<type>1</type>
 			<locationURI>TI_PRODUCTS_DIR/controlSUITE/device_support/f2806x/v150/F2806x_common/source/F2806x_DefaultIsr.c</locationURI>
@@ -61,14 +51,35 @@
 			<location>C:/ti/controlSUITE/device_support/f2806x/v150/F2806x_common/source/F2806x_PieVect.c</location>
 		</link>
 		<link>
-			<name>F2806x_SysCtrl.c</name>
-			<type>1</type>
-			<locationURI>TI_PRODUCTS_DIR/controlSUITE/device_support/f2806x/v150/F2806x_common/source/F2806x_SysCtrl.c</locationURI>
-		</link>
-		<link>
 			<name>F2806x_usDelay.asm</name>
 			<type>1</type>
 			<locationURI>TI_PRODUCTS_DIR/controlSUITE/device_support/f2806x/v150/F2806x_common/source/F2806x_usDelay.asm</locationURI>
 		</link>
+		<link>
+			<name>driverlib.lib</name>
+			<type>1</type>
+			<locationURI>TI_PRODUCTS_DIR/controlSUITE/device_support/f2806x/v150/MWare/driverlib/Debug/driverlib.lib</locationURI>
+		</link>
+		<link>
+			<name>sysctl.c</name>
+			<type>1</type>
+			<locationURI>INSTALLROOT_F2806x_V150_TO_MWARE/driverlib/sysctl.c</locationURI>
+		</link>
+		<link>
+			<name>usb.c</name>
+			<type>1</type>
+			<locationURI>INSTALLROOT_F2806x_V150_TO_MWARE/driverlib/usb.c</locationURI>
+		</link>
+		<link>
+			<name>usblib.lib</name>
+			<type>1</type>
+			<locationURI>TI_PRODUCTS_DIR/controlSUITE/device_support/f2806x/v150/MWare/lib/usblib.lib</locationURI>
+		</link>
 	</linkedResources>
+	<variableList>
+		<variable>
+			<name>INSTALLROOT_F2806x_V150_TO_MWARE</name>
+			<value>$%7BTI_PRODUCTS_DIR%7D/controlSUITE/device_support/f2806x/v150/MWare</value>
+		</variable>
+	</variableList>
 </projectDescription>
