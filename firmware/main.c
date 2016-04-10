@@ -33,7 +33,7 @@ void spi_setup(void);
 static char *input_string[64];
 static unsigned long read_index = 0;
 char *pcStr1 = "\nPlease enter a string: ";
-char *pcStr2 = "\nYour String was: ";
+char *pcStr2 = "\n\rYour String was: ";
 
 //*****************************************************************************
 //
@@ -754,10 +754,10 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
         // Feed some characters into the UART TX FIFO and enable the
         // interrupt.
         //
-        /*USBUARTPrimeTransmit();
-        UARTIntEnable(UART0_BASE, UART_INT_TXRDY);
-        */
-    	psCDCDevice = (const tUSBDCDCDevice *)pvCBData;
+        //USBUARTPrimeTransmit();
+        //UARTIntEnable(UART0_BASE, UART_INT_TXRDY);
+    	unsigned char tempChar = 0xd;
+        psCDCDevice = (const tUSBDCDCDevice *)pvCBData;
     	pBufferRx = (const tUSBBuffer *)psCDCDevice->pvRxCBData;
     	pBufferTx = (const tUSBBuffer *)psCDCDevice->pvTxCBData;
 
@@ -775,6 +775,8 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
     	}
 
     	iIdx = 0;
+
+    	USBBufferWrite(pBufferTx, &tempChar, 1);
     	while(pcStr1[iIdx] != 0)
     	{
     		while(USBBufferSpaceAvailable(&g_sTxBuffer) < 2){}

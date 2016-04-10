@@ -10,18 +10,16 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
-"./F2806x_CodeStartBranch.obj" \
-"./F2806x_CpuTimers.obj" \
 "./F2806x_DefaultIsr.obj" \
 "./F2806x_PieCtrl.obj" \
 "./F2806x_PieVect.obj" \
-"./F2806x_SysCtrl.obj" \
 "./F2806x_usDelay.obj" \
 "./main.obj" \
 "./sysctl.obj" \
 "./usb.obj" \
 "./usb_serial_structs.obj" \
 "./sys_includes/F2806x_GlobalVariableDefs.obj" \
+"C:/ti/controlSUITE/device_support/f2806x/v150/F2806x_common/cmd/F28069.cmd" \
 "C:/ti/controlSUITE/device_support/f2806x/v150/F2806x_headers/cmd/F2806x_Headers_nonBIOS.cmd" \
 "C:/ti/controlSUITE/device_support/f2806x/v150/MWare/driverlib/Debug/driverlib.lib" \
 "C:/ti/controlSUITE/device_support/f2806x/v150/MWare/lib/usblib.lib" \
@@ -151,7 +149,7 @@ all: PicoCommander.out
 PicoCommander.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C2000 Linker'
-	"C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --cla_support=cla0 --vcu_support=vcu0 -O2 --diag_warning=225 --display_error_number --diag_wrap=off -z -m"PicoCommander.map" --stack_size=0x300 --warn_sections -i"C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/lib" -i"C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="PicoCommander_linkInfo.xml" --rom_model -o "PicoCommander.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --cla_support=cla0 --vcu_support=vcu0 -O2 --define=_INLINE --define=ccs_c2k --diag_warning=225 --display_error_number --diag_wrap=off -z -m"PicoCommander.map" --stack_size=0x300 --warn_sections -i"C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/lib" -i"C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="PicoCommander_linkInfo.xml" --rom_model -o "PicoCommander.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -164,9 +162,9 @@ PicoCommander.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
-	-$(RM) "F2806x_CpuTimers.pp" "F2806x_DefaultIsr.pp" "F2806x_PieCtrl.pp" "F2806x_PieVect.pp" "F2806x_SysCtrl.pp" "main.pp" "sysctl.pp" "usb.pp" "usb_serial_structs.pp" "sys_includes\F2806x_GlobalVariableDefs.pp" 
-	-$(RM) "F2806x_CodeStartBranch.obj" "F2806x_CpuTimers.obj" "F2806x_DefaultIsr.obj" "F2806x_PieCtrl.obj" "F2806x_PieVect.obj" "F2806x_SysCtrl.obj" "F2806x_usDelay.obj" "main.obj" "sysctl.obj" "usb.obj" "usb_serial_structs.obj" "sys_includes\F2806x_GlobalVariableDefs.obj" 
-	-$(RM) "F2806x_CodeStartBranch.pp" "F2806x_usDelay.pp" 
+	-$(RM) "F2806x_DefaultIsr.pp" "F2806x_PieCtrl.pp" "F2806x_PieVect.pp" "main.pp" "sysctl.pp" "usb.pp" "usb_serial_structs.pp" "sys_includes\F2806x_GlobalVariableDefs.pp" 
+	-$(RM) "F2806x_DefaultIsr.obj" "F2806x_PieCtrl.obj" "F2806x_PieVect.obj" "F2806x_usDelay.obj" "main.obj" "sysctl.obj" "usb.obj" "usb_serial_structs.obj" "sys_includes\F2806x_GlobalVariableDefs.obj" 
+	-$(RM) "F2806x_usDelay.pp" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
