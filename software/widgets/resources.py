@@ -22,12 +22,12 @@ class BrowseWidget(QtGui.QTabWidget):
         self.setMinimumWidth(200)
 
         # Initialize the Resource widgets
-        file_browser = FileBrowser(current_path)
-        lib_browser = LibraryBrowser()
+        self.file_browser = FileBrowser(current_path)
+        self.lib_browser = LibraryBrowser()
 
         # Create tabs at the top of the widget for different information
-        self.addTab(file_browser, "Files")
-        self.addTab(lib_browser, "Library")
+        self.addTab(self.file_browser, "Files")
+        self.addTab(self.lib_browser, "Library")
 
         # Set layout and add the "tabs" structure
         layout = QtGui.QGridLayout()
@@ -37,8 +37,12 @@ class BrowseWidget(QtGui.QTabWidget):
 class FileBrowser(QtGui.QTreeView):
     """Initializes the contents and look of the File Browser widget"""
 
+    openWork = QtCore.pyqtSignal(str)
+
+    @QtCore.pyqtSlot()
     def open_file(self):
-        pass
+        index = self.selectedIndexes()[0]
+        self.openWork.emit(self.model().filePath(index))
 
     def __init__(self, current_path):
         """ Parameters
