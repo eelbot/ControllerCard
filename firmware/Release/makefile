@@ -10,6 +10,7 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
+"./F2806x_CodeStartBranch.obj" \
 "./F2806x_DefaultIsr.obj" \
 "./F2806x_PieCtrl.obj" \
 "./F2806x_PieVect.obj" \
@@ -163,8 +164,8 @@ PicoCommander.hex: $(EXE_OUTPUTS)
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
 	-$(RM) "F2806x_DefaultIsr.pp" "F2806x_PieCtrl.pp" "F2806x_PieVect.pp" "main.pp" "sysctl.pp" "usb.pp" "usb_serial_structs.pp" "sys_includes\F2806x_GlobalVariableDefs.pp" 
-	-$(RM) "F2806x_DefaultIsr.obj" "F2806x_PieCtrl.obj" "F2806x_PieVect.obj" "F2806x_usDelay.obj" "main.obj" "sysctl.obj" "usb.obj" "usb_serial_structs.obj" "sys_includes\F2806x_GlobalVariableDefs.obj" 
-	-$(RM) "F2806x_usDelay.pp" 
+	-$(RM) "F2806x_CodeStartBranch.obj" "F2806x_DefaultIsr.obj" "F2806x_PieCtrl.obj" "F2806x_PieVect.obj" "F2806x_usDelay.obj" "main.obj" "sysctl.obj" "usb.obj" "usb_serial_structs.obj" "sys_includes\F2806x_GlobalVariableDefs.obj" 
+	-$(RM) "F2806x_CodeStartBranch.pp" "F2806x_usDelay.pp" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
