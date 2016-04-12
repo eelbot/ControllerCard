@@ -870,8 +870,10 @@ void main(void) {
 	    // Set the clocking to run from the PLL
 	    //
 	    SysCtrlInit();
+
 	    InitPieCtrl();
 	    InitPieVectTable();
+
 
 	    //
 	    // Enable Device Mode
