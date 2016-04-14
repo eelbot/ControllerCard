@@ -39,10 +39,17 @@ class FileBrowser(QtGui.QTreeView):
 
     openWork = QtCore.pyqtSignal(str)
 
-    @QtCore.pyqtSlot()
     def open_file(self):
         index = self.selectedIndexes()[0]
         self.openWork.emit(self.model().filePath(index))
+
+    def change_path(self, new_path):
+        """ Parameters
+
+            new_path: The path to the new workspace
+        """
+        self.setRootIndex(self.file_model.index(new_path))
+        self.file_model.setRootPath(QtCore.QDir.currentPath())
 
     def __init__(self, current_path):
         """ Parameters
@@ -58,10 +65,10 @@ class FileBrowser(QtGui.QTreeView):
             os.makedirs(current_path, exist_ok=True)
 
         # Create a generic file model and display it in tree view
-        file_model = QtGui.QFileSystemModel()
-        self.setModel(file_model)
-        self.setRootIndex(file_model.index(current_path))
-        file_model.setRootPath(QtCore.QDir.currentPath())
+        self.file_model = QtGui.QFileSystemModel()
+        self.setModel(self.file_model)
+        self.setRootIndex(self.file_model.index(current_path))
+        self.file_model.setRootPath(QtCore.QDir.currentPath())
 
 
 class LibraryBrowser(QtGui.QWidget):

@@ -1,6 +1,7 @@
 import sys
 from PyQt4 import QtGui, QtCore
 from widgets.resources import BrowseWidget
+from widgets.manager import WorkspaceManager
 from widgets.workspace import Workspace
 from utils import fileop, ser_con
 
@@ -129,6 +130,11 @@ class main_app(QtGui.QMainWindow):
         connect_tool_bar.setIconSize(icon_size)
         connect_tool_bar.addAction(board_connect)
 
+    def update_workspace(self, new_path):
+        """ Changes the current workspace path """
+        self.resource_browser.file_browser.change_path(new_path)
+        self.work_path = new_path
+
 
     def init_view(self):
         """ Initializes, wraps, and adds widgets to the main window """
@@ -140,19 +146,24 @@ class main_app(QtGui.QMainWindow):
         workspace_wrap.setWidget(self.workspace)
 
         # Initialize the resource browser dock widget (left side)
-        # BrowseWidget() defined in widgets/fbrowse.py
+        # BrowseWidget() defined in widgets/resources.py
         self.work_path = 'C:/Users/ajans/Documents/workspace'
-        self.resource_browser = BrowseWidget(
-                    'C:/Users/ajans/Documents/workspace')
+        self.resource_browser = BrowseWidget(self.work_path)
         self.resource_browser.file_browser.openWork.connect(
                     self.workspace.add_file)
         resource_browser_wrap = QtGui.QDockWidget('Resource Browse', self)
         resource_browser_wrap.setWidget(self.resource_browser)
 
-
+        # Initialize the workspace management widget
+        # WorkspaceManager() is defined in widgets/manager.py
+        self.work_manager = WorkspaceManager()
+        self.work_manager.newPath.connect(self.update_workspace)
+        workspace_change = QtGui.QDockWidget('Manage Workspace', self)
+        workspace_change.setWidget(self.work_manager)
 
         # Set central widget and add dock widgets
         self.setCentralWidget(workspace_wrap)
+        self.addDockWidget(QtCore.Qt.LeftDockWidgetArea, workspace_change)
         self.addDockWidget(QtCore.Qt.LeftDockWidgetArea, resource_browser_wrap)
 
 

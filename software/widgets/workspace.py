@@ -29,7 +29,9 @@ class Workspace(QtGui.QTabWidget):
         if extension in ('txt', 'py', 'upl'):
             added_file = TextEditor(name, extension, file_path)
         else:
-            added_file = TextEditor(name)
+            QtGui.QMessageBox.question(self, 'Message',
+                                       "Cannot open file")
+            return None
 
         # Don't replicate the default name for a new, blank file
         if "untitled" in name:
