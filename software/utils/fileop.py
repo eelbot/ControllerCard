@@ -29,9 +29,9 @@ def open_file(parent, work_path, workspace):
     # Determine if the file is already in the editor
     for i in range(workspace.count()):
         if (workspace.widget(i).filePath == file_path and
-                                        workspace.widget(i).filePath):
-            QtGui.QMessageBox.question(parent, 'Message',
-                                        "The file is already in the editor")
+                workspace.widget(i).filePath):
+            QtGui.QMessageBox.question(
+                    parent, 'Message', "The file is already in the editor")
             workspace.setCurrentIndex(i)
             break
 

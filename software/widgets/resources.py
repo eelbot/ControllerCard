@@ -35,29 +35,34 @@ class BrowseWidget(QtGui.QTabWidget):
 
 
 class FileBrowser(QtGui.QTreeView):
-    """Initializes the contents and look of the File Browser widget"""
+    """ Initializes the contents and look of the File Browser widget """
 
+    # Signal emitted user double clicks to open a file
+    # The below signal carries a file path in it's argument
     openWork = QtCore.pyqtSignal(str)
 
     def open_file(self):
+        """ Obtain file name and emit an openWork signal with a file path """
+
         index = self.selectedIndexes()[0]
         self.openWork.emit(self.model().filePath(index))
 
     def change_path(self, new_path):
         """ Parameters
-
             new_path: The path to the new workspace
         """
+
+        # Change root index and file model root path to root_path
         self.setRootIndex(self.file_model.index(new_path))
         self.file_model.setRootPath(QtCore.QDir.currentPath())
 
     def __init__(self, current_path):
         """ Parameters
-
             current_path: Initial file path for tree view
         """
         super(FileBrowser, self).__init__()
 
+        # When a file is double clicked, open that file.
         self.doubleClicked.connect(self.open_file)
 
         # If the workspace path does not exist, create it

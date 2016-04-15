@@ -24,12 +24,12 @@ class main_app(QtGui.QMainWindow):
         self.showMaximized()
         self.show()
 
-
     def create_file_menu(self, menubar):
         """ Creates the file menu """
 
         # New Blank File Menu Option
-        new_blank_file = QtGui.QAction(QtGui.QIcon('img/file_new.png'), 'New Empty File', self)
+        new_blank_file = QtGui.QAction(
+                QtGui.QIcon('img/file_new.png'), 'New Empty File', self)
         new_blank_file.setIconVisibleInMenu(False)
         new_blank_file.setShortcut('Ctrl+Shift+N')
         new_blank_file.setStatusTip('Create a new blank file')
@@ -43,7 +43,8 @@ class main_app(QtGui.QMainWindow):
         new_proj.triggered.connect(fileop.create_proj)
 
         # New Project File Menu Option
-        new_proj_file = QtGui.QAction(QtGui.QIcon('img/file_proj_new.png'), 'New Project File', self)
+        new_proj_file = QtGui.QAction(
+                QtGui.QIcon('img/file_proj_new.png'), 'New Project File', self)
         new_proj_file.setIconVisibleInMenu(False)
         new_proj_file.setStatusTip('Create a new application file')
         new_proj_file.triggered.connect(fileop.create_proj_file)
@@ -93,7 +94,8 @@ class main_app(QtGui.QMainWindow):
         exit_app.triggered.connect(QtGui.qApp.quit)
 
         # Basic Connect option
-        board_connect = QtGui.QAction(QtGui.QIcon('img/connect.png'), 'Detect and Connect', self)
+        board_connect = QtGui.QAction(
+                QtGui.QIcon('img/connect.png'), 'Detect and Connect', self)
         board_connect.setIconVisibleInMenu(False)
         board_connect.setShortcut('Ctrl+Shift+C')
         board_connect.setStatusTip('Establish a connection to a board')
@@ -131,10 +133,12 @@ class main_app(QtGui.QMainWindow):
         connect_tool_bar.addAction(board_connect)
 
     def update_workspace(self, new_path):
-        """ Changes the current workspace path """
+        """ Changes the current workspace path variable and file structure
+            in the file_browser dock widget
+        """
+
         self.resource_browser.file_browser.change_path(new_path)
         self.work_path = new_path
-
 
     def init_view(self):
         """ Initializes, wraps, and adds widgets to the main window """

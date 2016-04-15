@@ -1,4 +1,4 @@
-from PyQt4 import QtGui, QtCore
+from PyQt4 import QtGui
 from widgets.fedit import TextEditor
 
 
@@ -22,12 +22,16 @@ class Workspace(QtGui.QTabWidget):
         """
 
         # Extract the extension and title from the file_path
+        # If the file does not have an extension, both the title and extension
+        # are equal to the name
         extension = file_path.split('.', 1)[-1]
         name = file_path.split('/')[-1]
 
         # Open the appropriate editor based on file extension
         if extension in ('txt', 'py', 'upl'):
             added_file = TextEditor(name, extension, file_path)
+        elif extension == "untitled":
+            added_file = TextEditor(name)
         else:
             QtGui.QMessageBox.question(self, 'Message',
                                        "Cannot open file")
@@ -54,7 +58,7 @@ class Workspace(QtGui.QTabWidget):
             or the file is saved to denote to the user if their changes are
             currently saved.
 
-            isSaved: Whether the file has become saved (True) or unsaved (False)
+            isSaved: If the file has become saved (True) or unsaved (False)
         """
         i = self.currentIndex()
         current_name = self.tabText(i)
