@@ -1,5 +1,5 @@
 from PyQt4 import QtGui
-from widgets.fedit import TextEditor
+from widgets.editor import TextEditor, DragDropEditor
 
 
 class Workspace(QtGui.QTabWidget):
@@ -30,6 +30,11 @@ class Workspace(QtGui.QTabWidget):
         # Open the appropriate editor based on file extension
         if extension in ('txt', 'py', 'upl'):
             added_file = TextEditor(name, extension, file_path)
+
+            # Add a checker and updater to check for changes (saved vs. unsaved)
+            added_file.textChanged.connect(lambda: self.save_state_change(False))
+        elif extension == "pro":
+            added_file = DragDropEditor(name, extension, file_path)
         elif extension == "untitled":
             added_file = TextEditor(name)
         else:
@@ -39,7 +44,9 @@ class Workspace(QtGui.QTabWidget):
 
         # Don't replicate the default name for a new, blank file
         if "untitled" in name:
-            added_file.fileName += ' ' + str(self.num_of_untitled)
+
+            added_file.fileName = (added_file.fileName.split('.')[0] +
+                                    str(self.num_of_untitled) + '.' + extension)
             self.num_of_untitled += 1
 
         # Add as a tab, at a certain index if indicated
@@ -49,9 +56,6 @@ class Workspace(QtGui.QTabWidget):
         else:
             self.addTab(added_file, added_file.fileName)
             self.setCurrentIndex(self.count() - 1)
-
-        # Add a checker and updater to check for changes (saved vs. unsaved)
-        added_file.textChanged.connect(lambda: self.save_state_change(False))
 
     def save_state_change(self, isSaved):
         """ Adds or removes an asterisk from the current tab when text changes
@@ -79,7 +83,7 @@ class Workspace(QtGui.QTabWidget):
         self.setMovable(True)
 
         # Set up initial tab as "untitled" and unsaved
-        initial_file = TextEditor('untitled')
+        initial_file = DragDropEditor('untitled.pro')
         self.addTab(initial_file, initial_file.fileName)
         self.save_state_change(False)
 

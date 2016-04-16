@@ -3,7 +3,7 @@ from PyQt4 import QtGui, QtCore
 from widgets.resources import BrowseWidget
 from widgets.manager import WorkspaceManager
 from widgets.workspace import Workspace
-from utils import fileop, ser_con
+from utils import fileop, ser_con, fedit
 
 
 class main_app(QtGui.QMainWindow):
@@ -102,6 +102,15 @@ class main_app(QtGui.QMainWindow):
         board_connect.triggered.connect(
                 lambda: ser_con.detect_and_connect())
 
+        # Add a tile to the drag and drop editor
+        add_tile = QtGui.QAction(
+                QtGui.QIcon('img/add_tile.png'), 'Add Tile', self)
+        add_tile.setIconVisibleInMenu(False)
+        add_tile.setShortcut('Ctrl+Shift+A')
+        add_tile.setStatusTip('Add a tile to the current editor')
+        add_tile.triggered.connect(
+                lambda: fedit.add_tile(self.workspace))
+
         # Create file menu
         file_menu = menubar.addMenu('&File')
         new_menu = file_menu.addMenu('&New')
@@ -118,6 +127,9 @@ class main_app(QtGui.QMainWindow):
         connect_menu = menubar.addMenu('&Connect')
         connect_menu.addAction(board_connect)
 
+        editor_menu = menubar.addMenu('&Editor')
+        editor_menu.addAction(add_tile)
+
         # Create toolbars
         icon_size = QtCore.QSize(20, 20)
         file_tool_bar = self.addToolBar('File')
@@ -127,10 +139,13 @@ class main_app(QtGui.QMainWindow):
         file_tool_bar.addAction(open_file)
         file_tool_bar.addAction(save_file)
 
-        icon_size = QtCore.QSize(20, 20)
-        connect_tool_bar = self.addToolBar('connect')
+        connect_tool_bar = self.addToolBar('Connect')
         connect_tool_bar.setIconSize(icon_size)
         connect_tool_bar.addAction(board_connect)
+
+        editor_tool_bar = self.addToolBar('Editor')
+        editor_tool_bar.setIconSize(icon_size)
+        editor_tool_bar.addAction(add_tile)
 
     def update_workspace(self, new_path):
         """ Changes the current workspace path variable and file structure

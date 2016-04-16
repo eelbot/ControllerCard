@@ -1,10 +1,22 @@
 from PyQt4 import QtGui
+from widgets.editor import TextEditor, DragDropEditor
 import os
 
 
 def create_blank_file(workspace):
+    # Ask the user what kind of file they would like to create
+    items = ["Hex-Based", "Drag and Drop"]
+    item = QtGui.QInputDialog.getItem(
+            workspace, 'Select File Type', "Format", items, 0, False)
+
     # Add a blank, untitled file
-    workspace.add_file("untitled")
+    if "Hex-Based" in item:
+        workspace.add_file("untitled.upl")
+    elif "Drag and Drop" in item:
+        workspace.add_file("untitled.pro")
+    else:
+        pass
+
     workspace.save_state_change(False)
 
 
@@ -52,19 +64,46 @@ def import_proj():
 
 
 def save_file(parent, work_path, workspace):
-    # Get the current widget and extract the text from it
+    # Get the current widget
     current_tab = workspace.currentWidget()
-    text = current_tab.toPlainText()
 
-    # Check if the file exists. If not, create one and write the text to it
-    if os.path.isfile(current_tab.filePath):
-        with open(current_tab.filePath, 'w') as f:
-            f.write(text)
-        f.close()
-        workspace.save_state_change(True)
-    else:
+    if type(current_tab) is TextEditor:
+        # Get the text of the text editor into a variable
+        text = current_tab.toPlainText()
+
+        # Check if the file exists. If not, create one and write the text to it
+        if os.path.isfile(current_tab.filePath):
+            with open(current_tab.filePath, 'w') as f:
+                f.write(text)
+            f.close()
+            workspace.save_state_change(True)
+        else:
+            new_save_path = QtGui.QFileDialog.getSaveFileName(
+                    parent, 'Save File', work_path)
+            # Line below generates file not found error if dialog is closed
+            try:
+                with open(new_save_path, 'w') as f:
+                    f.write(text)
+                f.close()
+                i = workspace.currentIndex()
+                workspace.removeTab(i)
+                workspace.add_file(new_save_path, i)
+                workspace.save_state_change(True)
+            except FileNotFoundError:
+                pass
+    elif type(current_tab) is DragDropEditor:
+        print("Drag Drop Editor")
+
+
+def save_as(parent, work_path, workspace):
+    current_tab = workspace.currentWidget()
+
+    if type(current_tab) is TextEditor:
+        # Get the text of the text editor into a variable
+        text = current_tab.toPlainText()
+
         new_save_path = QtGui.QFileDialog.getSaveFileName(
-                parent, 'Open File', work_path)
+                parent, 'Save File', work_path)
         # Line below generates file not found error if dialog is closed
         try:
             with open(new_save_path, 'w') as f:
@@ -77,21 +116,5 @@ def save_file(parent, work_path, workspace):
         except FileNotFoundError:
             pass
 
-
-def save_as(parent, work_path, workspace):
-    current_tab = workspace.currentWidget()
-    text = current_tab.toPlainText()
-
-    new_save_path = QtGui.QFileDialog.getSaveFileName(
-            parent, 'Open File', work_path)
-    # Line below generates file not found error if dialog is closed
-    try:
-        with open(new_save_path, 'w') as f:
-            f.write(text)
-        f.close()
-        i = workspace.currentIndex()
-        workspace.removeTab(i)
-        workspace.add_file(new_save_path, i)
-        workspace.save_state_change(True)
-    except FileNotFoundError:
-        pass
+    elif type(current_tab) is DragDropEditor:
+        print("Drag Drop Editor")

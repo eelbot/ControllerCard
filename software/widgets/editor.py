@@ -1,4 +1,5 @@
-from PyQt4 import QtGui
+from PyQt4 import QtGui, QtCore
+from widgets.tile import tile
 
 
 class TextEditor(QtGui.QTextEdit):
@@ -36,7 +37,7 @@ class TextEditor(QtGui.QTextEdit):
                 self.setText(file.read())
             self.isSaved = True
         except FileNotFoundError:
-            if name == "untitled":
+            if name in ("untitled.upl", "untitled.pro", "untitled"):
                 pass
             else:
                 QtGui.QMessageBox.question(self, 'Message',
@@ -45,5 +46,34 @@ class TextEditor(QtGui.QTextEdit):
         # Create final layout and display widget
         layout = QtGui.QGridLayout()
         self.setLayout(layout)
+
+        self.show()
+
+
+class DragDropEditor(QtGui.QWidget):
+    """ A drag and drop based file editor """
+
+    def __init__(self, name=None, ext=None, path='', saved=False):
+        """ Parameters
+            name: The name of the file
+            ext: The file extension
+            path: The relative path to the file
+        """
+        super(DragDropEditor, self).__init__()
+
+        self.fileName = name
+        self.fileExt = ext
+        self.filePath = path
+        self.isSaved = saved
+
+        self.init_view(name, ext, path)
+
+    def init_view(self, name=None, ext=None, path=''):
+        """ Initializes the view of the file editor widget
+
+            Parameters
+            name: Name of the file being edited
+            ext: Extension of the file being edited
+        """
 
         self.show()
