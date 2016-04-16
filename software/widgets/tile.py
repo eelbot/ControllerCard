@@ -39,6 +39,9 @@ class tile(QtGui.QPushButton):
 
     def mousePressEvent(self, e):
         super(tile, self).mousePressEvent(e)
+        if e.button() == QtCore.Qt.RightButton:
+            self.setStyleSheet(
+                        "QPushButton{background-color:#FF0000; border:none;}")
         self.__mousePressPos = None
         self.__mouseMovePos = None
         if e.button() == QtCore.Qt.LeftButton:
@@ -47,6 +50,11 @@ class tile(QtGui.QPushButton):
 
 
     def mouseReleaseEvent(self, e):
+
+        if e.button() == QtCore.Qt.RightButton:
+            self.setStyleSheet(
+                        "QPushButton{background-color:#AAAAAA; border:none;}")
+
         if self.__mousePressPos is not None:
             moved = e.globalPos() - self.__mousePressPos
             if moved.manhattanLength() > 3:
