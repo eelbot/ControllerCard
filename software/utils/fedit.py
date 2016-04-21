@@ -9,5 +9,7 @@ def add_tile(workspace):
             workspace: The current workspace widget
 
     """
-    new_tile = tile(workspace.currentWidget(), 30, 30)
+    new_tile = tile(workspace.currentWidget(), workspace.currentWidget().numOfChildren, 30, 30)
+    new_tile.drawConnection.connect(workspace.currentWidget().drawArrow)
+    workspace.currentWidget().numOfChildren += 1
     workspace.update()

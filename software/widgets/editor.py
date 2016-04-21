@@ -66,6 +66,16 @@ class DragDropEditor(QtGui.QWidget):
         self.filePath = path
         self.isSaved = saved
 
+        self.currentlyDrawing = False
+        self.inix = 0
+        self.iniy = 0
+        self.finx = 0
+        self.finy = 0
+
+        self.numOfChildren = 1
+
+        self.setMouseTracking(True)
+
         self.init_view(name, ext, path)
 
     def init_view(self, name=None, ext=None, path=''):
@@ -77,3 +87,28 @@ class DragDropEditor(QtGui.QWidget):
         """
 
         self.show()
+
+    def drawArrow(self, currentlyDrawing, eventx, eventy):
+        self.currentlyDrawing = currentlyDrawing
+        if self.currentlyDrawing:
+            self.inix = eventx
+            self.iniy = eventy
+        else:
+            self.finx = eventx
+            self.finy = eventy
+
+
+    def mouseMoveEvent(self, e):
+        super(DragDropEditor, self).mouseMoveEvent(e)
+        self.finx = e.x()
+        self.finy = e.y()
+
+    def paintEvent(self, e):
+        super(DragDropEditor, self).paintEvent(e)
+        if self.currentlyDrawing:
+            self.paintArrow()
+        self.update()
+
+    def paintArrow(self):
+        #INSERT CODE HERE TO DRAW ARROW, WHATEVER THAT MAY BE
+        pass

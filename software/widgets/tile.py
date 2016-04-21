@@ -5,7 +5,10 @@ class tile(QtGui.QPushButton):
         and dropped in the drag and drop editor
     """
 
-    def __init__(self, parent, xpos=100, ypos=100, width=100, height=100, ref=0):
+    # The signal the is emitted when drawing starts or stops for an arrow
+    drawConnection = QtCore.pyqtSignal(bool, int, int)
+
+    def __init__(self, parent, ref, xpos=100, ypos=100, width=100, height=100):
         """ Parameters
             xpos: Initial x position
             ypos: Initial y position
@@ -16,6 +19,9 @@ class tile(QtGui.QPushButton):
         self.xpos = xpos
         self.ypos = ypos
         self.parent = parent
+        self.ref = ref
+
+        self.drawingArrow = False
 
         super(tile, self).__init__(parent)
 
@@ -30,6 +36,8 @@ class tile(QtGui.QPushButton):
                     "QPushButton{background-color:#AAAAAA; border:none;}\
                      QPushButton:pressed{background-color:#AAAAAA;}")
         self.show()
+
+
 
     def mouseMoveEvent(self, e):
         """ A re-implementation of the mouseMoveEvent.
@@ -69,6 +77,10 @@ class tile(QtGui.QPushButton):
             self.setStyleSheet(
                         "QPushButton{background-color:#FF0000; border:none;}")
 
+            # Emit a signal to begin drawing an arrow
+            self.drawingArrow = True
+            self.drawConnection.emit(self.drawingArrow, self.x() + (self.width() / 2), self.y() + (self.height() / 2))
+
         # Reset and initialize the variables once a click starts
         self.__mousePressPos = None
         self.__mouseMovePos = None
@@ -87,6 +99,10 @@ class tile(QtGui.QPushButton):
         if e.button() == QtCore.Qt.RightButton:
             self.setStyleSheet(
                         "QPushButton{background-color:#AAAAAA; border:none;}")
+
+            # Emit a signal to begin drawing an arrow
+            self.drawingArrow = False
+            self.drawConnection.emit(self.drawingArrow, e.x(), e.y())
 
         # If the left mouse button has already been pressed, and the tile
         # has moved a minimum distance, do not run the original mouseReleaseEvent
