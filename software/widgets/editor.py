@@ -1,5 +1,5 @@
 from PyQt4 import QtGui, QtCore
-from widgets.tile import tile
+from widgets.tile import tile, arrow
 
 
 class TextEditor(QtGui.QTextEdit):
@@ -67,6 +67,8 @@ class DragDropEditor(QtGui.QWidget):
         self.isSaved = saved
 
         self.currentlyDrawing = False
+        self.start_wid = None
+        self.end_wid = None
         self.inix = 0
         self.iniy = 0
         self.finx = 0
@@ -88,27 +90,26 @@ class DragDropEditor(QtGui.QWidget):
 
         self.show()
 
-    def drawArrow(self, currentlyDrawing, eventx, eventy):
-        self.currentlyDrawing = currentlyDrawing
-        if self.currentlyDrawing:
+    def drawArrow(self, wid_ref, eventx, eventy):
+        #self.currentlyDrawing = currentlyDrawing
+
+        if self.start_wid == None and self.end_wid == None:
+            self.start_wid = wid_ref
             self.inix = eventx
             self.iniy = eventy
-        else:
-            self.finx = eventx
-            self.finy = eventy
+        elif self.start_wid != None and self.end_wid == None:
+            self.end_wid = wid_ref
+            if self.end_wid != self.start_wid:
+                self.finx = eventx
+                self.finy = eventy
+                new_arrow = arrow(self.inix, self.iniy, self.finx, self.finy, self.start_wid, self.end_wid)
+                new_arrow.setParent(self)
+                new_arrow.lower()
+                new_arrow.show()
+            self.start_wid = None
+            self.end_wid = None
+
 
 
     def mouseMoveEvent(self, e):
         super(DragDropEditor, self).mouseMoveEvent(e)
-        self.finx = e.x()
-        self.finy = e.y()
-
-    def paintEvent(self, e):
-        super(DragDropEditor, self).paintEvent(e)
-        if self.currentlyDrawing:
-            self.paintArrow()
-        self.update()
-
-    def paintArrow(self):
-        #INSERT CODE HERE TO DRAW ARROW, WHATEVER THAT MAY BE
-        pass

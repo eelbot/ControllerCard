@@ -6,7 +6,7 @@ class tile(QtGui.QPushButton):
     """
 
     # The signal the is emitted when drawing starts or stops for an arrow
-    drawConnection = QtCore.pyqtSignal(bool, int, int)
+    drawConnection = QtCore.pyqtSignal(int, int, int)
 
     def __init__(self, parent, ref, xpos=100, ypos=100, width=100, height=100):
         """ Parameters
@@ -20,8 +20,6 @@ class tile(QtGui.QPushButton):
         self.ypos = ypos
         self.parent = parent
         self.ref = ref
-
-        self.drawingArrow = False
 
         super(tile, self).__init__(parent)
 
@@ -77,10 +75,6 @@ class tile(QtGui.QPushButton):
             self.setStyleSheet(
                         "QPushButton{background-color:#FF0000; border:none;}")
 
-            # Emit a signal to begin drawing an arrow
-            self.drawingArrow = True
-            self.drawConnection.emit(self.drawingArrow, self.x() + (self.width() / 2), self.y() + (self.height() / 2))
-
         # Reset and initialize the variables once a click starts
         self.__mousePressPos = None
         self.__mouseMovePos = None
@@ -100,9 +94,8 @@ class tile(QtGui.QPushButton):
             self.setStyleSheet(
                         "QPushButton{background-color:#AAAAAA; border:none;}")
 
-            # Emit a signal to begin drawing an arrow
-            self.drawingArrow = False
-            self.drawConnection.emit(self.drawingArrow, e.x(), e.y())
+            # Emit a signal to draw an arrow
+            self.drawConnection.emit(self.ref, self.x() + (self.width() / 2), self.y() + (self.height() / 2))
 
         # If the left mouse button has already been pressed, and the tile
         # has moved a minimum distance, do not run the original mouseReleaseEvent
@@ -115,3 +108,39 @@ class tile(QtGui.QPushButton):
 
     def info_display(self, e):
         QtGui.QMessageBox.information(self.parent, "About", "INSERT INFO HERE")
+
+
+class arrow(QtGui.QWidget):
+
+    def __init__(self, inix, iniy, finx, finy, in_ref, out_ref):
+        super(arrow, self).__init__()
+
+        self.inix = inix
+        self.iniy = iniy
+        self.finx = finx
+        self.finy = finy
+        self.input = in_ref
+        self.output = out_ref
+
+        self.setGeometry(0, 0, 2000, 2000)
+
+    def paintEvent(self, e):
+
+        qp = QtGui.QPainter()
+        qp.begin(self)
+        pen = QtGui.QPen(QtGui.QColor(0, 0, 0), 3, QtCore.Qt.SolidLine)
+
+        qp.setPen(pen)
+        qp.setBrush(QtCore.Qt.NoBrush)
+        qp.drawLine(self.inix, self.iniy, self.finx, self.finy)
+        qp.end()
+
+    def update(self, inix, iniy, finx, finy):
+        qp = QtGui.QPainter()
+        qp.begin(self)
+        pen = QtGui.QPen(QtGui.QColor(0, 0, 0), 3, QtCore.Qt.SolidLine)
+
+        qp.setPen(pen)
+        qp.setBrush(QtCore.Qt.NoBrush)
+        qp.drawLine(self.inix, self.iniy, self.finx, self.finy)
+        qp.end()
