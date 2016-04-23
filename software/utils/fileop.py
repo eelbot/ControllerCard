@@ -1,6 +1,6 @@
 from PyQt4 import QtGui
 from widgets.editor import TextEditor, DragDropEditor
-from widgets.tile import tile, arrow
+from widgets.entity import tile, arrow
 import os, datetime
 
 
@@ -104,7 +104,7 @@ def save_file(parent, work_path, workspace):
             save_text += " " + str(v.ref)
             save_text += " " + str(v.x())
             save_text += " " + str(v.y())
-            save_text += " " + str(v.tile_type)
+            save_text += " " + str(v.tile_func)
 
         # Next, save the connections
         for v in arrows:
@@ -171,7 +171,7 @@ def save_as(parent, work_path, workspace):
             save_text += " " + str(v.ref)
             save_text += " " + str(v.x())
             save_text += " " + str(v.y())
-            save_text += " " + str(v.tile_type)
+            save_text += " " + str(v.tile_func)
 
         # Next, save the connections
         for v in arrows:

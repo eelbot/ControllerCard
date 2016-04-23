@@ -1,6 +1,6 @@
 from PyQt4 import QtGui, QtCore
 from widgets.editor import TextEditor, DragDropEditor
-from widgets.tile import tile, arrow
+from widgets.entity import tile, arrow
 
 
 def add_tile(workspace):

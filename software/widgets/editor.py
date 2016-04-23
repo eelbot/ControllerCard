@@ -1,5 +1,5 @@
 from PyQt4 import QtGui, QtCore
-from widgets.tile import tile, arrow
+from widgets.entity import tile, arrow
 
 
 class TextEditor(QtGui.QTextEdit):

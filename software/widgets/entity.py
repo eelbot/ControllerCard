@@ -23,7 +23,7 @@ class tile(QtGui.QPushButton):
         self.ypos = ypos
         self.parent = parent
         self.ref = ref
-        self.tile_type = None
+        self.tile_func = None
         self.arrows = []
 
         super(tile, self).__init__(parent)

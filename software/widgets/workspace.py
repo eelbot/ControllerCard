@@ -1,6 +1,6 @@
 from PyQt4 import QtGui
 from widgets.editor import TextEditor, DragDropEditor
-from widgets.tile import tile, arrow
+from widgets.entity import tile, arrow
 from utils import fedit
 
 
@@ -45,6 +45,8 @@ class Workspace(QtGui.QTabWidget):
                     line = line.strip("\n")
                     params = line.split(" ")
                     new_tile = tile(added_file, int(params[1]), int(params[2]), int(params[3]))
+                    if params[4] != "None":
+                        new_tile.tile_func = int(params[4])
                     new_tile.drawConnection.connect(added_file.drawArrow)
                     new_tile.fileChange.connect(lambda: self.save_state_change(False))
                 elif line[0] == ">":
