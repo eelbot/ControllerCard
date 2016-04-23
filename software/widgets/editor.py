@@ -65,6 +65,7 @@ class DragDropEditor(QtGui.QWidget):
         self.fileExt = ext
         self.filePath = path
         self.isSaved = saved
+        self.libs = []
 
         self.currentlyDrawing = False
         self.start_wid = None

@@ -39,27 +39,28 @@ class Workspace(QtGui.QTabWidget):
         # Open drag and drop based files
         elif extension == "pro":
             added_file = DragDropEditor(name, extension, file_path)
-            f = open(file_path)
-            for line in f:
-                if line[0] == "#":
-                    line = line.strip("\n")
-                    params = line.split(" ")
-                    new_tile = tile(added_file, int(params[1]), int(params[2]), int(params[3]))
-                    if params[4] != "None":
-                        new_tile.tile_func = int(params[4])
-                    new_tile.drawConnection.connect(added_file.drawArrow)
-                    new_tile.fileChange.connect(lambda: self.save_state_change(False))
-                elif line[0] == ">":
-                    line = line.strip("\n")
-                    params = line.split(" ")
-                    new_arrow = arrow(int(params[1]), int(params[2]), int(params[3]), int(params[4]), int(params[5]), int(params[6]))
-                    new_arrow.setParent(added_file)
-                    new_arrow.lower()
-                    new_arrow.show()
-                    tiles = added_file.findChildren(tile)
-                    for i in tiles:
-                        if i.ref == int(params[5]) or i.ref == int(params[6]):
-                            i.arrows.append(new_arrow)
+            if "untitled" not in file_path:
+                f = open(file_path)
+                for line in f:
+                    if line[0] == "#":
+                        line = line.strip("\n")
+                        params = line.split(" ")
+                        new_tile = tile(added_file, int(params[1]), int(params[2]), int(params[3]))
+                        if params[4] != "None":
+                            new_tile.tile_func = int(params[4])
+                        new_tile.drawConnection.connect(added_file.drawArrow)
+                        new_tile.fileChange.connect(lambda: self.save_state_change(False))
+                    elif line[0] == ">":
+                        line = line.strip("\n")
+                        params = line.split(" ")
+                        new_arrow = arrow(int(params[1]), int(params[2]), int(params[3]), int(params[4]), int(params[5]), int(params[6]))
+                        new_arrow.setParent(added_file)
+                        new_arrow.lower()
+                        new_arrow.show()
+                        tiles = added_file.findChildren(tile)
+                        for i in tiles:
+                            if i.ref == int(params[5]) or i.ref == int(params[6]):
+                                i.arrows.append(new_arrow)
 
 
 
@@ -101,6 +102,40 @@ class Workspace(QtGui.QTabWidget):
         elif not isSaved and '*' not in current_name:
                 self.setTabText(i, current_name + '*')
                 self.currentWidget().isSaved = False
+
+    def add_library(self, file_path):
+        # Parses Library file and adds correct info to library list
+
+        f = open(file_path)
+        lib_index = 0
+        lib_name = f.readline().strip('\n')
+        num_of_funcs = int(f.readline())
+        lib_path = f.readline().strip('\n')
+        while(lib_index < num_of_funcs):
+            num = 1
+            temp = " "
+            new_dict = {}
+            new_dict['FunctionName'] = f.readline().replace('#', '')
+            new_dict['FunctionReference'] = f.readline().strip('\n')
+            input_text = f.readline().strip('\n')
+            while input_text[0] == 'i':
+                new_dict['Input' + str(num)] = input_text
+                num += 1
+                input_text = f.readline().strip('\n')
+            num = 0
+            while input_text[0] == 'o':
+                new_dict['Output' + str(num)] = input_text
+                num += 1
+                input_text = f.readline().strip('\n')
+            new_dict['ToolTip'] = input_text
+            new_dict['IconPath'] = f.readline().strip('\n')
+            for i in range(self.count()):
+                if type(self.widget(i)) is DragDropEditor:
+                    self.widget(i).libs.append(new_dict)
+            lib_index += 1
+
+
+
 
     def __init__(self):
         super(Workspace, self).__init__()

@@ -177,6 +177,7 @@ class main_app(QtGui.QMainWindow):
         # WorkspaceManager() is defined in widgets/manager.py
         self.work_manager = WorkspaceManager()
         self.work_manager.newPath.connect(self.update_workspace)
+        self.work_manager.importLib.connect(self.workspace.add_library)
         workspace_change = QtGui.QDockWidget('Manage Workspace', self)
         workspace_change.setWidget(self.work_manager)
 

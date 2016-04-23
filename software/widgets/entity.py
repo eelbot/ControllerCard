@@ -120,9 +120,13 @@ class tile(QtGui.QPushButton):
                 #return
         super(tile, self).mouseReleaseEvent(e)
 
+    # Display current function info, and allow user to select a new function
     def mouseDoubleClickEvent(self, e):
         super(tile, self).mouseDoubleClickEvent(e)
-        QtGui.QMessageBox.information(self.parent, "About", "INSERT INFO HERE")
+        QtGui.QInputDialog.getItem(self.parent, "Select Block Function", "Function", ["1", "2", "3"], 0, False)
+
+    def connect_lib_function():
+        pass
 
 
 class arrow(QtGui.QWidget):
