@@ -106,10 +106,9 @@ class DragDropEditor(QtGui.QWidget):
                 new_arrow.setParent(self)
                 new_arrow.lower()
                 new_arrow.show()
+                tiles = self.findChildren(tile)
+                for i in tiles:
+                    if i.ref == self.start_wid or i.ref == self.end_wid:
+                        i.arrows.append(new_arrow)
             self.start_wid = None
             self.end_wid = None
-
-
-
-    def mouseMoveEvent(self, e):
-        super(DragDropEditor, self).mouseMoveEvent(e)

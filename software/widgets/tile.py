@@ -20,14 +20,12 @@ class tile(QtGui.QPushButton):
         self.ypos = ypos
         self.parent = parent
         self.ref = ref
+        self.arrows = []
 
         super(tile, self).__init__(parent)
 
         # Position the tile in the open file
         self.setGeometry(self.xpos, self.ypos, width, height)
-
-        # Connect the left click action to displaying info
-        self.clicked.connect(self.info_display)
 
         # Set the initial style of the tile
         self.setStyleSheet(
@@ -59,6 +57,15 @@ class tile(QtGui.QPushButton):
             newPos = self.mapFromGlobal(currPos + diff)
             self.move(newPos)
 
+            for i in self.arrows:
+                if i.input == self.ref:
+                    i.inix = self.x() + (self.width() / 2)
+                    i.iniy = self.y() + (self.height() / 2)
+                elif i.output == self.ref:
+                    i.finx = self.x() + (self.width() / 2)
+                    i.finy = self.y() + (self.height() / 2)
+
+            self.parent.update()
             # Ensure that the mouse position is now equal to the event position
             self.__mouseMovePos = globalPos
 
@@ -99,14 +106,15 @@ class tile(QtGui.QPushButton):
 
         # If the left mouse button has already been pressed, and the tile
         # has moved a minimum distance, do not run the original mouseReleaseEvent
-        if self.__mousePressPos is not None:
-            moved = e.globalPos() - self.__mousePressPos
-            if moved.manhattanLength() > 3:
-                e.ignore()
-                return
+        #if self.__mousePressPos is not None:
+            #moved = e.globalPos() - self.__mousePressPos
+            #if moved.manhattanLength() > 3:
+                #e.ignore()
+                #return
         super(tile, self).mouseReleaseEvent(e)
 
-    def info_display(self, e):
+    def mouseDoubleClickEvent(self, e):
+        super(tile, self).mouseDoubleClickEvent(e)
         QtGui.QMessageBox.information(self.parent, "About", "INSERT INFO HERE")
 
 
@@ -136,6 +144,7 @@ class arrow(QtGui.QWidget):
         qp.end()
 
     def update(self, inix, iniy, finx, finy):
+
         qp = QtGui.QPainter()
         qp.begin(self)
         pen = QtGui.QPen(QtGui.QColor(0, 0, 0), 3, QtCore.Qt.SolidLine)
