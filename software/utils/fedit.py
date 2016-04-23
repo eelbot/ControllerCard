@@ -12,8 +12,5 @@ def add_tile(workspace):
     new_tile = tile(workspace.currentWidget(), workspace.currentWidget().numOfChildren, 30, 30)
     new_tile.drawConnection.connect(workspace.currentWidget().drawArrow)
 
-    #new_arrow = arrow(0, 0, 400, 400)
-    #workspace.layout().addWidget(new_arrow)
-
     workspace.currentWidget().numOfChildren += 1
     workspace.update()

@@ -8,6 +8,9 @@ class tile(QtGui.QPushButton):
     # The signal the is emitted when drawing starts or stops for an arrow
     drawConnection = QtCore.pyqtSignal(int, int, int)
 
+    # The signal that is emitted when something changes
+    fileChange = QtCore.pyqtSignal()
+
     def __init__(self, parent, ref, xpos=100, ypos=100, width=100, height=100):
         """ Parameters
             xpos: Initial x position
@@ -20,6 +23,7 @@ class tile(QtGui.QPushButton):
         self.ypos = ypos
         self.parent = parent
         self.ref = ref
+        self.tile_type = None
         self.arrows = []
 
         super(tile, self).__init__(parent)
@@ -56,6 +60,8 @@ class tile(QtGui.QPushButton):
             # Set the tile location to the current position plus the difference
             newPos = self.mapFromGlobal(currPos + diff)
             self.move(newPos)
+
+            self.fileChange.emit()
 
             for i in self.arrows:
                 if i.input == self.ref:
@@ -103,6 +109,7 @@ class tile(QtGui.QPushButton):
 
             # Emit a signal to draw an arrow
             self.drawConnection.emit(self.ref, self.x() + (self.width() / 2), self.y() + (self.height() / 2))
+            self.fileChange.emit()
 
         # If the left mouse button has already been pressed, and the tile
         # has moved a minimum distance, do not run the original mouseReleaseEvent

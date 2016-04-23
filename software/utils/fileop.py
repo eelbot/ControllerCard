@@ -1,6 +1,7 @@
 from PyQt4 import QtGui
 from widgets.editor import TextEditor, DragDropEditor
-import os
+from widgets.tile import tile, arrow
+import os, datetime
 
 
 def create_blank_file(workspace):
@@ -79,7 +80,7 @@ def save_file(parent, work_path, workspace):
             workspace.save_state_change(True)
         else:
             new_save_path = QtGui.QFileDialog.getSaveFileName(
-                    parent, 'Save File', work_path)
+                    parent, 'Save File', work_path +"/"+ current_tab.fileName, "Text Files (*.txt *.py *.upl)")
             # Line below generates file not found error if dialog is closed
             try:
                 with open(new_save_path, 'w') as f:
@@ -91,8 +92,51 @@ def save_file(parent, work_path, workspace):
                 workspace.save_state_change(True)
             except FileNotFoundError:
                 pass
+
     elif type(current_tab) is DragDropEditor:
-        print("Drag Drop Editor")
+        arrows = current_tab.findChildren(arrow)
+        tiles = current_tab.findChildren(tile)
+        save_text = str(datetime.datetime.now())
+
+        # First, aesthetics
+        for v in tiles:
+            save_text += "\n#"
+            save_text += " " + str(v.ref)
+            save_text += " " + str(v.x())
+            save_text += " " + str(v.y())
+            save_text += " " + str(v.tile_type)
+
+        # Next, save the connections
+        for v in arrows:
+            save_text += "\n>"
+            save_text += " " + str(v.inix)
+            save_text += " " + str(v.iniy)
+            save_text += " " + str(v.finx)
+            save_text += " " + str(v.finy)
+            save_text += " " + str(v.input)
+            save_text += " " + str(v.output)
+
+        # Check if the file exists. If not, create one and write the text to it
+        if os.path.isfile(current_tab.filePath):
+            with open(current_tab.filePath, 'w') as f:
+                f.write(save_text)
+            f.close()
+            workspace.save_state_change(True)
+        else:
+            new_save_path = QtGui.QFileDialog.getSaveFileName(
+                    parent, 'Save File', work_path +"/"+ current_tab.fileName, "Text Files (*.pro)")
+            # Line below generates file not found error if dialog is closed
+            try:
+                with open(new_save_path, 'w') as f:
+                    f.write(save_text)
+                f.close()
+                i = workspace.currentIndex()
+                workspace.removeTab(i)
+                workspace.add_file(new_save_path, i)
+                workspace.save_state_change(True)
+            except FileNotFoundError:
+                pass
+
 
 
 def save_as(parent, work_path, workspace):
@@ -103,7 +147,7 @@ def save_as(parent, work_path, workspace):
         text = current_tab.toPlainText()
 
         new_save_path = QtGui.QFileDialog.getSaveFileName(
-                parent, 'Save File', work_path)
+                parent, 'Save File', work_path +"/"+ current_tab.fileName, "Text Files (*.txt *.py *.upl)")
         # Line below generates file not found error if dialog is closed
         try:
             with open(new_save_path, 'w') as f:
@@ -117,4 +161,38 @@ def save_as(parent, work_path, workspace):
             pass
 
     elif type(current_tab) is DragDropEditor:
-        print("Drag Drop Editor")
+        arrows = current_tab.findChildren(arrow)
+        tiles = current_tab.findChildren(tile)
+        save_text = str(datetime.datetime.now())
+
+        # First, aesthetics
+        for v in tiles:
+            save_text += "\n#"
+            save_text += " " + str(v.ref)
+            save_text += " " + str(v.x())
+            save_text += " " + str(v.y())
+            save_text += " " + str(v.tile_type)
+
+        # Next, save the connections
+        for v in arrows:
+            save_text += "\n>"
+            save_text += " " + str(v.inix)
+            save_text += " " + str(v.iniy)
+            save_text += " " + str(v.finx)
+            save_text += " " + str(v.finy)
+            save_text += " " + str(v.input)
+            save_text += " " + str(v.output)
+
+        new_save_path = QtGui.QFileDialog.getSaveFileName(
+                parent, 'Save File', work_path +"/"+ current_tab.fileName, "Text Files (*.pro)")
+        # Line below generates file not found error if dialog is closed
+        try:
+            with open(new_save_path, 'w') as f:
+                f.write(save_text)
+            f.close()
+            i = workspace.currentIndex()
+            workspace.removeTab(i)
+            workspace.add_file(new_save_path, i)
+            workspace.save_state_change(True)
+        except FileNotFoundError:
+            pass

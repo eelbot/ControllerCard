@@ -1,5 +1,7 @@
 from PyQt4 import QtGui
 from widgets.editor import TextEditor, DragDropEditor
+from widgets.tile import tile, arrow
+from utils import fedit
 
 
 class Workspace(QtGui.QTabWidget):
@@ -27,14 +29,39 @@ class Workspace(QtGui.QTabWidget):
         extension = file_path.split('.', 1)[-1]
         name = file_path.split('/')[-1]
 
-        # Open the appropriate editor based on file extension
+        # Open text based files
         if extension in ('txt', 'py', 'upl'):
             added_file = TextEditor(name, extension, file_path)
 
             # Add a checker and updater to check for changes (saved vs. unsaved)
             added_file.textChanged.connect(lambda: self.save_state_change(False))
+
+        # Open drag and drop based files
         elif extension == "pro":
             added_file = DragDropEditor(name, extension, file_path)
+            f = open(file_path)
+            for line in f:
+                if line[0] == "#":
+                    line = line.strip("\n")
+                    params = line.split(" ")
+                    new_tile = tile(added_file, int(params[1]), int(params[2]), int(params[3]))
+                    new_tile.drawConnection.connect(added_file.drawArrow)
+                    new_tile.fileChange.connect(lambda: self.save_state_change(False))
+                elif line[0] == ">":
+                    line = line.strip("\n")
+                    params = line.split(" ")
+                    new_arrow = arrow(int(params[1]), int(params[2]), int(params[3]), int(params[4]), int(params[5]), int(params[6]))
+                    new_arrow.setParent(added_file)
+                    new_arrow.lower()
+                    new_arrow.show()
+                    tiles = added_file.findChildren(tile)
+                    for i in tiles:
+                        if i.ref == int(params[5]) or i.ref == int(params[6]):
+                            i.arrows.append(new_arrow)
+
+
+
+        # Open new, untitled files
         elif extension == "untitled":
             added_file = TextEditor(name)
         else:
