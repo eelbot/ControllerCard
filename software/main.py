@@ -102,6 +102,15 @@ class main_app(QtGui.QMainWindow):
         board_connect.triggered.connect(
                 lambda: ser_con.detect_and_connect())
 
+        # Compile a program
+        compile_program = QtGui.QAction(
+                QtGui.QIcon('img/compile.png'), 'Compile File', self)
+        compile_program.setIconVisibleInMenu(False)
+        compile_program.setShortcut('F5')
+        compile_program.setStatusTip('Compile currently open file')
+        compile_program.triggered.connect(
+                lambda: fileop.compile_program(self, self.work_path, self.workspace))
+
         # Add a tile to the drag and drop editor
         add_tile = QtGui.QAction(
                 QtGui.QIcon('img/add_tile.png'), 'Add Tile', self)
@@ -126,6 +135,7 @@ class main_app(QtGui.QMainWindow):
 
         connect_menu = menubar.addMenu('&Connect')
         connect_menu.addAction(board_connect)
+        connect_menu.addAction(compile_program)
 
         editor_menu = menubar.addMenu('&Editor')
         editor_menu.addAction(add_tile)
@@ -142,6 +152,7 @@ class main_app(QtGui.QMainWindow):
         connect_tool_bar = self.addToolBar('Connect')
         connect_tool_bar.setIconSize(icon_size)
         connect_tool_bar.addAction(board_connect)
+        connect_tool_bar.addAction(compile_program)
 
         editor_tool_bar = self.addToolBar('Editor')
         editor_tool_bar.setIconSize(icon_size)

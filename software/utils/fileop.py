@@ -117,10 +117,10 @@ def save_file(parent, work_path, workspace):
         # Next, save the connections
         for v in arrows:
             save_text += "\n>"
-            save_text += " " + str(v.inix)
-            save_text += " " + str(v.iniy)
-            save_text += " " + str(v.finx)
-            save_text += " " + str(v.finy)
+            save_text += " " + str(int(v.inix))
+            save_text += " " + str(int(v.iniy))
+            save_text += " " + str(int(v.finx))
+            save_text += " " + str(int(v.finy))
             save_text += " " + str(v.input)
             save_text += " " + str(v.output)
 
@@ -184,10 +184,10 @@ def save_as(parent, work_path, workspace):
         # Next, save the connections
         for v in arrows:
             save_text += "\n>"
-            save_text += " " + str(v.inix)
-            save_text += " " + str(v.iniy)
-            save_text += " " + str(v.finx)
-            save_text += " " + str(v.finy)
+            save_text += " " + str(int(v.inix))
+            save_text += " " + str(int(v.iniy))
+            save_text += " " + str(int(v.finx))
+            save_text += " " + str(int(v.finy))
             save_text += " " + str(v.input)
             save_text += " " + str(v.output)
 
@@ -204,3 +204,16 @@ def save_as(parent, work_path, workspace):
             workspace.save_state_change(True)
         except FileNotFoundError:
             pass
+
+def compile_program(parent, work_path, workspace):
+    f = workspace.currentWidget()
+    if f.isSaved == False:
+        save_now = QtGui.QMessageBox.question(parent, 'Save Before Compile',
+                "You must save before compiling. Save now?", QtGui.QMessageBox.Yes |
+                QtGui.QMessageBox.No, QtGui.QMessageBox.No)
+        if save_now == QtGui.QMessageBox.Yes:
+            save_file(parent, work_path, workspace)
+        else:
+            return
+    # Put logic below for compile button
+    print(f.filePath)

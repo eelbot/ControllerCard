@@ -46,6 +46,7 @@ class Workspace(QtGui.QTabWidget):
         # Open drag and drop based files
         elif extension == "pro":
             added_file = DragDropEditor(name, extension, file_path)
+            added_file.isSaved = True
             # Add as a tab, at a certain index if indicated
             if index:
                 self.insertTab(index, added_file, added_file.fileName)
