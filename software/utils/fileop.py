@@ -98,7 +98,15 @@ def save_file(parent, work_path, workspace):
         tiles = current_tab.findChildren(tile)
         save_text = str(datetime.datetime.now())
 
-        # First, aesthetics
+        # First, save the imported libraries
+        already_saved_libs = []
+        for v in current_tab.libs:
+            if v['LibraryPath'] not in already_saved_libs:
+                save_text += "\nL"
+                save_text += " " + v['LibraryPath']
+                already_saved_libs.append(v['LibraryPath'])
+
+        # Second, aesthetics
         for v in tiles:
             save_text += "\n#"
             save_text += " " + str(v.ref)

@@ -36,18 +36,41 @@ class Workspace(QtGui.QTabWidget):
             # Add a checker and updater to check for changes (saved vs. unsaved)
             added_file.textChanged.connect(lambda: self.save_state_change(False))
 
+            if index:
+                self.insertTab(index, added_file, added_file.fileName)
+                self.setCurrentIndex(index)
+            else:
+                self.addTab(added_file, added_file.fileName)
+                self.setCurrentIndex(self.count() - 1)
+
         # Open drag and drop based files
         elif extension == "pro":
             added_file = DragDropEditor(name, extension, file_path)
+            # Add as a tab, at a certain index if indicated
+            if index:
+                self.insertTab(index, added_file, added_file.fileName)
+                self.setCurrentIndex(index)
+            else:
+                self.addTab(added_file, added_file.fileName)
+                self.setCurrentIndex(self.count() - 1)
+
             if "untitled" not in file_path:
                 f = open(file_path)
                 for line in f:
-                    if line[0] == "#":
+                    if line[0] == 'L':
+                        line = line.strip("\n")
+                        path = line.split(" ")
+                        self.add_library(path[1])
+                    elif line[0] == "#":
                         line = line.strip("\n")
                         params = line.split(" ")
                         new_tile = tile(added_file, int(params[1]), int(params[2]), int(params[3]))
                         if params[4] != "None":
-                            new_tile.tile_func = int(params[4])
+                            new_tile.tile_func = int(params[4], 16)
+                            for v in added_file.libs:
+                                if int(v['FunctionReference'], 16) == new_tile.tile_func:
+                                    new_tile.setToolTip(v['ToolTip'])
+                                    new_tile.setText(v['FunctionName'])
                         new_tile.drawConnection.connect(added_file.drawArrow)
                         new_tile.fileChange.connect(lambda: self.save_state_change(False))
                     elif line[0] == ">":
@@ -79,13 +102,7 @@ class Workspace(QtGui.QTabWidget):
                                     str(self.num_of_untitled) + '.' + extension)
             self.num_of_untitled += 1
 
-        # Add as a tab, at a certain index if indicated
-        if index:
-            self.insertTab(index, added_file, added_file.fileName)
-            self.setCurrentIndex(index)
-        else:
-            self.addTab(added_file, added_file.fileName)
-            self.setCurrentIndex(self.count() - 1)
+
 
     def save_state_change(self, isSaved):
         """ Adds or removes an asterisk from the current tab when text changes
@@ -115,7 +132,10 @@ class Workspace(QtGui.QTabWidget):
             num = 1
             temp = " "
             new_dict = {}
+            new_dict['LibraryPath'] = file_path
+            new_dict['FunctionPath'] = lib_path
             new_dict['FunctionName'] = f.readline().replace('#', '')
+            new_dict['FunctionName'] = new_dict['FunctionName'].strip('\n')
             new_dict['FunctionReference'] = f.readline().strip('\n')
             input_text = f.readline().strip('\n')
             while input_text[0] == 'i':

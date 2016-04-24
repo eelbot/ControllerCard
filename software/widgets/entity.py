@@ -123,7 +123,15 @@ class tile(QtGui.QPushButton):
     # Display current function info, and allow user to select a new function
     def mouseDoubleClickEvent(self, e):
         super(tile, self).mouseDoubleClickEvent(e)
-        QtGui.QInputDialog.getItem(self.parent, "Select Block Function", "Function", ["1", "2", "3"], 0, False)
+        items = []
+        for option in self.parent.libs:
+            items.append(option['FunctionName'])
+        function_name = QtGui.QInputDialog.getItem(self.parent, "Select Block Function", "Function", items, 0, False)
+        for option in self.parent.libs:
+            if option['FunctionName'] == function_name[0]:
+                self.tile_func = option['FunctionReference']
+                self.setToolTip(option['ToolTip'])
+                self.setText(option['FunctionName'])
 
     def connect_lib_function():
         pass

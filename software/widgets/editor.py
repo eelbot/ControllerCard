@@ -101,6 +101,11 @@ class DragDropEditor(QtGui.QWidget):
         elif self.start_wid != None and self.end_wid == None:
             self.end_wid = wid_ref
             if self.end_wid != self.start_wid:
+                for v in self.findChildren(arrow):
+                    if sorted([v.input, v.output]) == sorted([self.end_wid, self.start_wid]):
+                        self.start_wid = None
+                        self.end_wid = None
+                        return
                 self.finx = eventx
                 self.finy = eventy
                 new_arrow = arrow(self.inix, self.iniy, self.finx, self.finy, self.start_wid, self.end_wid)
