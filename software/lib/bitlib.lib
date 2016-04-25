@@ -2,13 +2,13 @@ Bit Operations Lib
 2
 None
 #OctalShiftLeft
-0x00000000001
+0x8001
 i inputBits int
 o outputBits int
 Shifts all bits to the left without wraparound
 C:\Users\ajans\Documents\workspace\PicoCommander\software\img\add_tile.png
 #OctalShiftRight
-0x00000000002
+0x8002
 i inputBits int
 o outputBits int
 Shifts all bits to the right without wraparound
