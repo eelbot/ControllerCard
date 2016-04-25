@@ -63,6 +63,7 @@ class Workspace(QtGui.QTabWidget):
                         path = line.split(" ")
                         self.add_library(path[1])
                     elif line[0] == "#":
+                        added_file.numOfChildren += 1
                         line = line.strip("\n")
                         params = line.split(" ")
                         new_tile = tile(added_file, int(params[1]), int(params[2]), int(params[3]))
