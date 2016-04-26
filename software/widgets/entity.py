@@ -23,7 +23,7 @@ class tile(QtGui.QPushButton):
         self.ypos = ypos
         self.parent = parent
         self.ref = ref
-        self.tile_func = None
+        self.func_dict = {}
         self.arrows = []
 
         super(tile, self).__init__(parent)
@@ -95,6 +95,10 @@ class tile(QtGui.QPushButton):
             self.__mousePressPos = e.globalPos()
             self.__mouseMovePos = e.globalPos()
 
+    def contextMenuEvent(self, e):
+        # Somehow the opening of the dialog box during a right click
+        # activates the context menu
+        return
 
     def mouseReleaseEvent(self, e):
         """ A re-implementation of the mouseMoveEvent.
@@ -102,23 +106,38 @@ class tile(QtGui.QPushButton):
                 e: The event of mouseMoveEvent
         """
 
+        super(tile, self).mouseReleaseEvent(e)
         # Return the tile to it's original color once right click is done
         if e.button() == QtCore.Qt.RightButton:
             self.setStyleSheet(
                         "QPushButton{background-color:#AAAAAA; border:none;}")
 
+            # Ask the user which input or output they would like to choose
+            if self.parent.start_wid == None and self.func_dict != {}:
+                items = []
+                i = 1
+                while(1):
+                    try:
+                        items.append(self.func_dict['Input' + str(i)])
+                        i += 1
+                    except KeyError:
+                        break
+                sel = QtGui.QInputDialog.getItem(self.parent, "Select Output", "Output", items, 0, False)
+
+            elif self.parent.start_wid != None and self.func_dict != {}:
+                items = []
+                i = 1
+                while(1):
+                    try:
+                        items.append(self.func_dict['Output' + str(i)])
+                        i += 1
+                    except KeyError:
+                        break
+                sel = QtGui.QInputDialog.getItem(self.parent, "Select Input", "Input", items, 0, False)
+
             # Emit a signal to draw an arrow
             self.drawConnection.emit(self.ref, self.x() + (self.width() / 2), self.y() + (self.height() / 2))
             self.fileChange.emit()
-
-        # If the left mouse button has already been pressed, and the tile
-        # has moved a minimum distance, do not run the original mouseReleaseEvent
-        #if self.__mousePressPos is not None:
-            #moved = e.globalPos() - self.__mousePressPos
-            #if moved.manhattanLength() > 3:
-                #e.ignore()
-                #return
-        super(tile, self).mouseReleaseEvent(e)
 
     # Display current function info, and allow user to select a new function
     def mouseDoubleClickEvent(self, e):
@@ -127,11 +146,13 @@ class tile(QtGui.QPushButton):
         for option in self.parent.libs:
             items.append(option['FunctionName'])
         function_name = QtGui.QInputDialog.getItem(self.parent, "Select Block Function", "Function", items, 0, False)
+
         for option in self.parent.libs:
             if option['FunctionName'] == function_name[0]:
-                self.tile_func = option['FunctionReference']
-                self.setToolTip(option['ToolTip'])
-                self.setText(option['FunctionName'])
+                self.func_dict = option
+                self.setToolTip(self.func_dict['ToolTip'])
+                self.setText(self.func_dict['FunctionName'])
+
 
     def connect_lib_function():
         pass

@@ -68,9 +68,10 @@ class Workspace(QtGui.QTabWidget):
                         params = line.split(" ")
                         new_tile = tile(added_file, int(params[1]), int(params[2]), int(params[3]))
                         if params[4] != "None":
-                            new_tile.tile_func = int(params[4], 16)
+                            new_tile.func_dict['FunctionReference'] = params[4]
                             for v in added_file.libs:
-                                if int(v['FunctionReference'], 16) == new_tile.tile_func:
+                                if v['FunctionReference'] == new_tile.func_dict['FunctionReference']:
+                                    new_tile.func_dict = v
                                     new_tile.setToolTip(v['ToolTip'])
                                     new_tile.setText(v['FunctionName'])
                         new_tile.drawConnection.connect(added_file.drawArrow)
@@ -144,7 +145,7 @@ class Workspace(QtGui.QTabWidget):
                 new_dict['Input' + str(num)] = input_text
                 num += 1
                 input_text = f.readline().strip('\n')
-            num = 0
+            num = 1
             while input_text[0] == 'o':
                 new_dict['Output' + str(num)] = input_text
                 num += 1
@@ -156,7 +157,7 @@ class Workspace(QtGui.QTabWidget):
                     self.widget(i).libs.append(new_dict)
             lib_index += 1
 
-
+    
 
 
     def __init__(self):

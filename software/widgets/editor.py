@@ -92,7 +92,6 @@ class DragDropEditor(QtGui.QWidget):
         self.show()
 
     def drawArrow(self, wid_ref, eventx, eventy):
-        #self.currentlyDrawing = currentlyDrawing
 
         if self.start_wid == None and self.end_wid == None:
             self.start_wid = wid_ref

@@ -112,7 +112,7 @@ def save_file(parent, work_path, workspace):
             save_text += " " + str(v.ref)
             save_text += " " + str(v.x())
             save_text += " " + str(v.y())
-            save_text += " " + str(v.tile_func)
+            save_text += " " + v.func_dict['FunctionReference']
 
         # Next, save the connections
         for v in arrows:
@@ -179,7 +179,7 @@ def save_as(parent, work_path, workspace):
             save_text += " " + str(v.ref)
             save_text += " " + str(v.x())
             save_text += " " + str(v.y())
-            save_text += " " + str(v.tile_func)
+            save_text += " " + v.func_dict['FunctionReference']
 
         # Next, save the connections
         for v in arrows:
@@ -216,4 +216,5 @@ def compile_program(parent, work_path, workspace):
         else:
             return
     # Put logic below for compile button
-    print(f.filePath)
+    input_file = open(f.filePath, 'r')
+    arrows = f.findChildren(arrow)
