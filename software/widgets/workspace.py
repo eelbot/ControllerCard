@@ -79,7 +79,7 @@ class Workspace(QtGui.QTabWidget):
                     elif line[0] == ">":
                         line = line.strip("\n")
                         params = line.split(" ")
-                        new_arrow = arrow(int(params[1]), int(params[2]), int(params[3]), int(params[4]), int(params[5]), int(params[6]))
+                        new_arrow = arrow(int(params[1]), int(params[2]), int(params[3]), int(params[4]), int(params[5]), int(params[6]), params[7] + ' ' + params[8])
                         new_arrow.setParent(added_file)
                         new_arrow.lower()
                         new_arrow.show()
@@ -129,6 +129,11 @@ class Workspace(QtGui.QTabWidget):
         f = open(file_path)
         lib_index = 0
         lib_name = f.readline().strip('\n')
+        #if lib_name in self.imported_libs:
+        #    return
+        #else:
+        #    self.imported_libs.append(lib_name)
+        #    print(self.imported_libs)
         num_of_funcs = int(f.readline())
         lib_path = f.readline().strip('\n')
         while(lib_index < num_of_funcs):
@@ -157,7 +162,7 @@ class Workspace(QtGui.QTabWidget):
                     self.widget(i).libs.append(new_dict)
             lib_index += 1
 
-    
+
 
 
     def __init__(self):

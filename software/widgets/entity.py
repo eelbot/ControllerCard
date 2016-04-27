@@ -6,7 +6,7 @@ class tile(QtGui.QPushButton):
     """
 
     # The signal the is emitted when drawing starts or stops for an arrow
-    drawConnection = QtCore.pyqtSignal(int, int, int)
+    drawConnection = QtCore.pyqtSignal(int, int, int, str)
 
     # The signal that is emitted when something changes
     fileChange = QtCore.pyqtSignal()
@@ -112,8 +112,13 @@ class tile(QtGui.QPushButton):
             self.setStyleSheet(
                         "QPushButton{background-color:#AAAAAA; border:none;}")
 
-            # Ask the user which input or output they would like to choose
-            if self.parent.start_wid == None and self.func_dict != {}:
+            if self.func_dict == {}:
+                assign_please = QtGui.QMessageBox.information(self.parent, "Warning", "You must assign a function to a block before making a connection")
+                return
+
+            sel = None
+            # Ask the user which input they would like to connect to
+            if self.parent.start_wid != None:
                 items = []
                 i = 1
                 while(1):
@@ -122,21 +127,13 @@ class tile(QtGui.QPushButton):
                         i += 1
                     except KeyError:
                         break
-                sel = QtGui.QInputDialog.getItem(self.parent, "Select Output", "Output", items, 0, False)
-
-            elif self.parent.start_wid != None and self.func_dict != {}:
-                items = []
-                i = 1
-                while(1):
-                    try:
-                        items.append(self.func_dict['Output' + str(i)])
-                        i += 1
-                    except KeyError:
-                        break
                 sel = QtGui.QInputDialog.getItem(self.parent, "Select Input", "Input", items, 0, False)
 
             # Emit a signal to draw an arrow
-            self.drawConnection.emit(self.ref, self.x() + (self.width() / 2), self.y() + (self.height() / 2))
+            if(sel != None):
+                self.drawConnection.emit(self.ref, self.x() + (self.width() / 2), self.y() + (self.height() / 2), sel[0][2:])
+            else:
+                self.drawConnection.emit(self.ref, self.x() + (self.width() / 2), self.y() + (self.height() / 2), "None")
             self.fileChange.emit()
 
     # Display current function info, and allow user to select a new function
@@ -153,14 +150,13 @@ class tile(QtGui.QPushButton):
                 self.setToolTip(self.func_dict['ToolTip'])
                 self.setText(self.func_dict['FunctionName'])
 
-
     def connect_lib_function():
         pass
 
 
 class arrow(QtGui.QWidget):
 
-    def __init__(self, inix, iniy, finx, finy, in_ref, out_ref):
+    def __init__(self, inix, iniy, finx, finy, in_ref, out_ref, sel_in):
         super(arrow, self).__init__()
 
         self.inix = inix
@@ -169,6 +165,7 @@ class arrow(QtGui.QWidget):
         self.finy = finy
         self.input = in_ref
         self.output = out_ref
+        self.sel_in = sel_in
 
         self.setGeometry(0, 0, 2000, 2000)
 

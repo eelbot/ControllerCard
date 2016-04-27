@@ -91,7 +91,7 @@ class DragDropEditor(QtGui.QWidget):
 
         self.show()
 
-    def drawArrow(self, wid_ref, eventx, eventy):
+    def drawArrow(self, wid_ref, eventx, eventy, selected_input):
 
         if self.start_wid == None and self.end_wid == None:
             self.start_wid = wid_ref
@@ -107,7 +107,7 @@ class DragDropEditor(QtGui.QWidget):
                         return
                 self.finx = eventx
                 self.finy = eventy
-                new_arrow = arrow(self.inix, self.iniy, self.finx, self.finy, self.start_wid, self.end_wid)
+                new_arrow = arrow(self.inix, self.iniy, self.finx, self.finy, self.start_wid, self.end_wid, selected_input)
                 new_arrow.setParent(self)
                 new_arrow.lower()
                 new_arrow.show()

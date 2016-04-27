@@ -123,6 +123,7 @@ def save_file(parent, work_path, workspace):
             save_text += " " + str(int(v.finy))
             save_text += " " + str(v.input)
             save_text += " " + str(v.output)
+            save_text += " " + v.sel_in
 
         # Check if the file exists. If not, create one and write the text to it
         if os.path.isfile(current_tab.filePath):
