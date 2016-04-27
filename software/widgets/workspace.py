@@ -159,7 +159,9 @@ class Workspace(QtGui.QTabWidget):
             new_dict['IconPath'] = f.readline().strip('\n')
             for i in range(self.count()):
                 if type(self.widget(i)) is DragDropEditor:
-                    self.widget(i).libs.append(new_dict)
+                    if new_dict not in self.widget(i).libs:
+                        self.widget(i).libs.append(new_dict)
+
             lib_index += 1
 
 

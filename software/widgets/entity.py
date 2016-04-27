@@ -145,7 +145,7 @@ class tile(QtGui.QPushButton):
         function_name = QtGui.QInputDialog.getItem(self.parent, "Select Block Function", "Function", items, 0, False)
 
         for option in self.parent.libs:
-            if option['FunctionName'] == function_name[0]:
+            if option['FunctionName'] == function_name[0] and function_name[1] == True:
                 self.func_dict = option
                 self.setToolTip(self.func_dict['ToolTip'])
                 self.setText(self.func_dict['FunctionName'])
