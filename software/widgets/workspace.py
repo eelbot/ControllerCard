@@ -29,6 +29,12 @@ class Workspace(QtGui.QTabWidget):
         extension = file_path.split('.', 1)[-1]
         name = file_path.split('/')[-1]
 
+        # Don't replicate the default name for a new, blank file
+        if "untitled" in name:
+            name = (name.split('.')[0] +
+                                    str(self.num_of_untitled) + '.' + extension)
+            self.num_of_untitled += 1
+
         # Open text based files
         if extension in ('txt', 'py', 'upl'):
             added_file = TextEditor(name, extension, file_path)
@@ -97,14 +103,6 @@ class Workspace(QtGui.QTabWidget):
             QtGui.QMessageBox.question(self, 'Message',
                                        "Cannot open file")
             return None
-
-        # Don't replicate the default name for a new, blank file
-        if "untitled" in name:
-
-            added_file.fileName = (added_file.fileName.split('.')[0] +
-                                    str(self.num_of_untitled) + '.' + extension)
-            self.num_of_untitled += 1
-
 
 
     def save_state_change(self, isSaved):

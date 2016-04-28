@@ -37,7 +37,7 @@ class TextEditor(QtGui.QTextEdit):
                 self.setText(file.read())
             self.isSaved = True
         except FileNotFoundError:
-            if name in ("untitled.upl", "untitled.pro", "untitled"):
+            if "untitled" in name:
                 pass
             else:
                 QtGui.QMessageBox.question(self, 'Message',
