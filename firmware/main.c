@@ -30,10 +30,12 @@ void usb_setup(void);
 void spi_setup(void);
 
 //input buffer
-static char *input_string[64];
+static char input_string[64] = {0};
 static unsigned long read_index = 0;
 char *pcStr1 = "\nPlease enter a string: ";
 char *pcStr2 = "\n\rYour String was: ";
+
+char *UPLOADED_PROGRAM;
 
 //*****************************************************************************
 //
@@ -762,28 +764,58 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
     	pBufferTx = (const tUSBBuffer *)psCDCDevice->pvTxCBData;
 
     	int iIdx = 0;
+    	read_index = 1;
     	while(USBBufferRead(pBufferRx, (unsigned char *)&input_string[read_index], 1))
     	{
-    		while(pcStr2[iIdx] != 0)
-    		{
-    			while(USBBufferSpaceAvailable(&g_sTxBuffer) < 2){}
-    			USBBufferWrite(&g_sTxBuffer, (const unsigned char *)&pcStr2[iIdx], 1);
-
-    		    iIdx++;
+    		read_index++;
+    		if (read_index > 16){
+    			read_index = 1;
+    			USBBufferFlush(pBufferRx);
     		}
-    		USBBufferWrite(pBufferTx, (unsigned char *)&input_string[read_index], 1);
+    		if (input_string[read_index] == input_string[read_index-1]){
+    			USBBufferWrite(pBufferTx, "conf", 4);
+
+    			USBBufferFlush(pBufferTx);
+    		}
+    		USBBufferWrite(pBufferTx, &input_string[read_index], 1);
+    		USBBufferWrite(pBufferTx, &input_string[read_index-1], 1);
+    		USBBufferWrite(pBufferTx, "H", 1);
+    		//while(pcStr2[iIdx] != 0)
+    		//{
+    		//	while(USBBufferSpaceAvailable(&g_sTxBuffer) < 2){}
+    		//	USBBufferWrite(&g_sTxBuffer, (const unsigned char *)&pcStr2[iIdx], 1);
+
+    		//    iIdx++;
+    		//}
+
+
     	}
 
-    	iIdx = 0;
 
-    	USBBufferWrite(pBufferTx, &tempChar, 1);
-    	while(pcStr1[iIdx] != 0)
-    	{
-    		while(USBBufferSpaceAvailable(&g_sTxBuffer) < 2){}
-    		USBBufferWrite(&g_sTxBuffer, (const unsigned char *)&pcStr1[iIdx], 1);
 
-    	    iIdx++;
-    	}
+    	/*char line_feed[] = {0xD, 0xA};
+    	iIdx = 1;
+    	while(iIdx < 64){
+
+    		if(&input_string[iIdx] == '#' && &input_string[iIdx-1] == '#'){
+    			//USBBufferWrite(pBufferTx, "conf", 4);
+    			//break;
+    		}
+    		else{
+    			//USBBufferWrite(pBufferTx, "noconf", 6);
+    		}
+    		iIdx++;
+    	}*/
+
+
+
+    	//while(pcStr1[iIdx] != 0)
+    	//{
+    	//
+    	//	USBBufferWrite(&g_sTxBuffer, (const unsigned char *)&pcStr1[iIdx], 1);
+
+    	//    iIdx++;
+    	//}
         break;
     }
 

@@ -280,15 +280,14 @@ def compile_program(parent, work_path, workspace):
                         upl_text += "i" + "o" + arrow[5]
             upl_text += "o" + tile_ref
             upl_text += "#"
-
-    print(sys.getsizeof(upl_text))
+    upl_text += "#"
+    
     # Finally, write the file
     name = f.filePath[:-4] + ".upl"
     out_file = open(name, 'wb')
     upl_text = bytes(upl_text, 'utf-8')
     out_file.write(upl_text)
     out_file.close
-    print(sys.getsizeof(upl_text))
 
 
 def tile_dependancies(ref, arrows):

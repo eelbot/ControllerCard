@@ -102,7 +102,16 @@ class main_app(QtGui.QMainWindow):
         board_connect.setShortcut('Ctrl+Shift+C')
         board_connect.setStatusTip('Establish a connection to a board')
         board_connect.triggered.connect(
-                lambda: ser_con.detect_and_connect())
+                lambda: ser_con.detect_and_connect(self))
+
+        # Basic Connect option
+        upload = QtGui.QAction(
+                QtGui.QIcon('img/upload.png'), 'Upload', self)
+        upload.setIconVisibleInMenu(False)
+        upload.setShortcut('Ctrl+U')
+        upload.setStatusTip('Upload program to module')
+        upload.triggered.connect(
+                lambda: ser_con.upload(self))
 
         # Compile a program
         compile_program = QtGui.QAction(
@@ -136,8 +145,10 @@ class main_app(QtGui.QMainWindow):
         file_menu.addAction(exit_app)
 
         connect_menu = menubar.addMenu('&Connect')
-        connect_menu.addAction(board_connect)
         connect_menu.addAction(compile_program)
+        connect_menu.addAction(board_connect)
+        connect_menu.addAction(upload)
+
 
         editor_menu = menubar.addMenu('&Editor')
         editor_menu.addAction(add_tile)
@@ -153,8 +164,9 @@ class main_app(QtGui.QMainWindow):
 
         connect_tool_bar = self.addToolBar('Connect')
         connect_tool_bar.setIconSize(icon_size)
-        connect_tool_bar.addAction(board_connect)
         connect_tool_bar.addAction(compile_program)
+        connect_tool_bar.addAction(board_connect)
+        connect_tool_bar.addAction(upload)
 
         editor_tool_bar = self.addToolBar('Editor')
         editor_tool_bar.setIconSize(icon_size)
