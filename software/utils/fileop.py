@@ -1,7 +1,7 @@
 from PyQt4 import QtGui
 from widgets.editor import TextEditor, DragDropEditor
 from widgets.entity import tile, arrow
-import os, datetime
+import os, datetime, sys
 
 
 def create_blank_file(workspace):
@@ -218,6 +218,83 @@ def compile_program(parent, work_path, workspace):
             save_file(parent, work_path, workspace)
         else:
             return
+
     # Put logic below for compile button
-    input_file = open(f.filePath, 'r')
-    arrows = f.findChildren(arrow)
+
+    tiles = []
+    arrows = []
+    arrow_inputs = []
+    arrow_outputs = []
+    final_outputs = []
+
+    # Read file and put tiles and arrows in an array
+    saved_file = open(f.filePath)
+    line = saved_file.readline()
+    while line[0] != '#':
+        line = saved_file.readline()
+    while line[0] != '>':
+        line = line.strip("\n")
+        tiles.append(line.split(' '))
+        line = saved_file.readline()
+    while line:
+        arrows.append(line.split(' '))
+        line = saved_file.readline()
+
+    # Obtain a list of arrow inputs and outputs
+    for arrow in arrows:
+        arrow_inputs.append(arrow[5])
+        arrow_outputs.append(arrow[6])
+
+    # Determine which outputs are the final outputs
+    for i in arrow_outputs:
+        if i not in arrow_inputs and i not in final_outputs:
+            final_outputs.append(i)
+
+    # Set the call order of the tiles
+    x = [[final_outputs[0]]]
+    i = 1
+    while x[-1] != []:
+        sub = []
+        for ref in x[-1]:
+            sub.append(tile_dependancies(ref, arrows))
+            sub = [value for sublist in sub for value in sublist]
+
+        i += 1
+        x.append(sub)
+    x.pop()
+    x.reverse()
+
+    # Create a .upl file based on this information
+    # Function reference
+    # Input type (either absolute or passed)
+    # Store the output value in a variable
+    upl_text = ""
+    for v in x:
+        for tile_ref in v:
+            upl_text += tiles[int(tile_ref) - 1][4]
+            if tiles[int(tile_ref) - 1][5] != "None":
+                upl_text += "i" + tiles[int(tile_ref) - 1][5]
+            else:
+                for arrow in arrows:
+                    if arrow[6] == tile_ref:
+                        upl_text += "i" + "o" + arrow[5]
+            upl_text += "o" + tile_ref
+            upl_text += "#"
+
+    print(sys.getsizeof(upl_text))
+    # Finally, write the file
+    name = f.filePath[:-4] + ".upl"
+    out_file = open(name, 'wb')
+    upl_text = bytes(upl_text, 'utf-8')
+    out_file.write(upl_text)
+    out_file.close
+    print(sys.getsizeof(upl_text))
+
+
+def tile_dependancies(ref, arrows):
+    dependants = []
+
+    for arrow in arrows:
+        if ref == arrow[6]:
+            dependants.append(arrow[5])
+    return dependants

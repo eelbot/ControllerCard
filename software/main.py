@@ -24,7 +24,7 @@ class main_app(QtGui.QMainWindow):
         self.showMaximized()
         self.show()
 
-    
+
 
     def create_file_menu(self, menubar):
         """ Creates the file menu """
@@ -111,7 +111,7 @@ class main_app(QtGui.QMainWindow):
         compile_program.setShortcut('F5')
         compile_program.setStatusTip('Compile currently open file')
         compile_program.triggered.connect(
-                lambda: fileop.compile_program(self.workspace))
+                lambda: fileop.compile_program(self, self.work_path, self.workspace))
 
         # Add a tile to the drag and drop editor
         add_tile = QtGui.QAction(
