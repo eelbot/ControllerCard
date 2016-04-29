@@ -1,0 +1,22 @@
+Bit Operations Lib
+3
+None
+#OctalShiftLeft
+0x8001
+i inputBits int
+o outputBits int
+Shifts all bits to the left without wraparound
+C:\Users\ajans\Documents\workspace\PicoCommander\software\img\add_tile.png
+#OctalShiftRight
+0x8002
+i inputBits int
+o outputBits int
+Shifts all bits to the right without wraparound
+C:\Users\ajans\Documents\workspace\PicoCommander\software\img\file_new.png
+#OctalAND
+0x8003
+i inputA int
+i inputB int
+o AandB int
+Outputs is the logical AND of A and B (A&B)
+C:\Users\ajans\Documents\workspace\PicoCommander\software\img\file_save.png
