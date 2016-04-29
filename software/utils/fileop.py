@@ -113,6 +113,7 @@ def save_file(parent, work_path, workspace):
             save_text += " " + str(v.x())
             save_text += " " + str(v.y())
             save_text += " " + v.func_dict['FunctionReference']
+            save_text += " " + v.set_value
 
         # Next, save the connections
         for v in arrows:
@@ -181,6 +182,7 @@ def save_as(parent, work_path, workspace):
             save_text += " " + str(v.x())
             save_text += " " + str(v.y())
             save_text += " " + v.func_dict['FunctionReference']
+            save_text += " " + v.set_value
 
         # Next, save the connections
         for v in arrows:

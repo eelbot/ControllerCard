@@ -80,6 +80,7 @@ class Workspace(QtGui.QTabWidget):
                                     new_tile.func_dict = v
                                     new_tile.setToolTip(v['ToolTip'])
                                     new_tile.setText(v['FunctionName'])
+                            new_tile.set_value = params[5]
                         new_tile.drawConnection.connect(added_file.drawArrow)
                         new_tile.fileChange.connect(lambda: self.save_state_change(False))
                     elif line[0] == ">":

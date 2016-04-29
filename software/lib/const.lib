@@ -1,0 +1,9 @@
+Constants and Delays Library
+1
+None
+#HexConstant
+0xA001
+i value set
+o hexConstant int
+Outputs a set hexadecimal value
+None

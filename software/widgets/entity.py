@@ -24,6 +24,7 @@ class tile(QtGui.QPushButton):
         self.parent = parent
         self.ref = ref
         self.func_dict = {}
+        self.set_value = "None"
         self.arrows = []
 
         super(tile, self).__init__(parent)
@@ -123,7 +124,7 @@ class tile(QtGui.QPushButton):
                 i = 1
                 while(1):
                     try:
-                        items.append(self.func_dict['Input' + str(i)])
+                        items.append(self.func_dict['Input' + str(i)][2:])
                         i += 1
                     except KeyError:
                         break
@@ -131,7 +132,7 @@ class tile(QtGui.QPushButton):
 
             # Emit a signal to draw an arrow
             if(sel != None):
-                self.drawConnection.emit(self.ref, self.x() + (self.width() / 2), self.y() + (self.height() / 2), sel[0][2:])
+                self.drawConnection.emit(self.ref, self.x() + (self.width() / 2), self.y() + (self.height() / 2), sel[0])
             else:
                 self.drawConnection.emit(self.ref, self.x() + (self.width() / 2), self.y() + (self.height() / 2), "None")
             self.fileChange.emit()
@@ -149,6 +150,9 @@ class tile(QtGui.QPushButton):
                 self.func_dict = option
                 self.setToolTip(self.func_dict['ToolTip'])
                 self.setText(self.func_dict['FunctionName'])
+                if self.func_dict['Input1'][-3:] == "set":
+                    set_value = QtGui.QInputDialog.getText(self.parent, "Set Value", "Input set value")
+                    self.set_value = set_value[0]
 
     def connect_lib_function():
         pass
@@ -163,8 +167,8 @@ class arrow(QtGui.QWidget):
         self.iniy = iniy
         self.finx = finx
         self.finy = finy
-        self.input = in_ref
-        self.output = out_ref
+        self.input = in_ref # The input relative to the arrow (connected to a tile output)
+        self.output = out_ref # The output relative to the arrow (connected to an input of a tile)
         self.sel_in = sel_in
 
         self.setGeometry(0, 0, 2000, 2000)
