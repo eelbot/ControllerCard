@@ -7,4 +7,5 @@ TIMEOUT = 5
 
 
 def detect_and_connect():
-    availabe_ports = list(serial.tools.list_ports.comports())
+    available_ports = list(serial.tools.list_ports.comports())
+    print(available_ports)
