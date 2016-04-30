@@ -266,14 +266,14 @@ def compile_program(parent, work_path, workspace):
 
     # Create a .upl file based on this information
     # Function reference
-    # Input type (either absolute or passed)
+    # Input type (either absolute or relative)
     # Store the output value in a variable
     upl_text = ""
     for v in x:
         for tile_ref in v:
             upl_text += tiles[int(tile_ref) - 1][4]
             if tiles[int(tile_ref) - 1][5] != "None":
-                upl_text += "i" + tiles[int(tile_ref) - 1][5]
+                upl_text += "i" + tiles[int(tile_ref) - 1][5][2:]
             else:
                 for arrow in arrows:
                     if arrow[6] == tile_ref:
