@@ -37,6 +37,11 @@ main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include/yvals.h
 main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include/stdarg.h
 main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include/linkage.h
 main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include/_lock.h
+main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include/string.h
+main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include/stdlib.h
+main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include/stdlibf.h
+main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include/stdio.h
+main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include/stdarg.h
 main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include/stdint.h
 main.obj: C:/ti/controlSUITE/device_support/f2806x/v150/MWare/inc/hw_ints.h
 main.obj: C:/ti/controlSUITE/device_support/f2806x/v150/MWare/inc/hw_memmap.h
@@ -93,6 +98,11 @@ C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include/yvals.h:
 C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include/stdarg.h: 
 C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include/linkage.h: 
 C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include/_lock.h: 
+C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include/string.h: 
+C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include/stdlib.h: 
+C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include/stdlibf.h: 
+C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include/stdio.h: 
+C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include/stdarg.h: 
 C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include/stdint.h: 
 C:/ti/controlSUITE/device_support/f2806x/v150/MWare/inc/hw_ints.h: 
 C:/ti/controlSUITE/device_support/f2806x/v150/MWare/inc/hw_memmap.h: 

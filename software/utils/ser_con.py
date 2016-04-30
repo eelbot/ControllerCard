@@ -3,7 +3,7 @@ import serial
 import serial.tools.list_ports
 
 BAUD_RATE = 9600
-TIMEOUT = 2
+TIMEOUT = 0.5
 CONNECTION_INFO = []
 
 
@@ -41,7 +41,8 @@ def upload(master_app):
     ser.open()
     ser.write(upl_file.readline())
 
-    response = ser.read(6400)
-    print(response.decode("UTF-8"))
+    response = ser.read(10).decode()
+    if response == "conf":
+        QtGui.QMessageBox.information(master_app, "Connection", "Upload Successful! Program will begin execution")
 
     ser.close()

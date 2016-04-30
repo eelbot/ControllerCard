@@ -1,10 +1,10 @@
 ******************************************************************************
              TMS320C2000 Linker PC v6.4.6                      
 ******************************************************************************
->> Linked Fri Apr 29 18:30:14 2016
+>> Linked Sat Apr 30 15:48:43 2016
 
 OUTPUT FILE NAME:   <PicoCommander.out>
-ENTRY POINT SYMBOL: "_c_int00"  address: 003ece47
+ENTRY POINT SYMBOL: "_c_int00"  address: 003ed164
 
 
 MEMORY CONFIGURATION
@@ -20,8 +20,8 @@ PAGE 0:
   FLASHF                003e0000   00004000  00000000  00004000  RWIX
   FLASHE                003e4000   00004000  00000000  00004000  RWIX
   FLASHD                003e8000   00004000  00000004  00003ffc  RWIX
-  FLASHC                003ec000   00004000  00000f55  000030ab  RWIX
-  FLASHA                003f4000   00003f80  00003f80  00000000  RWIX
+  FLASHC                003ec000   00004000  00001269  00002d97  RWIX
+  FLASHA                003f4000   00003f80  00003f7e  00000002  RWIX
   CSM_RSVD              003f7f80   00000076  00000000  00000076  RWIX
   BEGIN                 003f7ff6   00000002  00000002  00000000  RWIX
   CSM_PWL_P0            003f7ff8   00000008  00000000  00000008  RWIX
@@ -89,7 +89,7 @@ PAGE 1:
   SCIB                  00007750   00000010  00000010  00000000  RWIX
   I2CA                  00007900   00000040  00000022  0000001e  RWIX
   RAML2                 00008c00   00000400  00000000  00000400  RWIX
-  RAML3                 00009000   00001000  0000083e  000007c2  RWIX
+  RAML3                 00009000   00001000  00000bfe  00000402  RWIX
   RAML4                 0000a000   00002000  00000000  00002000  RWIX
   RAML5                 0000c000   00002000  00000000  00002000  RWIX
   RAML6                 0000e000   00002000  00000000  00002000  RWIX
@@ -106,88 +106,94 @@ SECTION ALLOCATION MAP
  output                                  attributes/
 section   page    origin      length       input sections
 --------  ----  ----------  ----------   ----------------
-.cinit     0    003f42c6    000000ea     
-                  003f42c6    00000046     usblib.lib : usbhostenum.obj (.cinit)
-                  003f430c    00000040                : usbdcdc.obj (.cinit)
-                  003f434c    00000017     main.obj (.cinit)
-                  003f4363    00000017     usb_serial_structs.obj (.cinit)
-                  003f437a    0000000e     usblib.lib : usbtick.obj (.cinit)
-                  003f4388    0000000d                : usbmode.obj (.cinit)
-                  003f4395    0000000a     rts2800_fpu32.lib : exit.obj (.cinit)
-                  003f439f    00000005                       : _lock.obj (.cinit:__lock)
-                  003f43a4    00000005                       : _lock.obj (.cinit:__unlock)
-                  003f43a9    00000005     usblib.lib : usbdenum.obj (.cinit)
-                  003f43ae    00000002     --HOLE-- [fill = 0]
+.cinit     0    003f43b8    000000ec     
+                  003f43b8    00000046     usblib.lib : usbhostenum.obj (.cinit)
+                  003f43fe    00000040                : usbdcdc.obj (.cinit)
+                  003f443e    00000017     usb_serial_structs.obj (.cinit)
+                  003f4455    00000015     main.obj (.cinit)
+                  003f446a    0000000e     usblib.lib : usbtick.obj (.cinit)
+                  003f4478    0000000d                : usbmode.obj (.cinit)
+                  003f4485    0000000a     rts2800_fpu32.lib : exit.obj (.cinit)
+                  003f448f    00000005                       : _lock.obj (.cinit:__lock)
+                  003f4494    00000005                       : _lock.obj (.cinit:__unlock)
+                  003f4499    00000005     usblib.lib : usbdenum.obj (.cinit)
+                  003f449e    00000004     rts2800_fpu32.lib : errno.obj (.cinit)
+                  003f44a2    00000002     --HOLE-- [fill = 0]
 
 .pinit     0    003f4000    00000000     UNINITIALIZED
 
 ramfuncs   0    003e8000    00000004     RUN ADDR = 00008000
                   003e8000    00000004     F2806x_usDelay.obj (ramfuncs)
 
-.text.1    0    003ec000    00000f55     
-                  003ec000    0000025b     usblib.lib : usbmode.obj (.text)
-                  003ec25b    00000210                : usbdconfig.obj (.text)
-                  003ec46b    0000019d     driverlib.lib : interrupt.obj (.text)
-                  003ec608    00000157     usblib.lib : usbdcdesc.obj (.text)
-                  003ec75f    00000153                : usbringbuf.obj (.text)
-                  003ec8b2    000000d6                : usbdma.obj (.text)
-                  003ec988    000000d2                : usbdesc.obj (.text)
-                  003eca5a    0000009c     rts2800_fpu32.lib : fd_add.obj (.text)
-                  003ecaf6    0000009b     sysctl.obj (.text)
-                  003ecb91    00000090     driverlib.lib : usb_hal.obj (.text:retain)
-                  003ecc21    00000090     main.obj (.text:retain)
-                  003eccb1    0000008b     rts2800_fpu32.lib : fd_div.obj (.text)
-                  003ecd3c    00000088     usblib.lib : usbtick.obj (.text)
-                  003ecdc4    00000083     rts2800_fpu32.lib : fd_mpy.obj (.text)
-                  003ece47    00000046                       : boot.obj (.text)
-                  003ece8d    00000028     F2806x_PieCtrl.obj (.text)
-                  003eceb5    0000001b     rts2800_fpu32.lib : fd_toul.obj (.text)
-                  003eced0    00000019                       : args_main.obj (.text)
-                  003ecee9    00000019                       : exit.obj (.text)
-                  003ecf02    00000016                       : ul_tofd.obj (.text)
-                  003ecf18    00000011     F2806x_PieVect.obj (.text)
-                  003ecf29    0000000e     rts2800_fpu32.lib : fd_sub.obj (.text)
-                  003ecf37    0000000d     driverlib.lib : interrupt.obj (.text:retain)
-                  003ecf44    00000009     rts2800_fpu32.lib : _lock.obj (.text)
-                  003ecf4d    00000008     F2806x_CodeStartBranch.obj (.text)
+.text.1    0    003ec000    00001269     
+                  003ec000    00000265     usblib.lib : usbbuffer.obj (.text)
+                  003ec265    0000025b                : usbmode.obj (.text)
+                  003ec4c0    00000210                : usbdconfig.obj (.text)
+                  003ec6d0    0000019d     driverlib.lib : interrupt.obj (.text)
+                  003ec86d    00000157     usblib.lib : usbdcdesc.obj (.text)
+                  003ec9c4    00000153                : usbringbuf.obj (.text)
+                  003ecb17    000000d6                : usbdma.obj (.text)
+                  003ecbed    000000d2                : usbdesc.obj (.text)
+                  003eccbf    000000b8     rts2800_fpu32.lib : strtoul.obj (.text)
+                  003ecd77    0000009c                       : fd_add.obj (.text)
+                  003ece13    0000009b     sysctl.obj (.text)
+                  003eceae    00000090     driverlib.lib : usb_hal.obj (.text:retain)
+                  003ecf3e    00000090     main.obj (.text:retain)
+                  003ecfce    0000008b     rts2800_fpu32.lib : fd_div.obj (.text)
+                  003ed059    00000088     usblib.lib : usbtick.obj (.text)
+                  003ed0e1    00000083     rts2800_fpu32.lib : fd_mpy.obj (.text)
+                  003ed164    00000046                       : boot.obj (.text)
+                  003ed1aa    00000028     F2806x_PieCtrl.obj (.text)
+                  003ed1d2    00000019     rts2800_fpu32.lib : args_main.obj (.text)
+                  003ed1eb    00000019                       : exit.obj (.text)
+                  003ed204    00000016                       : ul_tofd.obj (.text)
+                  003ed21a    00000012     usblib.lib : usbdhandler.obj (.text)
+                  003ed22c    00000011     F2806x_PieVect.obj (.text)
+                  003ed23d    0000000e     rts2800_fpu32.lib : fd_sub.obj (.text)
+                  003ed24b    0000000d     driverlib.lib : interrupt.obj (.text:retain)
+                  003ed258    00000009     rts2800_fpu32.lib : _lock.obj (.text)
+                  003ed261    00000008     F2806x_CodeStartBranch.obj (.text)
 
-.econst    0    003f4000    000002c6     
-                  003f4000    00000100     F2806x_PieVect.obj (.econst)
-                  003f4100    00000036     main.obj (.econst:.string)
-                  003f4136    00000036     usb_serial_structs.obj (.econst:_g_pui8ConfigString)
-                  003f416c    00000030     usblib.lib : usbdcdc.obj (.econst)
-                  003f419c    0000002c     usb_serial_structs.obj (.econst:_g_pui8ControlInterfaceString)
-                  003f41c8    00000024     usb_serial_structs.obj (.econst:_g_pui8ManufacturerString)
-                  003f41ec    00000024     usb_serial_structs.obj (.econst)
-                  003f4210    00000023     usblib.lib : usbdcdc.obj (.econst:_g_pui8CDCSerCommInterface)
-                  003f4233    00000022     usb_serial_structs.obj (.econst:_g_pui8ProdectString)
-                  003f4255    00000001     --HOLE-- [fill = 0]
-                  003f4256    0000001a     usblib.lib : usbdenum.obj (.econst:_g_psUSBDStdRequests)
-                  003f4270    00000017                : usbdcdc.obj (.econst:_g_pui8CDCSerDataInterface)
-                  003f4287    00000012     usb_serial_structs.obj (.econst:_g_pui8SerialNumberString)
-                  003f4299    00000001     --HOLE-- [fill = 0]
-                  003f429a    00000010     driverlib.lib : usb_hal.obj (.econst)
-                  003f42aa    0000000c     usb_serial_structs.obj (.econst:_g_pui8StringDescriptors)
-                  003f42b6    00000008     usblib.lib : usbhhub.obj (.econst)
-                  003f42be    00000004     usb_serial_structs.obj (.econst:_g_pui8LangDescriptor)
-                  003f42c2    00000002     usblib.lib : usbdcdc.obj (.econst:_g_pCDCCompSerConfigDescriptors)
-                  003f42c4    00000002                : usbdcdc.obj (.econst:_g_ppCDCSerConfigDescriptors)
+.econst    0    003f4000    000003b8     
+                  003f4000    00000101     rts2800_fpu32.lib : ctype.obj (.econst:.string:__ctypes_)
+                  003f4101    00000001     --HOLE-- [fill = 0]
+                  003f4102    00000100     F2806x_PieVect.obj (.econst)
+                  003f4202    00000036     usb_serial_structs.obj (.econst:_g_pui8ConfigString)
+                  003f4238    00000030     usblib.lib : usbdcdc.obj (.econst)
+                  003f4268    0000002c     usb_serial_structs.obj (.econst:_g_pui8ControlInterfaceString)
+                  003f4294    00000025     main.obj (.econst:.string)
+                  003f42b9    00000024     usb_serial_structs.obj (.econst:_g_pui8ManufacturerString)
+                  003f42dd    00000001     --HOLE-- [fill = 0]
+                  003f42de    00000024     usb_serial_structs.obj (.econst)
+                  003f4302    00000023     usblib.lib : usbdcdc.obj (.econst:_g_pui8CDCSerCommInterface)
+                  003f4325    00000022     usb_serial_structs.obj (.econst:_g_pui8ProdectString)
+                  003f4347    00000001     --HOLE-- [fill = 0]
+                  003f4348    0000001a     usblib.lib : usbdenum.obj (.econst:_g_psUSBDStdRequests)
+                  003f4362    00000017                : usbdcdc.obj (.econst:_g_pui8CDCSerDataInterface)
+                  003f4379    00000012     usb_serial_structs.obj (.econst:_g_pui8SerialNumberString)
+                  003f438b    00000001     --HOLE-- [fill = 0]
+                  003f438c    00000010     driverlib.lib : usb_hal.obj (.econst)
+                  003f439c    0000000c     usb_serial_structs.obj (.econst:_g_pui8StringDescriptors)
+                  003f43a8    00000008     usblib.lib : usbhhub.obj (.econst)
+                  003f43b0    00000004     usb_serial_structs.obj (.econst:_g_pui8LangDescriptor)
+                  003f43b4    00000002     usblib.lib : usbdcdc.obj (.econst:_g_pCDCCompSerConfigDescriptors)
+                  003f43b6    00000002                : usbdcdc.obj (.econst:_g_ppCDCSerConfigDescriptors)
 
-.switch    0    003f43b0    0000002a     
-                  003f43b0    0000002a     usblib.lib : usbdcdc.obj (.switch:_HandleRequests)
+.switch    0    003f44a4    0000002a     
+                  003f44a4    0000002a     usblib.lib : usbdcdc.obj (.switch:_HandleRequests)
 
-.text.2    0    003f43da    00003ba6     
-                  003f43da    000015f5     usblib.lib : usbhostenum.obj (.text)
-                  003f59cf    00000855                : usbdenum.obj (.text)
-                  003f6224    00000730                : usbdcdc.obj (.text)
-                  003f6954    000006ce     usb.obj (.text)
-                  003f7022    00000404     usblib.lib : usbhhub.obj (.text)
-                  003f7426    0000039b     F2806x_DefaultIsr.obj (.text:retain)
-                  003f77c1    0000028f     driverlib.lib : uart.obj (.text)
-                  003f7a50    00000267     main.obj (.text)
-                  003f7cb7    00000265     usblib.lib : usbbuffer.obj (.text)
-                  003f7f1c    00000052     driverlib.lib : usb_hal.obj (.text)
-                  003f7f6e    00000012     usblib.lib : usbdhandler.obj (.text)
+.text.2    0    003f44ce    00003ab0     
+                  003f44ce    000015f5     usblib.lib : usbhostenum.obj (.text)
+                  003f5ac3    00000855                : usbdenum.obj (.text)
+                  003f6318    00000730                : usbdcdc.obj (.text)
+                  003f6a48    000006ce     usb.obj (.text)
+                  003f7116    00000404     usblib.lib : usbhhub.obj (.text)
+                  003f751a    000003c3     main.obj (.text)
+                  003f78dd    0000039b     F2806x_DefaultIsr.obj (.text:retain)
+                  003f7c78    0000028f     driverlib.lib : uart.obj (.text)
+                  003f7f07    00000052                   : usb_hal.obj (.text)
+                  003f7f59    0000001b     rts2800_fpu32.lib : fd_toul.obj (.text)
+                  003f7f74    0000000a                       : strcmp.obj (.text)
 
 codestart 
 *          0    003f7ff6    00000002     
@@ -416,21 +422,21 @@ I2caRegsFile
 *          1    00007900    00000022     UNINITIALIZED
                   00007900    00000022     F2806x_GlobalVariableDefs.obj (I2caRegsFile)
 
-.ebss      1    00009000    0000083e     UNINITIALIZED
-                  00009000    0000038e     usblib.lib : usbhostenum.obj (.ebss)
-                  0000938e    00000031                : usbdcdc.obj (.ebss)
-                  000093bf    00000001     --HOLE--
-                  000093c0    00000280     usb_serial_structs.obj (.ebss)
-                  00009640    0000008c     usblib.lib : usbdma.obj (.ebss)
-                  000096cc    0000001e                : usbtick.obj (.ebss)
-                  000096ea    0000000a                : usbmode.obj (.ebss)
-                  000096f4    00000004     rts2800_fpu32.lib : exit.obj (.ebss)
-                  000096f8    00000002                       : _lock.obj (.ebss:__lock)
-                  000096fa    00000002                       : _lock.obj (.ebss:__unlock)
-                  000096fc    00000004     --HOLE--
-                  00009700    00000080     main.obj (.ebss)
-                  00009780    00000080     usblib.lib : usbdenum.obj (.ebss)
-                  00009800    0000003e                : usbhhub.obj (.ebss)
+.ebss      1    00009000    00000bfe     UNINITIALIZED
+                  00009000    00000440     main.obj (.ebss)
+                  00009440    0000038e     usblib.lib : usbhostenum.obj (.ebss)
+                  000097ce    00000031                : usbdcdc.obj (.ebss)
+                  000097ff    00000001     rts2800_fpu32.lib : errno.obj (.ebss)
+                  00009800    00000280     usb_serial_structs.obj (.ebss)
+                  00009a80    0000008c     usblib.lib : usbdma.obj (.ebss)
+                  00009b0c    0000001e                : usbtick.obj (.ebss)
+                  00009b2a    0000000a                : usbmode.obj (.ebss)
+                  00009b34    00000004     rts2800_fpu32.lib : exit.obj (.ebss)
+                  00009b38    00000002                       : _lock.obj (.ebss:__lock)
+                  00009b3a    00000002                       : _lock.obj (.ebss:__unlock)
+                  00009b3c    00000004     --HOLE--
+                  00009b40    00000080     usblib.lib : usbdenum.obj (.ebss)
+                  00009bc0    0000003e                : usbhhub.obj (.ebss)
 
 .reset     0    003fffc0    00000002     DSECT
                   003fffc0    00000002     rts2800_fpu32.lib : boot.obj (.reset)
@@ -547,74 +553,75 @@ address     data page           name
 
 00007900     1e4 (00007900)     _I2caRegs
 
-0000938e     24e (00009380)     _g_psCDCSerSections
-00009394     24e (00009380)     _g_psCDCCompSerSections
-0000939c     24e (00009380)     _g_pui8IADSerDescriptor
-000093a4     24e (00009380)     _g_pui8CDCSerDescriptor
-000093ad     24e (00009380)     _g_pui8CDCSerDeviceDescriptor
+00009000     240 (00009000)     _program_recieved
+00009001     240 (00009000)     _program_compiled
 
-000093c0     24f (000093c0)     _g_pui8TxBufferWorkspace
-000093d8     24f (000093c0)     _g_pui8RxBufferWorkspace
+000097ce     25f (000097c0)     _g_psCDCSerSections
+000097d4     25f (000097c0)     _g_psCDCCompSerSections
+000097dc     25f (000097c0)     _g_pui8IADSerDescriptor
+000097e4     25f (000097c0)     _g_pui8CDCSerDescriptor
+000097ed     25f (000097c0)     _g_pui8CDCSerDeviceDescriptor
+000097ff     25f (000097c0)     _errno
 
-00009400     250 (00009400)     _g_sCDCDevice
+00009800     260 (00009800)     _g_pui8TxBufferWorkspace
+00009818     260 (00009800)     _g_pui8RxBufferWorkspace
 
-00009440     251 (00009440)     _g_pi8USBRxBuffer
+00009840     261 (00009840)     _g_sCDCDevice
 
-00009540     255 (00009540)     _g_pi8USBTxBuffer
+00009880     262 (00009880)     _g_pi8USBRxBuffer
 
-000096cc     25b (000096c0)     _g_bUSBTimerInitialized
-000096ce     25b (000096c0)     _g_ui32CurrentUSBTick
-000096d0     25b (000096c0)     _g_ui32USBSOFCount
-000096d2     25b (000096c0)     _g_pfnTickHandlers
-000096de     25b (000096c0)     _g_pvTickInstance
-000096eb     25b (000096c0)     _g_iUSBMode
-000096ec     25b (000096c0)     _g_eOTGModeState
-000096f0     25b (000096c0)     _g_ui32PollRate
-000096f2     25b (000096c0)     _g_ui32WaitTicks
-000096f4     25b (000096c0)     ___TI_cleanup_ptr
-000096f6     25b (000096c0)     ___TI_dtors_ptr
-000096f8     25b (000096c0)     __lock
-000096fa     25b (000096c0)     __unlock
+00009980     266 (00009980)     _g_pi8USBTxBuffer
 
-00009702     25c (00009700)     _pcStr2
-00009706     25c (00009700)     _UPLOADED_PROGRAM
-00009708     25c (00009700)     _pcStr1
+00009b0c     26c (00009b00)     _g_bUSBTimerInitialized
+00009b0e     26c (00009b00)     _g_ui32CurrentUSBTick
+00009b10     26c (00009b00)     _g_ui32USBSOFCount
+00009b12     26c (00009b00)     _g_pfnTickHandlers
+00009b1e     26c (00009b00)     _g_pvTickInstance
+00009b2b     26c (00009b00)     _g_iUSBMode
+00009b2c     26c (00009b00)     _g_eOTGModeState
+00009b30     26c (00009b00)     _g_ui32PollRate
+00009b32     26c (00009b00)     _g_ui32WaitTicks
+00009b34     26c (00009b00)     ___TI_cleanup_ptr
+00009b36     26c (00009b00)     ___TI_dtors_ptr
+00009b38     26c (00009b00)     __lock
+00009b3a     26c (00009b00)     __unlock
 
-00009780     25e (00009780)     _g_ppsDevInfo
-00009784     25e (00009780)     _g_psDCDInst
+00009b40     26d (00009b40)     _g_ppsDevInfo
+00009b44     26d (00009b40)     _g_psDCDInst
 
 003d7e80    f5fa (003d7e80)     _PartIdRegs
 
-003f4000    fd00 (003f4000)     _PieVectTableInit
+003f4000    fd00 (003f4000)     __ctypes_
 
-003f4136    fd04 (003f4100)     _g_pui8ConfigString
+003f4102    fd04 (003f4100)     _PieVectTableInit
 
-003f416c    fd05 (003f4140)     _g_sCDCSerDataInterfaceSection
-003f4170    fd05 (003f4140)     _g_sCDCSerCommInterfaceSection
-003f4174    fd05 (003f4140)     _g_sCDCCompSerConfigHeader
-003f4178    fd05 (003f4140)     _g_sCDCSerConfigHeader
-003f417c    fd05 (003f4140)     _g_sIADSerConfigSection
+003f4202    fd08 (003f4200)     _g_pui8ConfigString
+003f4238    fd08 (003f4200)     _g_sCDCSerDataInterfaceSection
+003f423c    fd08 (003f4200)     _g_sCDCSerCommInterfaceSection
 
-003f4180    fd06 (003f4180)     _g_sCDCSerConfigSection
-003f4184    fd06 (003f4180)     _g_sCDCHandlers
-003f419c    fd06 (003f4180)     _g_pui8ControlInterfaceString
+003f4240    fd09 (003f4240)     _g_sCDCCompSerConfigHeader
+003f4244    fd09 (003f4240)     _g_sCDCSerConfigHeader
+003f4248    fd09 (003f4240)     _g_sIADSerConfigSection
+003f424c    fd09 (003f4240)     _g_sCDCSerConfigSection
+003f4250    fd09 (003f4240)     _g_sCDCHandlers
+003f4268    fd09 (003f4240)     _g_pui8ControlInterfaceString
 
-003f41c8    fd07 (003f41c0)     _g_pui8ManufacturerString
-003f41ec    fd07 (003f41c0)     _g_sTxBuffer
-003f41fe    fd07 (003f41c0)     _g_sRxBuffer
+003f42b9    fd0a (003f4280)     _g_pui8ManufacturerString
 
-003f4210    fd08 (003f4200)     _g_pui8CDCSerCommInterface
-003f4233    fd08 (003f4200)     _g_pui8ProdectString
+003f42de    fd0b (003f42c0)     _g_sTxBuffer
+003f42f0    fd0b (003f42c0)     _g_sRxBuffer
 
-003f4270    fd09 (003f4240)     _g_pui8CDCSerDataInterface
+003f4302    fd0c (003f4300)     _g_pui8CDCSerCommInterface
+003f4325    fd0c (003f4300)     _g_pui8ProdectString
 
-003f4287    fd0a (003f4280)     _g_pui8SerialNumberString
-003f42aa    fd0a (003f4280)     _g_pui8StringDescriptors
-003f42b6    fd0a (003f4280)     _g_sUSBHubClassDriver
-003f42be    fd0a (003f4280)     _g_pui8LangDescriptor
+003f4362    fd0d (003f4340)     _g_pui8CDCSerDataInterface
+003f4379    fd0d (003f4340)     _g_pui8SerialNumberString
 
-003f42c2    fd0b (003f42c0)     _g_pCDCCompSerConfigDescriptors
-003f42c4    fd0b (003f42c0)     _g_ppCDCSerConfigDescriptors
+003f439c    fd0e (003f4380)     _g_pui8StringDescriptors
+003f43a8    fd0e (003f4380)     _g_sUSBHubClassDriver
+003f43b0    fd0e (003f4380)     _g_pui8LangDescriptor
+003f43b4    fd0e (003f4380)     _g_pCDCCompSerConfigDescriptors
+003f43b6    fd0e (003f4380)     _g_ppCDCSerConfigDescriptors
 
 003f7ff8    fdff (003f7fc0)     _CsmPwl
 
@@ -624,59 +631,59 @@ GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name
 page  address   name                                  
 ----  -------   ----                                  
 abs   ffffffff  .text                                 
-0     003ecee9  C$$EXIT                               
-0     003eca5a  FD$$ADD                               
-0     003eccb1  FD$$DIV                               
-0     003ecdc4  FD$$MPY                               
-0     003ecf29  FD$$SUB                               
-0     003eceb5  FD$$TOUL                              
-0     003ecf02  UL$$TOFD                              
-0     003f77b7  _ADCINT1_ISR                          
-0     003f77ad  _ADCINT2_ISR                          
-0     003f77a3  _ADCINT3_ISR                          
-0     003f7799  _ADCINT4_ISR                          
-0     003f778f  _ADCINT5_ISR                          
-0     003f7785  _ADCINT6_ISR                          
-0     003f777b  _ADCINT7_ISR                          
-0     003f7771  _ADCINT8_ISR                          
-0     003f7767  _ADCINT9_ISR                          
+0     003ed1eb  C$$EXIT                               
+0     003ecd77  FD$$ADD                               
+0     003ecfce  FD$$DIV                               
+0     003ed0e1  FD$$MPY                               
+0     003ed23d  FD$$SUB                               
+0     003f7f59  FD$$TOUL                              
+0     003ed204  UL$$TOFD                              
+0     003f7c6e  _ADCINT1_ISR                          
+0     003f7c64  _ADCINT2_ISR                          
+0     003f7c5a  _ADCINT3_ISR                          
+0     003f7c50  _ADCINT4_ISR                          
+0     003f7c46  _ADCINT5_ISR                          
+0     003f7c3c  _ADCINT6_ISR                          
+0     003f7c32  _ADCINT7_ISR                          
+0     003f7c28  _ADCINT8_ISR                          
+0     003f7c1e  _ADCINT9_ISR                          
 1     00007100  _AdcRegs                              
 1     00000b00  _AdcResult                            
-0     003f775d  _CLA1_INT1_ISR                        
-0     003f7753  _CLA1_INT2_ISR                        
-0     003f7749  _CLA1_INT3_ISR                        
-0     003f773f  _CLA1_INT4_ISR                        
-0     003f7735  _CLA1_INT5_ISR                        
-0     003f772b  _CLA1_INT6_ISR                        
-0     003f7721  _CLA1_INT7_ISR                        
-0     003f7717  _CLA1_INT8_ISR                        
+0     003f7c14  _CLA1_INT1_ISR                        
+0     003f7c0a  _CLA1_INT2_ISR                        
+0     003f7c00  _CLA1_INT3_ISR                        
+0     003f7bf6  _CLA1_INT4_ISR                        
+0     003f7bec  _CLA1_INT5_ISR                        
+0     003f7be2  _CLA1_INT6_ISR                        
+0     003f7bd8  _CLA1_INT7_ISR                        
+0     003f7bce  _CLA1_INT8_ISR                        
 1     00001400  _Cla1Regs                             
 1     00006400  _Comp1Regs                            
 1     00006420  _Comp2Regs                            
 1     00006440  _Comp3Regs                            
-0     003f43da  _ConfigDescAlloc                      
-0     003f4428  _ConfigDescFree                       
-0     003f7c99  _ControlHandler                       
+0     003f44ce  _ConfigDescAlloc                      
+0     003f451c  _ConfigDescFree                       
+0     003f78bf  _ControlHandler                       
 1     00000c00  _CpuTimer0Regs                        
 1     00000c08  _CpuTimer1Regs                        
 1     00000c10  _CpuTimer2Regs                        
 1     003f7ff8  _CsmPwl                               
 1     00000ae0  _CsmRegs                              
-0     003f770d  _DATALOG_ISR                          
-0     003f7703  _DINTCH1_ISR                          
-0     003f76f9  _DINTCH2_ISR                          
-0     003f76ef  _DINTCH3_ISR                          
-0     003f76e5  _DINTCH4_ISR                          
-0     003f76db  _DINTCH5_ISR                          
-0     003f76d1  _DINTCH6_ISR                          
+0     003f7bc4  _DATALOG_ISR                          
+0     003f7bba  _DINTCH1_ISR                          
+0     003f7bb0  _DINTCH2_ISR                          
+0     003f7ba6  _DINTCH3_ISR                          
+0     003f7b9c  _DINTCH4_ISR                          
+0     003f7b92  _DINTCH5_ISR                          
+0     003f7b88  _DINTCH6_ISR                          
 0     00008000  _DSP28x_usDelay                       
 1     00000880  _DevEmuRegs                           
 1     00001000  _DmaRegs                              
-0     003f76c7  _ECAN0INTA_ISR                        
-0     003f76bd  _ECAN1INTA_ISR                        
-0     003f76b3  _ECAP1_INT_ISR                        
-0     003f76a9  _ECAP2_INT_ISR                        
-0     003f769f  _ECAP3_INT_ISR                        
+0     003f7b7e  _ECAN0INTA_ISR                        
+0     003f7b74  _ECAN1INTA_ISR                        
+0     003f7b6a  _ECAP1_INT_ISR                        
+0     003f7b60  _ECAP2_INT_ISR                        
+0     003f7b56  _ECAP3_INT_ISR                        
 1     00006040  _ECanaLAMRegs                         
 1     000060c0  _ECanaMOTORegs                        
 1     00006080  _ECanaMOTSRegs                        
@@ -685,24 +692,24 @@ abs   ffffffff  .text
 1     00006a00  _ECap1Regs                            
 1     00006a20  _ECap2Regs                            
 1     00006a40  _ECap3Regs                            
-0     003f7692  _EMPTY_ISR                            
-0     003f7688  _EMUINT_ISR                           
-0     003f767e  _EPWM1_INT_ISR                        
-0     003f7674  _EPWM1_TZINT_ISR                      
-0     003f766a  _EPWM2_INT_ISR                        
-0     003f7660  _EPWM2_TZINT_ISR                      
-0     003f7656  _EPWM3_INT_ISR                        
-0     003f764c  _EPWM3_TZINT_ISR                      
-0     003f7642  _EPWM4_INT_ISR                        
-0     003f7638  _EPWM4_TZINT_ISR                      
-0     003f762e  _EPWM5_INT_ISR                        
-0     003f7624  _EPWM5_TZINT_ISR                      
-0     003f761a  _EPWM6_INT_ISR                        
-0     003f7610  _EPWM6_TZINT_ISR                      
-0     003f7606  _EPWM7_INT_ISR                        
-0     003f75fc  _EPWM7_TZINT_ISR                      
-0     003f75f2  _EPWM8_INT_ISR                        
-0     003f75e8  _EPWM8_TZINT_ISR                      
+0     003f7b49  _EMPTY_ISR                            
+0     003f7b3f  _EMUINT_ISR                           
+0     003f7b35  _EPWM1_INT_ISR                        
+0     003f7b2b  _EPWM1_TZINT_ISR                      
+0     003f7b21  _EPWM2_INT_ISR                        
+0     003f7b17  _EPWM2_TZINT_ISR                      
+0     003f7b0d  _EPWM3_INT_ISR                        
+0     003f7b03  _EPWM3_TZINT_ISR                      
+0     003f7af9  _EPWM4_INT_ISR                        
+0     003f7aef  _EPWM4_TZINT_ISR                      
+0     003f7ae5  _EPWM5_INT_ISR                        
+0     003f7adb  _EPWM5_TZINT_ISR                      
+0     003f7ad1  _EPWM6_INT_ISR                        
+0     003f7ac7  _EPWM6_TZINT_ISR                      
+0     003f7abd  _EPWM7_INT_ISR                        
+0     003f7ab3  _EPWM7_TZINT_ISR                      
+0     003f7aa9  _EPWM8_INT_ISR                        
+0     003f7a9f  _EPWM8_TZINT_ISR                      
 1     00006800  _EPwm1Regs                            
 1     00006840  _EPwm2Regs                            
 1     00006880  _EPwm3Regs                            
@@ -711,405 +718,413 @@ abs   ffffffff  .text
 1     00006940  _EPwm6Regs                            
 1     00006980  _EPwm7Regs                            
 1     000069c0  _EPwm8Regs                            
-0     003f75de  _EQEP1_INT_ISR                        
-0     003f75d4  _EQEP2_INT_ISR                        
+0     003f7a95  _EQEP1_INT_ISR                        
+0     003f7a8b  _EQEP2_INT_ISR                        
 1     00006b00  _EQep1Regs                            
 1     00006b40  _EQep2Regs                            
 1     00000d01  _EmuBMode                             
 1     00000d00  _EmuKey                               
-0     003eceac  _EnableInterrupts                     
+0     003ed1c9  _EnableInterrupts                     
 1     00000a80  _FlashRegs                            
 1     00000d04  _Flash_CPUScaleFactor                 
 1     00000d02  _Flash_CallbackPtr                    
 1     00006f80  _GpioCtrlRegs                         
 1     00006fc0  _GpioDataRegs                         
 1     00006fe0  _GpioIntRegs                          
-0     003f75ca  _HRCAP1_INT_ISR                       
-0     003f75c0  _HRCAP2_INT_ISR                       
-0     003f75b6  _HRCAP3_INT_ISR                       
-0     003f75ac  _HRCAP4_INT_ISR                       
+0     003f7a81  _HRCAP1_INT_ISR                       
+0     003f7a77  _HRCAP2_INT_ISR                       
+0     003f7a6d  _HRCAP3_INT_ISR                       
+0     003f7a63  _HRCAP4_INT_ISR                       
 1     00006ac0  _HRCap1Regs                           
 1     00006ae0  _HRCap2Regs                           
 1     00006c80  _HRCap3Regs                           
 1     00006ca0  _HRCap4Regs                           
-0     003f75a2  _I2CINT1A_ISR                         
-0     003f7598  _I2CINT2A_ISR                         
+0     003f7561  _HexConstant                          
+0     003f7a59  _I2CINT1A_ISR                         
+0     003f7a4f  _I2CINT2A_ISR                         
 1     00007900  _I2caRegs                             
-0     003f758e  _ILLEGAL_ISR                          
-0     003f7584  _INT13_ISR                            
-0     003f757a  _INT14_ISR                            
-0     003ece8d  _InitPieCtrl                          
-0     003ecf18  _InitPieVectTable                     
-0     003ecf37  _IntDefaultHandler                    
-0     003ec4d8  _IntDisable                           
-0     003ec4b1  _IntEnable                            
-0     003ec46f  _IntMasterDisable                     
-0     003ec46b  _IntMasterEnable                      
-0     003ec473  _IntRegister                          
-0     003ec491  _IntUnregister                        
-0     003f54dc  _InternalUSBHCDSendEvent              
-0     003ecd67  _InternalUSBRegisterTickHandler       
-0     003ecd97  _InternalUSBStartOfFrameTick          
-0     003ecd3c  _InternalUSBTickInit                  
-0     003ecd63  _InternalUSBTickReset                 
-0     003ec5bd  _Interrupt_disable                    
-0     003ec573  _Interrupt_enable                     
-0     003f7570  _LUF_ISR                              
-0     003f7566  _LVF_ISR                              
-0     003f755c  _MRINTA_ISR                           
-0     003f7552  _MXINTA_ISR                           
+0     003f7a45  _ILLEGAL_ISR                          
+0     003f7a3b  _INT13_ISR                            
+0     003f7a31  _INT14_ISR                            
+0     003ed1aa  _InitPieCtrl                          
+0     003ed22c  _InitPieVectTable                     
+0     003ed24b  _IntDefaultHandler                    
+0     003ec73d  _IntDisable                           
+0     003ec716  _IntEnable                            
+0     003ec6d4  _IntMasterDisable                     
+0     003ec6d0  _IntMasterEnable                      
+0     003ec6d8  _IntRegister                          
+0     003ec6f6  _IntUnregister                        
+0     003f55d0  _InternalUSBHCDSendEvent              
+0     003ed084  _InternalUSBRegisterTickHandler       
+0     003ed0b4  _InternalUSBStartOfFrameTick          
+0     003ed059  _InternalUSBTickInit                  
+0     003ed080  _InternalUSBTickReset                 
+0     003ec822  _Interrupt_disable                    
+0     003ec7d8  _Interrupt_enable                     
+0     003f7a27  _LUF_ISR                              
+0     003f7a1d  _LVF_ISR                              
+0     003f7a13  _MRINTA_ISR                           
+0     003f7a09  _MXINTA_ISR                           
 1     00005000  _McbspaRegs                           
-0     003f7548  _NMI_ISR                              
+0     003f79ff  _NMI_ISR                              
 1     00007060  _NmiIntruptRegs                       
-0     003ec1fd  _OTGDeviceDisconnect                  
-0     003f753e  _PIE_RESERVED                         
+0     003ec462  _OTGDeviceDisconnect                  
+0     003f7557  _OctalAND                             
+0     003f755e  _OctalShiftLeft                       
+0     003f755c  _OctalShiftRight                      
+0     003f79f5  _PIE_RESERVED                         
 1     003d7e80  _PartIdRegs                           
 1     00000ce0  _PieCtrlRegs                          
 1     00000d00  _PieVectTable                         
-0     003f4000  _PieVectTableInit                     
-0     003f6346  _ProcessDataFromHost                  
-0     003f63d3  _ProcessDataToHost                    
-0     003f63a4  _ProcessNotificationToHost            
-0     003f7534  _RTOSINT_ISR                          
+0     003f4102  _PieVectTableInit                     
+0     003f643a  _ProcessDataFromHost                  
+0     003f64c7  _ProcessDataToHost                    
+0     003f6498  _ProcessNotificationToHost            
+0     003f79eb  _RTOSINT_ISR                          
 0     003e8004  _RamfuncsLoadEnd                      
 abs   00000004  _RamfuncsLoadSize                     
 0     003e8000  _RamfuncsLoadStart                    
 0     00008000  _RamfuncsRunStart                     
-0     003f7b83  _RxHandler                            
-0     003f752a  _SCIRXINTA_ISR                        
-0     003f7520  _SCIRXINTB_ISR                        
-0     003f7516  _SCITXINTA_ISR                        
-0     003f750c  _SCITXINTB_ISR                        
-0     003f7502  _SPIRXINTA_ISR                        
-0     003f74f8  _SPIRXINTB_ISR                        
-0     003f74ee  _SPITXINTA_ISR                        
-0     003f74e4  _SPITXINTB_ISR                        
+0     003f77c2  _RxHandler                            
+0     003f79e1  _SCIRXINTA_ISR                        
+0     003f79d7  _SCIRXINTB_ISR                        
+0     003f79cd  _SCITXINTA_ISR                        
+0     003f79c3  _SCITXINTB_ISR                        
+0     003f79b9  _SPIRXINTA_ISR                        
+0     003f79af  _SPIRXINTB_ISR                        
+0     003f79a5  _SPITXINTA_ISR                        
+0     003f799b  _SPITXINTB_ISR                        
 1     00007050  _SciaRegs                             
 1     00007750  _ScibRegs                             
 1     00007040  _SpiaRegs                             
 1     00007740  _SpibRegs                             
-0     003ecb8c  _SysCtlClockGet                       
-0     003ecb80  _SysCtlDelay                          
-0     003ecb48  _SysCtlPeripheralDisable              
-0     003ecb10  _SysCtlPeripheralEnable               
-0     003ecb0e  _SysCtlPeripheralPresent              
-0     003ecb0d  _SysCtlPeripheralReset                
-0     003ecb08  _SysCtlUSBPLLDisable                  
-0     003ecaf6  _SysCtlUSBPLLEnable                   
-0     003f7a50  _SysCtrlInit                          
+0     003ecea9  _SysCtlClockGet                       
+0     003ece9d  _SysCtlDelay                          
+0     003ece65  _SysCtlPeripheralDisable              
+0     003ece2d  _SysCtlPeripheralEnable               
+0     003ece2b  _SysCtlPeripheralPresent              
+0     003ece2a  _SysCtlPeripheralReset                
+0     003ece25  _SysCtlUSBPLLDisable                  
+0     003ece13  _SysCtlUSBPLLEnable                   
+0     003f751a  _SysCtrlInit                          
 1     00007010  _SysCtrlRegs                          
 1     00000985  _SysPwrCtrlRegs                       
-0     003f74da  _TINT0_ISR                            
-0     003f7b81  _TxHandler                            
-0     003f790f  _UARTBusy                             
-0     003f78d6  _UARTCharGet                          
-0     003f78c5  _UARTCharGetNonBlocking               
-0     003f78ff  _UARTCharPut                          
-0     003f78ec  _UARTCharPutNonBlocking               
-0     003f78ab  _UARTCharsAvail                       
-0     003f783b  _UARTConfigGetExpClk                  
-0     003f7804  _UARTConfigSetExpClk                  
-0     003f7869  _UARTDisable                          
-0     003f785f  _UARTEnable                           
-0     003f7888  _UARTFIFODisable                      
-0     003f787f  _UARTFIFOEnable                       
-0     003f77ee  _UARTFIFOLevelGet                     
-0     003f77d4  _UARTFIFOLevelSet                     
-0     003f7a07  _UARTIntClear                         
-0     003f79a1  _UARTIntDisable                       
-0     003f7970  _UARTIntEnable                        
-0     003f79d7  _UARTIntStatus                        
-0     003f77cb  _UARTParityModeGet                    
-0     003f77c1  _UARTParityModeSet                    
-0     003f791c  _UARTRXIntRegister                    
-0     003f7948  _UARTRXIntUnregister                  
-0     003f7a3a  _UARTRxErrorClear                     
-0     003f7a34  _UARTRxErrorGet                       
-0     003f78b8  _UARTSpaceAvail                       
-0     003f7932  _UARTTXIntRegister                    
-0     003f795c  _UARTTXIntUnregister                  
-0     003f78a1  _UARTTxIntModeGet                     
-0     003f7891  _UARTTxIntModeSet                     
-1     00009706  _UPLOADED_PROGRAM                     
-0     003f7f6e  _USB0DeviceIntHandler                 
-0     003ec050  _USB0DualModeIntHandler               
-0     003f5461  _USB0HostIntHandler                   
-0     003ec17e  _USB0OTGModeIntHandler                
-0     003f74d0  _USB0_INT_ISR                         
-0     003f7e7e  _USBBufferCallbackDataSet             
-0     003f7ed0  _USBBufferDataAvailable               
-0     003f7e6e  _USBBufferDataRemoved                 
-0     003f7e5b  _USBBufferDataWritten                 
-0     003f7ee8  _USBBufferEventCallback               
-0     003f7ea7  _USBBufferFlush                       
-0     003f7e4d  _USBBufferInfoGet                     
-0     003f7e1c  _USBBufferInit                        
-0     003f7eb3  _USBBufferRead                        
-0     003f7edc  _USBBufferSpaceAvailable              
-0     003f7e88  _USBBufferWrite                       
-0     003f7e36  _USBBufferZeroLengthPacketInsert      
-0     003f6705  _USBDCDCCompositeInit                 
-0     003f679d  _USBDCDCInit                          
-0     003f6873  _USBDCDCPacketRead                    
-0     003f682d  _USBDCDCPacketWrite                   
-0     003f6944  _USBDCDCPowerStatusSet                
-0     003f694d  _USBDCDCRemoteWakeupRequest           
-0     003f68eb  _USBDCDCRxPacketAvailable             
-0     003f6916  _USBDCDCSerialStateChange             
-0     003f67fd  _USBDCDCSetControlCBData              
-0     003f6809  _USBDCDCSetRxCBData                   
-0     003f681b  _USBDCDCSetTxCBData                   
-0     003f67f0  _USBDCDCTerm                          
-0     003f68db  _USBDCDCTxPacketAvailable             
-0     003ec6a9  _USBDCDConfigDescGet                  
-0     003ec683  _USBDCDConfigDescGetNum               
-0     003ec669  _USBDCDConfigDescGetSize              
-0     003ec714  _USBDCDConfigGetInterface             
-0     003ec72d  _USBDCDConfigGetInterfaceEndpoint     
-0     003ec6ef  _USBDCDConfigGetNumAlternateInterfaces
-0     003f59cf  _USBDCDDeviceInfoInit                 
-0     003f59df  _USBDCDInit                           
-0     003f5ac6  _USBDCDPowerStatusSet                 
-0     003f5ad3  _USBDCDRemoteWakeupRequest            
-0     003f5a90  _USBDCDRequestDataEP0                 
-0     003f5a9e  _USBDCDSendDataEP0                    
-0     003f5aad  _USBDCDSetDefaultConfiguration        
-0     003f5ab5  _USBDCDStallEP0                       
-0     003f5a5d  _USBDCDTerm                           
-0     003f7f2c  _USBDelay                             
-0     003ec9b0  _USBDescGet                           
-0     003eca2d  _USBDescGetInterface                  
-0     003eca47  _USBDescGetInterfaceEndpoint          
-0     003ec988  _USBDescGetNum                        
-0     003ec9dd  _USBDescGetNumAlternateInterfaces     
-0     003f701d  _USBDevAddrGet                        
-0     003f7019  _USBDevAddrSet                        
-0     003f7013  _USBDevConnect                        
-0     003f700c  _USBDevDisconnect                     
-0     003f6fc6  _USBDevEndpointConfigGet              
-0     003f6f60  _USBDevEndpointConfigSet              
-0     003f6f46  _USBDevEndpointDataAck                
-0     003f6f24  _USBDevEndpointStall                  
-0     003f6efd  _USBDevEndpointStallClear             
-0     003f6ebe  _USBDevEndpointStatusClear            
-0     003f6eb8  _USBDevMode                           
-0     003ec2b5  _USBDeviceConfig                      
-0     003ec3fe  _USBDeviceConfigAlternate             
-0     003f5b57  _USBDeviceEnumHandler                 
-0     003f5c18  _USBDeviceEnumResetHandler            
-0     003f618c  _USBDeviceIntHandlerInternal          
-0     003f5ae9  _USBDeviceResumeTickHandler           
-0     003ec08b  _USBDualModeInit                      
-0     003ec0cf  _USBDualModeTerm                      
-0     003f6e93  _USBEndpointDMAChannel                
-0     003f6e7b  _USBEndpointDMADisable                
-0     003f6e65  _USBEndpointDMAEnable                 
-0     003f6e4d  _USBEndpointDataAvail                 
-0     003f6e1a  _USBEndpointDataGet                   
-0     003f6df4  _USBEndpointDataPut                   
-0     003f6dc7  _USBEndpointDataSend                  
-0     003f6db1  _USBEndpointDataToggleClear           
-0     003f6da5  _USBEndpointPacketCountSet            
-0     003f6d8d  _USBEndpointStatus                    
-0     003f6d86  _USBFIFOAddrGet                       
-0     003f6d53  _USBFIFOConfigGet                     
-0     003f6cfd  _USBFIFOConfigSet                     
-0     003f6cb2  _USBFIFOFlush                         
-0     003f6cae  _USBFrameNumberGet                    
-0     003f7f24  _USBGPIODisable                       
-0     003f7f1c  _USBGPIOEnable                        
-0     003f574e  _USBHCDControlTransfer                
-0     003f594c  _USBHCDDevAddress                     
-0     003f5960  _USBHCDDevClass                       
-0     003f5938  _USBHCDDevHubPort                     
-0     003f59aa  _USBHCDDevProtocol                    
-0     003f5985  _USBHCDDevSubClass                    
-0     003f44ae  _USBHCDEventDisable                   
-0     003f4499  _USBHCDEventEnable                    
-0     003f57e0  _USBHCDHubDeviceConnected             
-0     003f5838  _USBHCDHubDeviceDisconnected          
-0     003f4db5  _USBHCDInit                           
-0     003f5589  _USBHCDMain                           
-0     003f4777  _USBHCDPipeAlloc                      
-0     003f4583  _USBHCDPipeAllocSize                  
-0     003f4786  _USBHCDPipeConfig                     
-0     003f4a2f  _USBHCDPipeDataAck                    
-0     003f4b64  _USBHCDPipeFree                       
-0     003f4a4c  _USBHCDPipeRead                       
-0     003f4a04  _USBHCDPipeReadNonBlocking            
-0     003f495d  _USBHCDPipeSchedule                   
-0     003f4856  _USBHCDPipeStatus                     
-0     003f485b  _USBHCDPipeWrite                      
-0     003f4daa  _USBHCDPowerAutomatic                 
-0     003f4d79  _USBHCDPowerConfigGet                 
-0     003f4d71  _USBHCDPowerConfigInit                
-0     003f4d80  _USBHCDPowerConfigSet                 
-0     003f4e07  _USBHCDRegisterDrivers                
-0     003f4e74  _USBHCDReset                          
-0     003f4ea3  _USBHCDResume                         
-0     003f4f63  _USBHCDSetAddress                     
-0     003f500c  _USBHCDSetConfig                      
-0     003f5030  _USBHCDSetInterface                   
-0     003f4e9a  _USBHCDSuspend                        
-0     003f4e12  _USBHCDTerm                           
-0     003f7412  _USBHHubClose                         
-0     003f73e2  _USBHHubEnumerationComplete           
-0     003f73f3  _USBHHubEnumerationError              
-0     003f741b  _USBHHubInit                          
-0     003f72f5  _USBHHubMain                          
-0     003f7404  _USBHHubOpen                          
-0     003f6c99  _USBHostAddrGet                       
-0     003f6c82  _USBHostAddrSet                       
-0     003f505c  _USBHostCheckPipes                    
-0     003f6be8  _USBHostEndpointConfig                
-0     003f6bd6  _USBHostEndpointDataAck               
-0     003f6ba4  _USBHostEndpointDataToggle            
-0     003f6b80  _USBHostEndpointStatusClear           
-0     003f6b6b  _USBHostHubAddrGet                    
-0     003f6b47  _USBHostHubAddrSet                    
-0     003f50e8  _USBHostIntHandlerInternal            
-0     003f6b41  _USBHostMode                          
-0     003f6b2a  _USBHostPwrConfig                     
-0     003f6b24  _USBHostPwrDisable                    
-0     003f6b1e  _USBHostPwrEnable                     
-0     003f6b18  _USBHostPwrFaultDisable               
-0     003f6b12  _USBHostPwrFaultEnable                
-0     003f6b03  _USBHostRequestIN                     
-0     003f6af2  _USBHostRequestINClear                
-0     003f6aec  _USBHostRequestStatus                 
-0     003f6ade  _USBHostReset                         
-0     003f6ad0  _USBHostResume                        
-0     003f6ac1  _USBHostSpeedGet                      
-0     003f6abb  _USBHostSuspend                       
-0     003f6a81  _USBIntDisable                        
-0     003f6a60  _USBIntDisableControl                 
-0     003f6a55  _USBIntDisableEndpoint                
-0     003f6a22  _USBIntEnable                         
-0     003f6a04  _USBIntEnableControl                  
-0     003f69fb  _USBIntEnableEndpoint                 
-0     003f69f4  _USBIntRegister                       
-0     003f69b6  _USBIntStatus                         
-0     003f6994  _USBIntStatusControl                  
-0     003f6985  _USBIntStatusEndpoint                 
-0     003f697e  _USBIntUnregister                     
-0     003ec92d  _USBLibDMAInit                        
-0     003f6977  _USBModeGet                           
-0     003f6975  _USBNumEndpointsGet                   
-0     003ec20b  _USBOTGMain                           
-0     003f696f  _USBOTGMode                           
-0     003ec106  _USBOTGModeInit                       
-0     003ec0e9  _USBOTGModeTerm                       
-0     003ec176  _USBOTGPollRate                       
-0     003f6961  _USBOTGSessionRequest                 
-0     003f695b  _USBPHYPowerOff                       
-0     003f6954  _USBPHYPowerOn                        
-0     003ec837  _USBRingBufAdvanceRead                
-0     003ec84e  _USBRingBufAdvanceWrite               
-0     003ec7e9  _USBRingBufContigFree                 
-0     003ec7d9  _USBRingBufContigUsed                 
-0     003ec798  _USBRingBufEmpty                      
-0     003ec7aa  _USBRingBufFlush                      
-0     003ec7ce  _USBRingBufFree                       
-0     003ec77f  _USBRingBufFull                       
-0     003ec8a3  _USBRingBufInit                       
-0     003ec81c  _USBRingBufRead                       
-0     003ec809  _USBRingBufReadOne                    
-0     003ec804  _USBRingBufSize                       
-0     003ec7bd  _USBRingBufUsed                       
-0     003ec889  _USBRingBufWrite                      
-0     003ec875  _USBRingBufWriteOne                   
-0     003ec03a  _USBStackModeSet                      
-0     003ecc68  _USBUARTRXIntHandler                  
-0     003ecc21  _USBUARTTXIntHandler                  
-0     003f74c6  _USER10_ISR                           
-0     003f74bc  _USER11_ISR                           
-0     003f74b2  _USER12_ISR                           
-0     003f74a8  _USER1_ISR                            
-0     003f749e  _USER2_ISR                            
-0     003f7494  _USER3_ISR                            
-0     003f748a  _USER4_ISR                            
-0     003f7480  _USER5_ISR                            
-0     003f7476  _USER6_ISR                            
-0     003f746c  _USER7_ISR                            
-0     003f7462  _USER8_ISR                            
-0     003f7458  _USER9_ISR                            
+0     003f7991  _TINT0_ISR                            
+0     003f77c0  _TxHandler                            
+0     003f7dc6  _UARTBusy                             
+0     003f7d8d  _UARTCharGet                          
+0     003f7d7c  _UARTCharGetNonBlocking               
+0     003f7db6  _UARTCharPut                          
+0     003f7da3  _UARTCharPutNonBlocking               
+0     003f7d62  _UARTCharsAvail                       
+0     003f7cf2  _UARTConfigGetExpClk                  
+0     003f7cbb  _UARTConfigSetExpClk                  
+0     003f7d20  _UARTDisable                          
+0     003f7d16  _UARTEnable                           
+0     003f7d3f  _UARTFIFODisable                      
+0     003f7d36  _UARTFIFOEnable                       
+0     003f7ca5  _UARTFIFOLevelGet                     
+0     003f7c8b  _UARTFIFOLevelSet                     
+0     003f7ebe  _UARTIntClear                         
+0     003f7e58  _UARTIntDisable                       
+0     003f7e27  _UARTIntEnable                        
+0     003f7e8e  _UARTIntStatus                        
+0     003f7c82  _UARTParityModeGet                    
+0     003f7c78  _UARTParityModeSet                    
+0     003f7dd3  _UARTRXIntRegister                    
+0     003f7dff  _UARTRXIntUnregister                  
+0     003f7ef1  _UARTRxErrorClear                     
+0     003f7eeb  _UARTRxErrorGet                       
+0     003f7d6f  _UARTSpaceAvail                       
+0     003f7de9  _UARTTXIntRegister                    
+0     003f7e13  _UARTTXIntUnregister                  
+0     003f7d58  _UARTTxIntModeGet                     
+0     003f7d48  _UARTTxIntModeSet                     
+0     003ed21a  _USB0DeviceIntHandler                 
+0     003ec2b5  _USB0DualModeIntHandler               
+0     003f5555  _USB0HostIntHandler                   
+0     003ec3e3  _USB0OTGModeIntHandler                
+0     003f7987  _USB0_INT_ISR                         
+0     003ec1c7  _USBBufferCallbackDataSet             
+0     003ec219  _USBBufferDataAvailable               
+0     003ec1b7  _USBBufferDataRemoved                 
+0     003ec1a4  _USBBufferDataWritten                 
+0     003ec231  _USBBufferEventCallback               
+0     003ec1f0  _USBBufferFlush                       
+0     003ec196  _USBBufferInfoGet                     
+0     003ec165  _USBBufferInit                        
+0     003ec1fc  _USBBufferRead                        
+0     003ec225  _USBBufferSpaceAvailable              
+0     003ec1d1  _USBBufferWrite                       
+0     003ec17f  _USBBufferZeroLengthPacketInsert      
+0     003f67f9  _USBDCDCCompositeInit                 
+0     003f6891  _USBDCDCInit                          
+0     003f6967  _USBDCDCPacketRead                    
+0     003f6921  _USBDCDCPacketWrite                   
+0     003f6a38  _USBDCDCPowerStatusSet                
+0     003f6a41  _USBDCDCRemoteWakeupRequest           
+0     003f69df  _USBDCDCRxPacketAvailable             
+0     003f6a0a  _USBDCDCSerialStateChange             
+0     003f68f1  _USBDCDCSetControlCBData              
+0     003f68fd  _USBDCDCSetRxCBData                   
+0     003f690f  _USBDCDCSetTxCBData                   
+0     003f68e4  _USBDCDCTerm                          
+0     003f69cf  _USBDCDCTxPacketAvailable             
+0     003ec90e  _USBDCDConfigDescGet                  
+0     003ec8e8  _USBDCDConfigDescGetNum               
+0     003ec8ce  _USBDCDConfigDescGetSize              
+0     003ec979  _USBDCDConfigGetInterface             
+0     003ec992  _USBDCDConfigGetInterfaceEndpoint     
+0     003ec954  _USBDCDConfigGetNumAlternateInterfaces
+0     003f5ac3  _USBDCDDeviceInfoInit                 
+0     003f5ad3  _USBDCDInit                           
+0     003f5bba  _USBDCDPowerStatusSet                 
+0     003f5bc7  _USBDCDRemoteWakeupRequest            
+0     003f5b84  _USBDCDRequestDataEP0                 
+0     003f5b92  _USBDCDSendDataEP0                    
+0     003f5ba1  _USBDCDSetDefaultConfiguration        
+0     003f5ba9  _USBDCDStallEP0                       
+0     003f5b51  _USBDCDTerm                           
+0     003f7f17  _USBDelay                             
+0     003ecc15  _USBDescGet                           
+0     003ecc92  _USBDescGetInterface                  
+0     003eccac  _USBDescGetInterfaceEndpoint          
+0     003ecbed  _USBDescGetNum                        
+0     003ecc42  _USBDescGetNumAlternateInterfaces     
+0     003f7111  _USBDevAddrGet                        
+0     003f710d  _USBDevAddrSet                        
+0     003f7107  _USBDevConnect                        
+0     003f7100  _USBDevDisconnect                     
+0     003f70ba  _USBDevEndpointConfigGet              
+0     003f7054  _USBDevEndpointConfigSet              
+0     003f703a  _USBDevEndpointDataAck                
+0     003f7018  _USBDevEndpointStall                  
+0     003f6ff1  _USBDevEndpointStallClear             
+0     003f6fb2  _USBDevEndpointStatusClear            
+0     003f6fac  _USBDevMode                           
+0     003ec51a  _USBDeviceConfig                      
+0     003ec663  _USBDeviceConfigAlternate             
+0     003f5c4b  _USBDeviceEnumHandler                 
+0     003f5d0c  _USBDeviceEnumResetHandler            
+0     003f6280  _USBDeviceIntHandlerInternal          
+0     003f5bdd  _USBDeviceResumeTickHandler           
+0     003ec2f0  _USBDualModeInit                      
+0     003ec334  _USBDualModeTerm                      
+0     003f6f87  _USBEndpointDMAChannel                
+0     003f6f6f  _USBEndpointDMADisable                
+0     003f6f59  _USBEndpointDMAEnable                 
+0     003f6f41  _USBEndpointDataAvail                 
+0     003f6f0e  _USBEndpointDataGet                   
+0     003f6ee8  _USBEndpointDataPut                   
+0     003f6ebb  _USBEndpointDataSend                  
+0     003f6ea5  _USBEndpointDataToggleClear           
+0     003f6e99  _USBEndpointPacketCountSet            
+0     003f6e81  _USBEndpointStatus                    
+0     003f6e7a  _USBFIFOAddrGet                       
+0     003f6e47  _USBFIFOConfigGet                     
+0     003f6df1  _USBFIFOConfigSet                     
+0     003f6da6  _USBFIFOFlush                         
+0     003f6da2  _USBFrameNumberGet                    
+0     003f7f0f  _USBGPIODisable                       
+0     003f7f07  _USBGPIOEnable                        
+0     003f5842  _USBHCDControlTransfer                
+0     003f5a40  _USBHCDDevAddress                     
+0     003f5a54  _USBHCDDevClass                       
+0     003f5a2c  _USBHCDDevHubPort                     
+0     003f5a9e  _USBHCDDevProtocol                    
+0     003f5a79  _USBHCDDevSubClass                    
+0     003f45a2  _USBHCDEventDisable                   
+0     003f458d  _USBHCDEventEnable                    
+0     003f58d4  _USBHCDHubDeviceConnected             
+0     003f592c  _USBHCDHubDeviceDisconnected          
+0     003f4ea9  _USBHCDInit                           
+0     003f567d  _USBHCDMain                           
+0     003f486b  _USBHCDPipeAlloc                      
+0     003f4677  _USBHCDPipeAllocSize                  
+0     003f487a  _USBHCDPipeConfig                     
+0     003f4b23  _USBHCDPipeDataAck                    
+0     003f4c58  _USBHCDPipeFree                       
+0     003f4b40  _USBHCDPipeRead                       
+0     003f4af8  _USBHCDPipeReadNonBlocking            
+0     003f4a51  _USBHCDPipeSchedule                   
+0     003f494a  _USBHCDPipeStatus                     
+0     003f494f  _USBHCDPipeWrite                      
+0     003f4e9e  _USBHCDPowerAutomatic                 
+0     003f4e6d  _USBHCDPowerConfigGet                 
+0     003f4e65  _USBHCDPowerConfigInit                
+0     003f4e74  _USBHCDPowerConfigSet                 
+0     003f4efb  _USBHCDRegisterDrivers                
+0     003f4f68  _USBHCDReset                          
+0     003f4f97  _USBHCDResume                         
+0     003f5057  _USBHCDSetAddress                     
+0     003f5100  _USBHCDSetConfig                      
+0     003f5124  _USBHCDSetInterface                   
+0     003f4f8e  _USBHCDSuspend                        
+0     003f4f06  _USBHCDTerm                           
+0     003f7506  _USBHHubClose                         
+0     003f74d6  _USBHHubEnumerationComplete           
+0     003f74e7  _USBHHubEnumerationError              
+0     003f750f  _USBHHubInit                          
+0     003f73e9  _USBHHubMain                          
+0     003f74f8  _USBHHubOpen                          
+0     003f6d8d  _USBHostAddrGet                       
+0     003f6d76  _USBHostAddrSet                       
+0     003f5150  _USBHostCheckPipes                    
+0     003f6cdc  _USBHostEndpointConfig                
+0     003f6cca  _USBHostEndpointDataAck               
+0     003f6c98  _USBHostEndpointDataToggle            
+0     003f6c74  _USBHostEndpointStatusClear           
+0     003f6c5f  _USBHostHubAddrGet                    
+0     003f6c3b  _USBHostHubAddrSet                    
+0     003f51dc  _USBHostIntHandlerInternal            
+0     003f6c35  _USBHostMode                          
+0     003f6c1e  _USBHostPwrConfig                     
+0     003f6c18  _USBHostPwrDisable                    
+0     003f6c12  _USBHostPwrEnable                     
+0     003f6c0c  _USBHostPwrFaultDisable               
+0     003f6c06  _USBHostPwrFaultEnable                
+0     003f6bf7  _USBHostRequestIN                     
+0     003f6be6  _USBHostRequestINClear                
+0     003f6be0  _USBHostRequestStatus                 
+0     003f6bd2  _USBHostReset                         
+0     003f6bc4  _USBHostResume                        
+0     003f6bb5  _USBHostSpeedGet                      
+0     003f6baf  _USBHostSuspend                       
+0     003f6b75  _USBIntDisable                        
+0     003f6b54  _USBIntDisableControl                 
+0     003f6b49  _USBIntDisableEndpoint                
+0     003f6b16  _USBIntEnable                         
+0     003f6af8  _USBIntEnableControl                  
+0     003f6aef  _USBIntEnableEndpoint                 
+0     003f6ae8  _USBIntRegister                       
+0     003f6aaa  _USBIntStatus                         
+0     003f6a88  _USBIntStatusControl                  
+0     003f6a79  _USBIntStatusEndpoint                 
+0     003f6a72  _USBIntUnregister                     
+0     003ecb92  _USBLibDMAInit                        
+0     003f6a6b  _USBModeGet                           
+0     003f6a69  _USBNumEndpointsGet                   
+0     003ec470  _USBOTGMain                           
+0     003f6a63  _USBOTGMode                           
+0     003ec36b  _USBOTGModeInit                       
+0     003ec34e  _USBOTGModeTerm                       
+0     003ec3db  _USBOTGPollRate                       
+0     003f6a55  _USBOTGSessionRequest                 
+0     003f6a4f  _USBPHYPowerOff                       
+0     003f6a48  _USBPHYPowerOn                        
+0     003eca9c  _USBRingBufAdvanceRead                
+0     003ecab3  _USBRingBufAdvanceWrite               
+0     003eca4e  _USBRingBufContigFree                 
+0     003eca3e  _USBRingBufContigUsed                 
+0     003ec9fd  _USBRingBufEmpty                      
+0     003eca0f  _USBRingBufFlush                      
+0     003eca33  _USBRingBufFree                       
+0     003ec9e4  _USBRingBufFull                       
+0     003ecb08  _USBRingBufInit                       
+0     003eca81  _USBRingBufRead                       
+0     003eca6e  _USBRingBufReadOne                    
+0     003eca69  _USBRingBufSize                       
+0     003eca22  _USBRingBufUsed                       
+0     003ecaee  _USBRingBufWrite                      
+0     003ecada  _USBRingBufWriteOne                   
+0     003ec29f  _USBStackModeSet                      
+0     003ecf85  _USBUARTRXIntHandler                  
+0     003ecf3e  _USBUARTTXIntHandler                  
+0     003f797d  _USER10_ISR                           
+0     003f7973  _USER11_ISR                           
+0     003f7969  _USER12_ISR                           
+0     003f795f  _USER1_ISR                            
+0     003f7955  _USER2_ISR                            
+0     003f794b  _USER3_ISR                            
+0     003f7941  _USER4_ISR                            
+0     003f7937  _USER5_ISR                            
+0     003f792d  _USER6_ISR                            
+0     003f7923  _USER7_ISR                            
+0     003f7919  _USER8_ISR                            
+0     003f790f  _USER9_ISR                            
 1     00004000  _Usb0Regs                             
-0     003f744e  _WAKEINT_ISR                          
-0     003f7444  _XINT1_ISR                            
-0     003f743a  _XINT2_ISR                            
-0     003f7430  _XINT3_ISR                            
+0     003f7905  _WAKEINT_ISR                          
+0     003f78fb  _XINT1_ISR                            
+0     003f78f1  _XINT2_ISR                            
+0     003f78e7  _XINT3_ISR                            
 1     00007070  _XIntruptRegs                         
 1     00000350  __STACK_END                           
 abs   00000300  __STACK_SIZE                          
-1     000096f4  ___TI_cleanup_ptr                     
-1     000096f6  ___TI_dtors_ptr                       
+1     00009b34  ___TI_cleanup_ptr                     
+1     00009b36  ___TI_dtors_ptr                       
 abs   ffffffff  ___binit__                            
 abs   ffffffff  ___c_args__                           
-0     003f42c6  ___cinit__                            
+0     003f43b8  ___cinit__                            
 abs   ffffffff  ___etext__                            
 abs   ffffffff  ___pinit__                            
 abs   ffffffff  ___text__                             
-0     003eced0  __args_main                           
-1     000096f8  __lock                                
-0     003ecf4c  __nop                                 
-0     003ecf48  __register_lock                       
-0     003ecf44  __register_unlock                     
+0     003ed1d2  __args_main                           
+0     003f4000  __ctypes_                             
+1     00009b38  __lock                                
+0     003ed260  __nop                                 
+0     003ed25c  __register_lock                       
+0     003ed258  __register_unlock                     
 1     00000050  __stack                               
-1     000096fa  __unlock                              
-0     003ecee9  _abort                                
-0     003ece47  _c_int00                              
-0     003eceeb  _exit                                 
-0     003ecb91  _f28x_USB0DeviceIntHandler            
-0     003ecbf1  _f28x_USB0DualModeIntHandler          
-0     003ecbc1  _f28x_USB0HostIntHandler              
-1     000096cc  _g_bUSBTimerInitialized               
-1     000096ec  _g_eOTGModeState                      
-1     000096eb  _g_iUSBMode                           
-0     003f42c2  _g_pCDCCompSerConfigDescriptors       
-1     000096d2  _g_pfnTickHandlers                    
-1     00009440  _g_pi8USBRxBuffer                     
-1     00009540  _g_pi8USBTxBuffer                     
-0     003f42c4  _g_ppCDCSerConfigDescriptors          
-1     00009780  _g_ppsDevInfo                         
-1     00009394  _g_psCDCCompSerSections               
-1     0000938e  _g_psCDCSerSections                   
-1     00009784  _g_psDCDInst                          
-0     003f4210  _g_pui8CDCSerCommInterface            
-0     003f4270  _g_pui8CDCSerDataInterface            
-1     000093a4  _g_pui8CDCSerDescriptor               
-1     000093ad  _g_pui8CDCSerDeviceDescriptor         
-0     003f4136  _g_pui8ConfigString                   
-0     003f419c  _g_pui8ControlInterfaceString         
-1     0000939c  _g_pui8IADSerDescriptor               
-0     003f42be  _g_pui8LangDescriptor                 
-0     003f41c8  _g_pui8ManufacturerString             
-0     003f4233  _g_pui8ProdectString                  
-1     000093d8  _g_pui8RxBufferWorkspace              
-0     003f4287  _g_pui8SerialNumberString             
-0     003f42aa  _g_pui8StringDescriptors              
-1     000093c0  _g_pui8TxBufferWorkspace              
-1     000096de  _g_pvTickInstance                     
-0     003f4174  _g_sCDCCompSerConfigHeader            
-1     00009400  _g_sCDCDevice                         
-0     003f4184  _g_sCDCHandlers                       
-0     003f4170  _g_sCDCSerCommInterfaceSection        
-0     003f4178  _g_sCDCSerConfigHeader                
-0     003f4180  _g_sCDCSerConfigSection               
-0     003f416c  _g_sCDCSerDataInterfaceSection        
-0     003f417c  _g_sIADSerConfigSection               
-0     003f41fe  _g_sRxBuffer                          
-0     003f41ec  _g_sTxBuffer                          
-0     003f42b6  _g_sUSBHubClassDriver                 
-1     000096ce  _g_ui32CurrentUSBTick                 
-1     000096f0  _g_ui32PollRate                       
-1     000096d0  _g_ui32USBSOFCount                    
-1     000096f2  _g_ui32WaitTicks                      
-0     003f7a8d  _main                                 
-1     00009708  _pcStr1                               
-1     00009702  _pcStr2                               
-0     003f7426  _rsvd_ISR                             
+1     00009b3a  __unlock                              
+0     003ed1eb  _abort                                
+0     003ed164  _c_int00                              
+0     003f775c  _compile_program                      
+1     000097ff  _errno                                
+0     003ed1ed  _exit                                 
+0     003eceae  _f28x_USB0DeviceIntHandler            
+0     003ecf0e  _f28x_USB0DualModeIntHandler          
+0     003ecede  _f28x_USB0HostIntHandler              
+1     00009b0c  _g_bUSBTimerInitialized               
+1     00009b2c  _g_eOTGModeState                      
+1     00009b2b  _g_iUSBMode                           
+0     003f43b4  _g_pCDCCompSerConfigDescriptors       
+1     00009b12  _g_pfnTickHandlers                    
+1     00009880  _g_pi8USBRxBuffer                     
+1     00009980  _g_pi8USBTxBuffer                     
+0     003f43b6  _g_ppCDCSerConfigDescriptors          
+1     00009b40  _g_ppsDevInfo                         
+1     000097d4  _g_psCDCCompSerSections               
+1     000097ce  _g_psCDCSerSections                   
+1     00009b44  _g_psDCDInst                          
+0     003f4302  _g_pui8CDCSerCommInterface            
+0     003f4362  _g_pui8CDCSerDataInterface            
+1     000097e4  _g_pui8CDCSerDescriptor               
+1     000097ed  _g_pui8CDCSerDeviceDescriptor         
+0     003f4202  _g_pui8ConfigString                   
+0     003f4268  _g_pui8ControlInterfaceString         
+1     000097dc  _g_pui8IADSerDescriptor               
+0     003f43b0  _g_pui8LangDescriptor                 
+0     003f42b9  _g_pui8ManufacturerString             
+0     003f4325  _g_pui8ProdectString                  
+1     00009818  _g_pui8RxBufferWorkspace              
+0     003f4379  _g_pui8SerialNumberString             
+0     003f439c  _g_pui8StringDescriptors              
+1     00009800  _g_pui8TxBufferWorkspace              
+1     00009b1e  _g_pvTickInstance                     
+0     003f4240  _g_sCDCCompSerConfigHeader            
+1     00009840  _g_sCDCDevice                         
+0     003f4250  _g_sCDCHandlers                       
+0     003f423c  _g_sCDCSerCommInterfaceSection        
+0     003f4244  _g_sCDCSerConfigHeader                
+0     003f424c  _g_sCDCSerConfigSection               
+0     003f4238  _g_sCDCSerDataInterfaceSection        
+0     003f4248  _g_sIADSerConfigSection               
+0     003f42f0  _g_sRxBuffer                          
+0     003f42de  _g_sTxBuffer                          
+0     003f43a8  _g_sUSBHubClassDriver                 
+1     00009b0e  _g_ui32CurrentUSBTick                 
+1     00009b30  _g_ui32PollRate                       
+1     00009b10  _g_ui32USBSOFCount                    
+1     00009b32  _g_ui32WaitTicks                      
+0     003f7562  _main                                 
+1     00009001  _program_compiled                     
+1     00009000  _program_recieved                     
+0     003f78dd  _rsvd_ISR                             
+0     003f7f74  _strcmp                               
+0     003eccbf  _strtoul                              
 abs   ffffffff  binit                                 
-0     003f42c6  cinit                                 
+0     003f43b8  cinit                                 
 0     003f7ff6  code_start                            
 abs   ffffffff  etext                                 
 abs   ffffffff  pinit                                 
@@ -1123,393 +1138,401 @@ page  address   name
 0     00008000  _RamfuncsRunStart                     
 0     003e8000  _RamfuncsLoadStart                    
 0     003e8004  _RamfuncsLoadEnd                      
-0     003ec03a  _USBStackModeSet                      
-0     003ec050  _USB0DualModeIntHandler               
-0     003ec08b  _USBDualModeInit                      
-0     003ec0cf  _USBDualModeTerm                      
-0     003ec0e9  _USBOTGModeTerm                       
-0     003ec106  _USBOTGModeInit                       
-0     003ec176  _USBOTGPollRate                       
-0     003ec17e  _USB0OTGModeIntHandler                
-0     003ec1fd  _OTGDeviceDisconnect                  
-0     003ec20b  _USBOTGMain                           
-0     003ec2b5  _USBDeviceConfig                      
-0     003ec3fe  _USBDeviceConfigAlternate             
-0     003ec46b  _IntMasterEnable                      
-0     003ec46f  _IntMasterDisable                     
-0     003ec473  _IntRegister                          
-0     003ec491  _IntUnregister                        
-0     003ec4b1  _IntEnable                            
-0     003ec4d8  _IntDisable                           
-0     003ec573  _Interrupt_enable                     
-0     003ec5bd  _Interrupt_disable                    
-0     003ec669  _USBDCDConfigDescGetSize              
-0     003ec683  _USBDCDConfigDescGetNum               
-0     003ec6a9  _USBDCDConfigDescGet                  
-0     003ec6ef  _USBDCDConfigGetNumAlternateInterfaces
-0     003ec714  _USBDCDConfigGetInterface             
-0     003ec72d  _USBDCDConfigGetInterfaceEndpoint     
-0     003ec77f  _USBRingBufFull                       
-0     003ec798  _USBRingBufEmpty                      
-0     003ec7aa  _USBRingBufFlush                      
-0     003ec7bd  _USBRingBufUsed                       
-0     003ec7ce  _USBRingBufFree                       
-0     003ec7d9  _USBRingBufContigUsed                 
-0     003ec7e9  _USBRingBufContigFree                 
-0     003ec804  _USBRingBufSize                       
-0     003ec809  _USBRingBufReadOne                    
-0     003ec81c  _USBRingBufRead                       
-0     003ec837  _USBRingBufAdvanceRead                
-0     003ec84e  _USBRingBufAdvanceWrite               
-0     003ec875  _USBRingBufWriteOne                   
-0     003ec889  _USBRingBufWrite                      
-0     003ec8a3  _USBRingBufInit                       
-0     003ec92d  _USBLibDMAInit                        
-0     003ec988  _USBDescGetNum                        
-0     003ec9b0  _USBDescGet                           
-0     003ec9dd  _USBDescGetNumAlternateInterfaces     
-0     003eca2d  _USBDescGetInterface                  
-0     003eca47  _USBDescGetInterfaceEndpoint          
-0     003eca5a  FD$$ADD                               
-0     003ecaf6  _SysCtlUSBPLLEnable                   
-0     003ecb08  _SysCtlUSBPLLDisable                  
-0     003ecb0d  _SysCtlPeripheralReset                
-0     003ecb0e  _SysCtlPeripheralPresent              
-0     003ecb10  _SysCtlPeripheralEnable               
-0     003ecb48  _SysCtlPeripheralDisable              
-0     003ecb80  _SysCtlDelay                          
-0     003ecb8c  _SysCtlClockGet                       
-0     003ecb91  _f28x_USB0DeviceIntHandler            
-0     003ecbc1  _f28x_USB0HostIntHandler              
-0     003ecbf1  _f28x_USB0DualModeIntHandler          
-0     003ecc21  _USBUARTTXIntHandler                  
-0     003ecc68  _USBUARTRXIntHandler                  
-0     003eccb1  FD$$DIV                               
-0     003ecd3c  _InternalUSBTickInit                  
-0     003ecd63  _InternalUSBTickReset                 
-0     003ecd67  _InternalUSBRegisterTickHandler       
-0     003ecd97  _InternalUSBStartOfFrameTick          
-0     003ecdc4  FD$$MPY                               
-0     003ece47  _c_int00                              
-0     003ece8d  _InitPieCtrl                          
-0     003eceac  _EnableInterrupts                     
-0     003eceb5  FD$$TOUL                              
-0     003eced0  __args_main                           
-0     003ecee9  C$$EXIT                               
-0     003ecee9  _abort                                
-0     003eceeb  _exit                                 
-0     003ecf02  UL$$TOFD                              
-0     003ecf18  _InitPieVectTable                     
-0     003ecf29  FD$$SUB                               
-0     003ecf37  _IntDefaultHandler                    
-0     003ecf44  __register_unlock                     
-0     003ecf48  __register_lock                       
-0     003ecf4c  __nop                                 
-0     003f4000  _PieVectTableInit                     
-0     003f4136  _g_pui8ConfigString                   
-0     003f416c  _g_sCDCSerDataInterfaceSection        
-0     003f4170  _g_sCDCSerCommInterfaceSection        
-0     003f4174  _g_sCDCCompSerConfigHeader            
-0     003f4178  _g_sCDCSerConfigHeader                
-0     003f417c  _g_sIADSerConfigSection               
-0     003f4180  _g_sCDCSerConfigSection               
-0     003f4184  _g_sCDCHandlers                       
-0     003f419c  _g_pui8ControlInterfaceString         
-0     003f41c8  _g_pui8ManufacturerString             
-0     003f41ec  _g_sTxBuffer                          
-0     003f41fe  _g_sRxBuffer                          
-0     003f4210  _g_pui8CDCSerCommInterface            
-0     003f4233  _g_pui8ProdectString                  
-0     003f4270  _g_pui8CDCSerDataInterface            
-0     003f4287  _g_pui8SerialNumberString             
-0     003f42aa  _g_pui8StringDescriptors              
-0     003f42b6  _g_sUSBHubClassDriver                 
-0     003f42be  _g_pui8LangDescriptor                 
-0     003f42c2  _g_pCDCCompSerConfigDescriptors       
-0     003f42c4  _g_ppCDCSerConfigDescriptors          
-0     003f42c6  ___cinit__                            
-0     003f42c6  cinit                                 
-0     003f43da  _ConfigDescAlloc                      
-0     003f4428  _ConfigDescFree                       
-0     003f4499  _USBHCDEventEnable                    
-0     003f44ae  _USBHCDEventDisable                   
-0     003f4583  _USBHCDPipeAllocSize                  
-0     003f4777  _USBHCDPipeAlloc                      
-0     003f4786  _USBHCDPipeConfig                     
-0     003f4856  _USBHCDPipeStatus                     
-0     003f485b  _USBHCDPipeWrite                      
-0     003f495d  _USBHCDPipeSchedule                   
-0     003f4a04  _USBHCDPipeReadNonBlocking            
-0     003f4a2f  _USBHCDPipeDataAck                    
-0     003f4a4c  _USBHCDPipeRead                       
-0     003f4b64  _USBHCDPipeFree                       
-0     003f4d71  _USBHCDPowerConfigInit                
-0     003f4d79  _USBHCDPowerConfigGet                 
-0     003f4d80  _USBHCDPowerConfigSet                 
-0     003f4daa  _USBHCDPowerAutomatic                 
-0     003f4db5  _USBHCDInit                           
-0     003f4e07  _USBHCDRegisterDrivers                
-0     003f4e12  _USBHCDTerm                           
-0     003f4e74  _USBHCDReset                          
-0     003f4e9a  _USBHCDSuspend                        
-0     003f4ea3  _USBHCDResume                         
-0     003f4f63  _USBHCDSetAddress                     
-0     003f500c  _USBHCDSetConfig                      
-0     003f5030  _USBHCDSetInterface                   
-0     003f505c  _USBHostCheckPipes                    
-0     003f50e8  _USBHostIntHandlerInternal            
-0     003f5461  _USB0HostIntHandler                   
-0     003f54dc  _InternalUSBHCDSendEvent              
-0     003f5589  _USBHCDMain                           
-0     003f574e  _USBHCDControlTransfer                
-0     003f57e0  _USBHCDHubDeviceConnected             
-0     003f5838  _USBHCDHubDeviceDisconnected          
-0     003f5938  _USBHCDDevHubPort                     
-0     003f594c  _USBHCDDevAddress                     
-0     003f5960  _USBHCDDevClass                       
-0     003f5985  _USBHCDDevSubClass                    
-0     003f59aa  _USBHCDDevProtocol                    
-0     003f59cf  _USBDCDDeviceInfoInit                 
-0     003f59df  _USBDCDInit                           
-0     003f5a5d  _USBDCDTerm                           
-0     003f5a90  _USBDCDRequestDataEP0                 
-0     003f5a9e  _USBDCDSendDataEP0                    
-0     003f5aad  _USBDCDSetDefaultConfiguration        
-0     003f5ab5  _USBDCDStallEP0                       
-0     003f5ac6  _USBDCDPowerStatusSet                 
-0     003f5ad3  _USBDCDRemoteWakeupRequest            
-0     003f5ae9  _USBDeviceResumeTickHandler           
-0     003f5b57  _USBDeviceEnumHandler                 
-0     003f5c18  _USBDeviceEnumResetHandler            
-0     003f618c  _USBDeviceIntHandlerInternal          
-0     003f6346  _ProcessDataFromHost                  
-0     003f63a4  _ProcessNotificationToHost            
-0     003f63d3  _ProcessDataToHost                    
-0     003f6705  _USBDCDCCompositeInit                 
-0     003f679d  _USBDCDCInit                          
-0     003f67f0  _USBDCDCTerm                          
-0     003f67fd  _USBDCDCSetControlCBData              
-0     003f6809  _USBDCDCSetRxCBData                   
-0     003f681b  _USBDCDCSetTxCBData                   
-0     003f682d  _USBDCDCPacketWrite                   
-0     003f6873  _USBDCDCPacketRead                    
-0     003f68db  _USBDCDCTxPacketAvailable             
-0     003f68eb  _USBDCDCRxPacketAvailable             
-0     003f6916  _USBDCDCSerialStateChange             
-0     003f6944  _USBDCDCPowerStatusSet                
-0     003f694d  _USBDCDCRemoteWakeupRequest           
-0     003f6954  _USBPHYPowerOn                        
-0     003f695b  _USBPHYPowerOff                       
-0     003f6961  _USBOTGSessionRequest                 
-0     003f696f  _USBOTGMode                           
-0     003f6975  _USBNumEndpointsGet                   
-0     003f6977  _USBModeGet                           
-0     003f697e  _USBIntUnregister                     
-0     003f6985  _USBIntStatusEndpoint                 
-0     003f6994  _USBIntStatusControl                  
-0     003f69b6  _USBIntStatus                         
-0     003f69f4  _USBIntRegister                       
-0     003f69fb  _USBIntEnableEndpoint                 
-0     003f6a04  _USBIntEnableControl                  
-0     003f6a22  _USBIntEnable                         
-0     003f6a55  _USBIntDisableEndpoint                
-0     003f6a60  _USBIntDisableControl                 
-0     003f6a81  _USBIntDisable                        
-0     003f6abb  _USBHostSuspend                       
-0     003f6ac1  _USBHostSpeedGet                      
-0     003f6ad0  _USBHostResume                        
-0     003f6ade  _USBHostReset                         
-0     003f6aec  _USBHostRequestStatus                 
-0     003f6af2  _USBHostRequestINClear                
-0     003f6b03  _USBHostRequestIN                     
-0     003f6b12  _USBHostPwrFaultEnable                
-0     003f6b18  _USBHostPwrFaultDisable               
-0     003f6b1e  _USBHostPwrEnable                     
-0     003f6b24  _USBHostPwrDisable                    
-0     003f6b2a  _USBHostPwrConfig                     
-0     003f6b41  _USBHostMode                          
-0     003f6b47  _USBHostHubAddrSet                    
-0     003f6b6b  _USBHostHubAddrGet                    
-0     003f6b80  _USBHostEndpointStatusClear           
-0     003f6ba4  _USBHostEndpointDataToggle            
-0     003f6bd6  _USBHostEndpointDataAck               
-0     003f6be8  _USBHostEndpointConfig                
-0     003f6c82  _USBHostAddrSet                       
-0     003f6c99  _USBHostAddrGet                       
-0     003f6cae  _USBFrameNumberGet                    
-0     003f6cb2  _USBFIFOFlush                         
-0     003f6cfd  _USBFIFOConfigSet                     
-0     003f6d53  _USBFIFOConfigGet                     
-0     003f6d86  _USBFIFOAddrGet                       
-0     003f6d8d  _USBEndpointStatus                    
-0     003f6da5  _USBEndpointPacketCountSet            
-0     003f6db1  _USBEndpointDataToggleClear           
-0     003f6dc7  _USBEndpointDataSend                  
-0     003f6df4  _USBEndpointDataPut                   
-0     003f6e1a  _USBEndpointDataGet                   
-0     003f6e4d  _USBEndpointDataAvail                 
-0     003f6e65  _USBEndpointDMAEnable                 
-0     003f6e7b  _USBEndpointDMADisable                
-0     003f6e93  _USBEndpointDMAChannel                
-0     003f6eb8  _USBDevMode                           
-0     003f6ebe  _USBDevEndpointStatusClear            
-0     003f6efd  _USBDevEndpointStallClear             
-0     003f6f24  _USBDevEndpointStall                  
-0     003f6f46  _USBDevEndpointDataAck                
-0     003f6f60  _USBDevEndpointConfigSet              
-0     003f6fc6  _USBDevEndpointConfigGet              
-0     003f700c  _USBDevDisconnect                     
-0     003f7013  _USBDevConnect                        
-0     003f7019  _USBDevAddrSet                        
-0     003f701d  _USBDevAddrGet                        
-0     003f72f5  _USBHHubMain                          
-0     003f73e2  _USBHHubEnumerationComplete           
-0     003f73f3  _USBHHubEnumerationError              
-0     003f7404  _USBHHubOpen                          
-0     003f7412  _USBHHubClose                         
-0     003f741b  _USBHHubInit                          
-0     003f7426  _rsvd_ISR                             
-0     003f7430  _XINT3_ISR                            
-0     003f743a  _XINT2_ISR                            
-0     003f7444  _XINT1_ISR                            
-0     003f744e  _WAKEINT_ISR                          
-0     003f7458  _USER9_ISR                            
-0     003f7462  _USER8_ISR                            
-0     003f746c  _USER7_ISR                            
-0     003f7476  _USER6_ISR                            
-0     003f7480  _USER5_ISR                            
-0     003f748a  _USER4_ISR                            
-0     003f7494  _USER3_ISR                            
-0     003f749e  _USER2_ISR                            
-0     003f74a8  _USER1_ISR                            
-0     003f74b2  _USER12_ISR                           
-0     003f74bc  _USER11_ISR                           
-0     003f74c6  _USER10_ISR                           
-0     003f74d0  _USB0_INT_ISR                         
-0     003f74da  _TINT0_ISR                            
-0     003f74e4  _SPITXINTB_ISR                        
-0     003f74ee  _SPITXINTA_ISR                        
-0     003f74f8  _SPIRXINTB_ISR                        
-0     003f7502  _SPIRXINTA_ISR                        
-0     003f750c  _SCITXINTB_ISR                        
-0     003f7516  _SCITXINTA_ISR                        
-0     003f7520  _SCIRXINTB_ISR                        
-0     003f752a  _SCIRXINTA_ISR                        
-0     003f7534  _RTOSINT_ISR                          
-0     003f753e  _PIE_RESERVED                         
-0     003f7548  _NMI_ISR                              
-0     003f7552  _MXINTA_ISR                           
-0     003f755c  _MRINTA_ISR                           
-0     003f7566  _LVF_ISR                              
-0     003f7570  _LUF_ISR                              
-0     003f757a  _INT14_ISR                            
-0     003f7584  _INT13_ISR                            
-0     003f758e  _ILLEGAL_ISR                          
-0     003f7598  _I2CINT2A_ISR                         
-0     003f75a2  _I2CINT1A_ISR                         
-0     003f75ac  _HRCAP4_INT_ISR                       
-0     003f75b6  _HRCAP3_INT_ISR                       
-0     003f75c0  _HRCAP2_INT_ISR                       
-0     003f75ca  _HRCAP1_INT_ISR                       
-0     003f75d4  _EQEP2_INT_ISR                        
-0     003f75de  _EQEP1_INT_ISR                        
-0     003f75e8  _EPWM8_TZINT_ISR                      
-0     003f75f2  _EPWM8_INT_ISR                        
-0     003f75fc  _EPWM7_TZINT_ISR                      
-0     003f7606  _EPWM7_INT_ISR                        
-0     003f7610  _EPWM6_TZINT_ISR                      
-0     003f761a  _EPWM6_INT_ISR                        
-0     003f7624  _EPWM5_TZINT_ISR                      
-0     003f762e  _EPWM5_INT_ISR                        
-0     003f7638  _EPWM4_TZINT_ISR                      
-0     003f7642  _EPWM4_INT_ISR                        
-0     003f764c  _EPWM3_TZINT_ISR                      
-0     003f7656  _EPWM3_INT_ISR                        
-0     003f7660  _EPWM2_TZINT_ISR                      
-0     003f766a  _EPWM2_INT_ISR                        
-0     003f7674  _EPWM1_TZINT_ISR                      
-0     003f767e  _EPWM1_INT_ISR                        
-0     003f7688  _EMUINT_ISR                           
-0     003f7692  _EMPTY_ISR                            
-0     003f769f  _ECAP3_INT_ISR                        
-0     003f76a9  _ECAP2_INT_ISR                        
-0     003f76b3  _ECAP1_INT_ISR                        
-0     003f76bd  _ECAN1INTA_ISR                        
-0     003f76c7  _ECAN0INTA_ISR                        
-0     003f76d1  _DINTCH6_ISR                          
-0     003f76db  _DINTCH5_ISR                          
-0     003f76e5  _DINTCH4_ISR                          
-0     003f76ef  _DINTCH3_ISR                          
-0     003f76f9  _DINTCH2_ISR                          
-0     003f7703  _DINTCH1_ISR                          
-0     003f770d  _DATALOG_ISR                          
-0     003f7717  _CLA1_INT8_ISR                        
-0     003f7721  _CLA1_INT7_ISR                        
-0     003f772b  _CLA1_INT6_ISR                        
-0     003f7735  _CLA1_INT5_ISR                        
-0     003f773f  _CLA1_INT4_ISR                        
-0     003f7749  _CLA1_INT3_ISR                        
-0     003f7753  _CLA1_INT2_ISR                        
-0     003f775d  _CLA1_INT1_ISR                        
-0     003f7767  _ADCINT9_ISR                          
-0     003f7771  _ADCINT8_ISR                          
-0     003f777b  _ADCINT7_ISR                          
-0     003f7785  _ADCINT6_ISR                          
-0     003f778f  _ADCINT5_ISR                          
-0     003f7799  _ADCINT4_ISR                          
-0     003f77a3  _ADCINT3_ISR                          
-0     003f77ad  _ADCINT2_ISR                          
-0     003f77b7  _ADCINT1_ISR                          
-0     003f77c1  _UARTParityModeSet                    
-0     003f77cb  _UARTParityModeGet                    
-0     003f77d4  _UARTFIFOLevelSet                     
-0     003f77ee  _UARTFIFOLevelGet                     
-0     003f7804  _UARTConfigSetExpClk                  
-0     003f783b  _UARTConfigGetExpClk                  
-0     003f785f  _UARTEnable                           
-0     003f7869  _UARTDisable                          
-0     003f787f  _UARTFIFOEnable                       
-0     003f7888  _UARTFIFODisable                      
-0     003f7891  _UARTTxIntModeSet                     
-0     003f78a1  _UARTTxIntModeGet                     
-0     003f78ab  _UARTCharsAvail                       
-0     003f78b8  _UARTSpaceAvail                       
-0     003f78c5  _UARTCharGetNonBlocking               
-0     003f78d6  _UARTCharGet                          
-0     003f78ec  _UARTCharPutNonBlocking               
-0     003f78ff  _UARTCharPut                          
-0     003f790f  _UARTBusy                             
-0     003f791c  _UARTRXIntRegister                    
-0     003f7932  _UARTTXIntRegister                    
-0     003f7948  _UARTRXIntUnregister                  
-0     003f795c  _UARTTXIntUnregister                  
-0     003f7970  _UARTIntEnable                        
-0     003f79a1  _UARTIntDisable                       
-0     003f79d7  _UARTIntStatus                        
-0     003f7a07  _UARTIntClear                         
-0     003f7a34  _UARTRxErrorGet                       
-0     003f7a3a  _UARTRxErrorClear                     
-0     003f7a50  _SysCtrlInit                          
-0     003f7a8d  _main                                 
-0     003f7b81  _TxHandler                            
-0     003f7b83  _RxHandler                            
-0     003f7c99  _ControlHandler                       
-0     003f7e1c  _USBBufferInit                        
-0     003f7e36  _USBBufferZeroLengthPacketInsert      
-0     003f7e4d  _USBBufferInfoGet                     
-0     003f7e5b  _USBBufferDataWritten                 
-0     003f7e6e  _USBBufferDataRemoved                 
-0     003f7e7e  _USBBufferCallbackDataSet             
-0     003f7e88  _USBBufferWrite                       
-0     003f7ea7  _USBBufferFlush                       
-0     003f7eb3  _USBBufferRead                        
-0     003f7ed0  _USBBufferDataAvailable               
-0     003f7edc  _USBBufferSpaceAvailable              
-0     003f7ee8  _USBBufferEventCallback               
-0     003f7f1c  _USBGPIOEnable                        
-0     003f7f24  _USBGPIODisable                       
-0     003f7f2c  _USBDelay                             
-0     003f7f6e  _USB0DeviceIntHandler                 
+0     003ec165  _USBBufferInit                        
+0     003ec17f  _USBBufferZeroLengthPacketInsert      
+0     003ec196  _USBBufferInfoGet                     
+0     003ec1a4  _USBBufferDataWritten                 
+0     003ec1b7  _USBBufferDataRemoved                 
+0     003ec1c7  _USBBufferCallbackDataSet             
+0     003ec1d1  _USBBufferWrite                       
+0     003ec1f0  _USBBufferFlush                       
+0     003ec1fc  _USBBufferRead                        
+0     003ec219  _USBBufferDataAvailable               
+0     003ec225  _USBBufferSpaceAvailable              
+0     003ec231  _USBBufferEventCallback               
+0     003ec29f  _USBStackModeSet                      
+0     003ec2b5  _USB0DualModeIntHandler               
+0     003ec2f0  _USBDualModeInit                      
+0     003ec334  _USBDualModeTerm                      
+0     003ec34e  _USBOTGModeTerm                       
+0     003ec36b  _USBOTGModeInit                       
+0     003ec3db  _USBOTGPollRate                       
+0     003ec3e3  _USB0OTGModeIntHandler                
+0     003ec462  _OTGDeviceDisconnect                  
+0     003ec470  _USBOTGMain                           
+0     003ec51a  _USBDeviceConfig                      
+0     003ec663  _USBDeviceConfigAlternate             
+0     003ec6d0  _IntMasterEnable                      
+0     003ec6d4  _IntMasterDisable                     
+0     003ec6d8  _IntRegister                          
+0     003ec6f6  _IntUnregister                        
+0     003ec716  _IntEnable                            
+0     003ec73d  _IntDisable                           
+0     003ec7d8  _Interrupt_enable                     
+0     003ec822  _Interrupt_disable                    
+0     003ec8ce  _USBDCDConfigDescGetSize              
+0     003ec8e8  _USBDCDConfigDescGetNum               
+0     003ec90e  _USBDCDConfigDescGet                  
+0     003ec954  _USBDCDConfigGetNumAlternateInterfaces
+0     003ec979  _USBDCDConfigGetInterface             
+0     003ec992  _USBDCDConfigGetInterfaceEndpoint     
+0     003ec9e4  _USBRingBufFull                       
+0     003ec9fd  _USBRingBufEmpty                      
+0     003eca0f  _USBRingBufFlush                      
+0     003eca22  _USBRingBufUsed                       
+0     003eca33  _USBRingBufFree                       
+0     003eca3e  _USBRingBufContigUsed                 
+0     003eca4e  _USBRingBufContigFree                 
+0     003eca69  _USBRingBufSize                       
+0     003eca6e  _USBRingBufReadOne                    
+0     003eca81  _USBRingBufRead                       
+0     003eca9c  _USBRingBufAdvanceRead                
+0     003ecab3  _USBRingBufAdvanceWrite               
+0     003ecada  _USBRingBufWriteOne                   
+0     003ecaee  _USBRingBufWrite                      
+0     003ecb08  _USBRingBufInit                       
+0     003ecb92  _USBLibDMAInit                        
+0     003ecbed  _USBDescGetNum                        
+0     003ecc15  _USBDescGet                           
+0     003ecc42  _USBDescGetNumAlternateInterfaces     
+0     003ecc92  _USBDescGetInterface                  
+0     003eccac  _USBDescGetInterfaceEndpoint          
+0     003eccbf  _strtoul                              
+0     003ecd77  FD$$ADD                               
+0     003ece13  _SysCtlUSBPLLEnable                   
+0     003ece25  _SysCtlUSBPLLDisable                  
+0     003ece2a  _SysCtlPeripheralReset                
+0     003ece2b  _SysCtlPeripheralPresent              
+0     003ece2d  _SysCtlPeripheralEnable               
+0     003ece65  _SysCtlPeripheralDisable              
+0     003ece9d  _SysCtlDelay                          
+0     003ecea9  _SysCtlClockGet                       
+0     003eceae  _f28x_USB0DeviceIntHandler            
+0     003ecede  _f28x_USB0HostIntHandler              
+0     003ecf0e  _f28x_USB0DualModeIntHandler          
+0     003ecf3e  _USBUARTTXIntHandler                  
+0     003ecf85  _USBUARTRXIntHandler                  
+0     003ecfce  FD$$DIV                               
+0     003ed059  _InternalUSBTickInit                  
+0     003ed080  _InternalUSBTickReset                 
+0     003ed084  _InternalUSBRegisterTickHandler       
+0     003ed0b4  _InternalUSBStartOfFrameTick          
+0     003ed0e1  FD$$MPY                               
+0     003ed164  _c_int00                              
+0     003ed1aa  _InitPieCtrl                          
+0     003ed1c9  _EnableInterrupts                     
+0     003ed1d2  __args_main                           
+0     003ed1eb  C$$EXIT                               
+0     003ed1eb  _abort                                
+0     003ed1ed  _exit                                 
+0     003ed204  UL$$TOFD                              
+0     003ed21a  _USB0DeviceIntHandler                 
+0     003ed22c  _InitPieVectTable                     
+0     003ed23d  FD$$SUB                               
+0     003ed24b  _IntDefaultHandler                    
+0     003ed258  __register_unlock                     
+0     003ed25c  __register_lock                       
+0     003ed260  __nop                                 
+0     003f4000  __ctypes_                             
+0     003f4102  _PieVectTableInit                     
+0     003f4202  _g_pui8ConfigString                   
+0     003f4238  _g_sCDCSerDataInterfaceSection        
+0     003f423c  _g_sCDCSerCommInterfaceSection        
+0     003f4240  _g_sCDCCompSerConfigHeader            
+0     003f4244  _g_sCDCSerConfigHeader                
+0     003f4248  _g_sIADSerConfigSection               
+0     003f424c  _g_sCDCSerConfigSection               
+0     003f4250  _g_sCDCHandlers                       
+0     003f4268  _g_pui8ControlInterfaceString         
+0     003f42b9  _g_pui8ManufacturerString             
+0     003f42de  _g_sTxBuffer                          
+0     003f42f0  _g_sRxBuffer                          
+0     003f4302  _g_pui8CDCSerCommInterface            
+0     003f4325  _g_pui8ProdectString                  
+0     003f4362  _g_pui8CDCSerDataInterface            
+0     003f4379  _g_pui8SerialNumberString             
+0     003f439c  _g_pui8StringDescriptors              
+0     003f43a8  _g_sUSBHubClassDriver                 
+0     003f43b0  _g_pui8LangDescriptor                 
+0     003f43b4  _g_pCDCCompSerConfigDescriptors       
+0     003f43b6  _g_ppCDCSerConfigDescriptors          
+0     003f43b8  ___cinit__                            
+0     003f43b8  cinit                                 
+0     003f44ce  _ConfigDescAlloc                      
+0     003f451c  _ConfigDescFree                       
+0     003f458d  _USBHCDEventEnable                    
+0     003f45a2  _USBHCDEventDisable                   
+0     003f4677  _USBHCDPipeAllocSize                  
+0     003f486b  _USBHCDPipeAlloc                      
+0     003f487a  _USBHCDPipeConfig                     
+0     003f494a  _USBHCDPipeStatus                     
+0     003f494f  _USBHCDPipeWrite                      
+0     003f4a51  _USBHCDPipeSchedule                   
+0     003f4af8  _USBHCDPipeReadNonBlocking            
+0     003f4b23  _USBHCDPipeDataAck                    
+0     003f4b40  _USBHCDPipeRead                       
+0     003f4c58  _USBHCDPipeFree                       
+0     003f4e65  _USBHCDPowerConfigInit                
+0     003f4e6d  _USBHCDPowerConfigGet                 
+0     003f4e74  _USBHCDPowerConfigSet                 
+0     003f4e9e  _USBHCDPowerAutomatic                 
+0     003f4ea9  _USBHCDInit                           
+0     003f4efb  _USBHCDRegisterDrivers                
+0     003f4f06  _USBHCDTerm                           
+0     003f4f68  _USBHCDReset                          
+0     003f4f8e  _USBHCDSuspend                        
+0     003f4f97  _USBHCDResume                         
+0     003f5057  _USBHCDSetAddress                     
+0     003f5100  _USBHCDSetConfig                      
+0     003f5124  _USBHCDSetInterface                   
+0     003f5150  _USBHostCheckPipes                    
+0     003f51dc  _USBHostIntHandlerInternal            
+0     003f5555  _USB0HostIntHandler                   
+0     003f55d0  _InternalUSBHCDSendEvent              
+0     003f567d  _USBHCDMain                           
+0     003f5842  _USBHCDControlTransfer                
+0     003f58d4  _USBHCDHubDeviceConnected             
+0     003f592c  _USBHCDHubDeviceDisconnected          
+0     003f5a2c  _USBHCDDevHubPort                     
+0     003f5a40  _USBHCDDevAddress                     
+0     003f5a54  _USBHCDDevClass                       
+0     003f5a79  _USBHCDDevSubClass                    
+0     003f5a9e  _USBHCDDevProtocol                    
+0     003f5ac3  _USBDCDDeviceInfoInit                 
+0     003f5ad3  _USBDCDInit                           
+0     003f5b51  _USBDCDTerm                           
+0     003f5b84  _USBDCDRequestDataEP0                 
+0     003f5b92  _USBDCDSendDataEP0                    
+0     003f5ba1  _USBDCDSetDefaultConfiguration        
+0     003f5ba9  _USBDCDStallEP0                       
+0     003f5bba  _USBDCDPowerStatusSet                 
+0     003f5bc7  _USBDCDRemoteWakeupRequest            
+0     003f5bdd  _USBDeviceResumeTickHandler           
+0     003f5c4b  _USBDeviceEnumHandler                 
+0     003f5d0c  _USBDeviceEnumResetHandler            
+0     003f6280  _USBDeviceIntHandlerInternal          
+0     003f643a  _ProcessDataFromHost                  
+0     003f6498  _ProcessNotificationToHost            
+0     003f64c7  _ProcessDataToHost                    
+0     003f67f9  _USBDCDCCompositeInit                 
+0     003f6891  _USBDCDCInit                          
+0     003f68e4  _USBDCDCTerm                          
+0     003f68f1  _USBDCDCSetControlCBData              
+0     003f68fd  _USBDCDCSetRxCBData                   
+0     003f690f  _USBDCDCSetTxCBData                   
+0     003f6921  _USBDCDCPacketWrite                   
+0     003f6967  _USBDCDCPacketRead                    
+0     003f69cf  _USBDCDCTxPacketAvailable             
+0     003f69df  _USBDCDCRxPacketAvailable             
+0     003f6a0a  _USBDCDCSerialStateChange             
+0     003f6a38  _USBDCDCPowerStatusSet                
+0     003f6a41  _USBDCDCRemoteWakeupRequest           
+0     003f6a48  _USBPHYPowerOn                        
+0     003f6a4f  _USBPHYPowerOff                       
+0     003f6a55  _USBOTGSessionRequest                 
+0     003f6a63  _USBOTGMode                           
+0     003f6a69  _USBNumEndpointsGet                   
+0     003f6a6b  _USBModeGet                           
+0     003f6a72  _USBIntUnregister                     
+0     003f6a79  _USBIntStatusEndpoint                 
+0     003f6a88  _USBIntStatusControl                  
+0     003f6aaa  _USBIntStatus                         
+0     003f6ae8  _USBIntRegister                       
+0     003f6aef  _USBIntEnableEndpoint                 
+0     003f6af8  _USBIntEnableControl                  
+0     003f6b16  _USBIntEnable                         
+0     003f6b49  _USBIntDisableEndpoint                
+0     003f6b54  _USBIntDisableControl                 
+0     003f6b75  _USBIntDisable                        
+0     003f6baf  _USBHostSuspend                       
+0     003f6bb5  _USBHostSpeedGet                      
+0     003f6bc4  _USBHostResume                        
+0     003f6bd2  _USBHostReset                         
+0     003f6be0  _USBHostRequestStatus                 
+0     003f6be6  _USBHostRequestINClear                
+0     003f6bf7  _USBHostRequestIN                     
+0     003f6c06  _USBHostPwrFaultEnable                
+0     003f6c0c  _USBHostPwrFaultDisable               
+0     003f6c12  _USBHostPwrEnable                     
+0     003f6c18  _USBHostPwrDisable                    
+0     003f6c1e  _USBHostPwrConfig                     
+0     003f6c35  _USBHostMode                          
+0     003f6c3b  _USBHostHubAddrSet                    
+0     003f6c5f  _USBHostHubAddrGet                    
+0     003f6c74  _USBHostEndpointStatusClear           
+0     003f6c98  _USBHostEndpointDataToggle            
+0     003f6cca  _USBHostEndpointDataAck               
+0     003f6cdc  _USBHostEndpointConfig                
+0     003f6d76  _USBHostAddrSet                       
+0     003f6d8d  _USBHostAddrGet                       
+0     003f6da2  _USBFrameNumberGet                    
+0     003f6da6  _USBFIFOFlush                         
+0     003f6df1  _USBFIFOConfigSet                     
+0     003f6e47  _USBFIFOConfigGet                     
+0     003f6e7a  _USBFIFOAddrGet                       
+0     003f6e81  _USBEndpointStatus                    
+0     003f6e99  _USBEndpointPacketCountSet            
+0     003f6ea5  _USBEndpointDataToggleClear           
+0     003f6ebb  _USBEndpointDataSend                  
+0     003f6ee8  _USBEndpointDataPut                   
+0     003f6f0e  _USBEndpointDataGet                   
+0     003f6f41  _USBEndpointDataAvail                 
+0     003f6f59  _USBEndpointDMAEnable                 
+0     003f6f6f  _USBEndpointDMADisable                
+0     003f6f87  _USBEndpointDMAChannel                
+0     003f6fac  _USBDevMode                           
+0     003f6fb2  _USBDevEndpointStatusClear            
+0     003f6ff1  _USBDevEndpointStallClear             
+0     003f7018  _USBDevEndpointStall                  
+0     003f703a  _USBDevEndpointDataAck                
+0     003f7054  _USBDevEndpointConfigSet              
+0     003f70ba  _USBDevEndpointConfigGet              
+0     003f7100  _USBDevDisconnect                     
+0     003f7107  _USBDevConnect                        
+0     003f710d  _USBDevAddrSet                        
+0     003f7111  _USBDevAddrGet                        
+0     003f73e9  _USBHHubMain                          
+0     003f74d6  _USBHHubEnumerationComplete           
+0     003f74e7  _USBHHubEnumerationError              
+0     003f74f8  _USBHHubOpen                          
+0     003f7506  _USBHHubClose                         
+0     003f750f  _USBHHubInit                          
+0     003f751a  _SysCtrlInit                          
+0     003f7557  _OctalAND                             
+0     003f755c  _OctalShiftRight                      
+0     003f755e  _OctalShiftLeft                       
+0     003f7561  _HexConstant                          
+0     003f7562  _main                                 
+0     003f775c  _compile_program                      
+0     003f77c0  _TxHandler                            
+0     003f77c2  _RxHandler                            
+0     003f78bf  _ControlHandler                       
+0     003f78dd  _rsvd_ISR                             
+0     003f78e7  _XINT3_ISR                            
+0     003f78f1  _XINT2_ISR                            
+0     003f78fb  _XINT1_ISR                            
+0     003f7905  _WAKEINT_ISR                          
+0     003f790f  _USER9_ISR                            
+0     003f7919  _USER8_ISR                            
+0     003f7923  _USER7_ISR                            
+0     003f792d  _USER6_ISR                            
+0     003f7937  _USER5_ISR                            
+0     003f7941  _USER4_ISR                            
+0     003f794b  _USER3_ISR                            
+0     003f7955  _USER2_ISR                            
+0     003f795f  _USER1_ISR                            
+0     003f7969  _USER12_ISR                           
+0     003f7973  _USER11_ISR                           
+0     003f797d  _USER10_ISR                           
+0     003f7987  _USB0_INT_ISR                         
+0     003f7991  _TINT0_ISR                            
+0     003f799b  _SPITXINTB_ISR                        
+0     003f79a5  _SPITXINTA_ISR                        
+0     003f79af  _SPIRXINTB_ISR                        
+0     003f79b9  _SPIRXINTA_ISR                        
+0     003f79c3  _SCITXINTB_ISR                        
+0     003f79cd  _SCITXINTA_ISR                        
+0     003f79d7  _SCIRXINTB_ISR                        
+0     003f79e1  _SCIRXINTA_ISR                        
+0     003f79eb  _RTOSINT_ISR                          
+0     003f79f5  _PIE_RESERVED                         
+0     003f79ff  _NMI_ISR                              
+0     003f7a09  _MXINTA_ISR                           
+0     003f7a13  _MRINTA_ISR                           
+0     003f7a1d  _LVF_ISR                              
+0     003f7a27  _LUF_ISR                              
+0     003f7a31  _INT14_ISR                            
+0     003f7a3b  _INT13_ISR                            
+0     003f7a45  _ILLEGAL_ISR                          
+0     003f7a4f  _I2CINT2A_ISR                         
+0     003f7a59  _I2CINT1A_ISR                         
+0     003f7a63  _HRCAP4_INT_ISR                       
+0     003f7a6d  _HRCAP3_INT_ISR                       
+0     003f7a77  _HRCAP2_INT_ISR                       
+0     003f7a81  _HRCAP1_INT_ISR                       
+0     003f7a8b  _EQEP2_INT_ISR                        
+0     003f7a95  _EQEP1_INT_ISR                        
+0     003f7a9f  _EPWM8_TZINT_ISR                      
+0     003f7aa9  _EPWM8_INT_ISR                        
+0     003f7ab3  _EPWM7_TZINT_ISR                      
+0     003f7abd  _EPWM7_INT_ISR                        
+0     003f7ac7  _EPWM6_TZINT_ISR                      
+0     003f7ad1  _EPWM6_INT_ISR                        
+0     003f7adb  _EPWM5_TZINT_ISR                      
+0     003f7ae5  _EPWM5_INT_ISR                        
+0     003f7aef  _EPWM4_TZINT_ISR                      
+0     003f7af9  _EPWM4_INT_ISR                        
+0     003f7b03  _EPWM3_TZINT_ISR                      
+0     003f7b0d  _EPWM3_INT_ISR                        
+0     003f7b17  _EPWM2_TZINT_ISR                      
+0     003f7b21  _EPWM2_INT_ISR                        
+0     003f7b2b  _EPWM1_TZINT_ISR                      
+0     003f7b35  _EPWM1_INT_ISR                        
+0     003f7b3f  _EMUINT_ISR                           
+0     003f7b49  _EMPTY_ISR                            
+0     003f7b56  _ECAP3_INT_ISR                        
+0     003f7b60  _ECAP2_INT_ISR                        
+0     003f7b6a  _ECAP1_INT_ISR                        
+0     003f7b74  _ECAN1INTA_ISR                        
+0     003f7b7e  _ECAN0INTA_ISR                        
+0     003f7b88  _DINTCH6_ISR                          
+0     003f7b92  _DINTCH5_ISR                          
+0     003f7b9c  _DINTCH4_ISR                          
+0     003f7ba6  _DINTCH3_ISR                          
+0     003f7bb0  _DINTCH2_ISR                          
+0     003f7bba  _DINTCH1_ISR                          
+0     003f7bc4  _DATALOG_ISR                          
+0     003f7bce  _CLA1_INT8_ISR                        
+0     003f7bd8  _CLA1_INT7_ISR                        
+0     003f7be2  _CLA1_INT6_ISR                        
+0     003f7bec  _CLA1_INT5_ISR                        
+0     003f7bf6  _CLA1_INT4_ISR                        
+0     003f7c00  _CLA1_INT3_ISR                        
+0     003f7c0a  _CLA1_INT2_ISR                        
+0     003f7c14  _CLA1_INT1_ISR                        
+0     003f7c1e  _ADCINT9_ISR                          
+0     003f7c28  _ADCINT8_ISR                          
+0     003f7c32  _ADCINT7_ISR                          
+0     003f7c3c  _ADCINT6_ISR                          
+0     003f7c46  _ADCINT5_ISR                          
+0     003f7c50  _ADCINT4_ISR                          
+0     003f7c5a  _ADCINT3_ISR                          
+0     003f7c64  _ADCINT2_ISR                          
+0     003f7c6e  _ADCINT1_ISR                          
+0     003f7c78  _UARTParityModeSet                    
+0     003f7c82  _UARTParityModeGet                    
+0     003f7c8b  _UARTFIFOLevelSet                     
+0     003f7ca5  _UARTFIFOLevelGet                     
+0     003f7cbb  _UARTConfigSetExpClk                  
+0     003f7cf2  _UARTConfigGetExpClk                  
+0     003f7d16  _UARTEnable                           
+0     003f7d20  _UARTDisable                          
+0     003f7d36  _UARTFIFOEnable                       
+0     003f7d3f  _UARTFIFODisable                      
+0     003f7d48  _UARTTxIntModeSet                     
+0     003f7d58  _UARTTxIntModeGet                     
+0     003f7d62  _UARTCharsAvail                       
+0     003f7d6f  _UARTSpaceAvail                       
+0     003f7d7c  _UARTCharGetNonBlocking               
+0     003f7d8d  _UARTCharGet                          
+0     003f7da3  _UARTCharPutNonBlocking               
+0     003f7db6  _UARTCharPut                          
+0     003f7dc6  _UARTBusy                             
+0     003f7dd3  _UARTRXIntRegister                    
+0     003f7de9  _UARTTXIntRegister                    
+0     003f7dff  _UARTRXIntUnregister                  
+0     003f7e13  _UARTTXIntUnregister                  
+0     003f7e27  _UARTIntEnable                        
+0     003f7e58  _UARTIntDisable                       
+0     003f7e8e  _UARTIntStatus                        
+0     003f7ebe  _UARTIntClear                         
+0     003f7eeb  _UARTRxErrorGet                       
+0     003f7ef1  _UARTRxErrorClear                     
+0     003f7f07  _USBGPIOEnable                        
+0     003f7f0f  _USBGPIODisable                       
+0     003f7f17  _USBDelay                             
+0     003f7f59  FD$$TOUL                              
+0     003f7f74  _strcmp                               
 0     003f7ff6  code_start                            
 1     00000050  __stack                               
 1     00000350  __STACK_END                           
@@ -1568,34 +1591,34 @@ page  address   name
 1     00007740  _SpibRegs                             
 1     00007750  _ScibRegs                             
 1     00007900  _I2caRegs                             
-1     0000938e  _g_psCDCSerSections                   
-1     00009394  _g_psCDCCompSerSections               
-1     0000939c  _g_pui8IADSerDescriptor               
-1     000093a4  _g_pui8CDCSerDescriptor               
-1     000093ad  _g_pui8CDCSerDeviceDescriptor         
-1     000093c0  _g_pui8TxBufferWorkspace              
-1     000093d8  _g_pui8RxBufferWorkspace              
-1     00009400  _g_sCDCDevice                         
-1     00009440  _g_pi8USBRxBuffer                     
-1     00009540  _g_pi8USBTxBuffer                     
-1     000096cc  _g_bUSBTimerInitialized               
-1     000096ce  _g_ui32CurrentUSBTick                 
-1     000096d0  _g_ui32USBSOFCount                    
-1     000096d2  _g_pfnTickHandlers                    
-1     000096de  _g_pvTickInstance                     
-1     000096eb  _g_iUSBMode                           
-1     000096ec  _g_eOTGModeState                      
-1     000096f0  _g_ui32PollRate                       
-1     000096f2  _g_ui32WaitTicks                      
-1     000096f4  ___TI_cleanup_ptr                     
-1     000096f6  ___TI_dtors_ptr                       
-1     000096f8  __lock                                
-1     000096fa  __unlock                              
-1     00009702  _pcStr2                               
-1     00009706  _UPLOADED_PROGRAM                     
-1     00009708  _pcStr1                               
-1     00009780  _g_ppsDevInfo                         
-1     00009784  _g_psDCDInst                          
+1     00009000  _program_recieved                     
+1     00009001  _program_compiled                     
+1     000097ce  _g_psCDCSerSections                   
+1     000097d4  _g_psCDCCompSerSections               
+1     000097dc  _g_pui8IADSerDescriptor               
+1     000097e4  _g_pui8CDCSerDescriptor               
+1     000097ed  _g_pui8CDCSerDeviceDescriptor         
+1     000097ff  _errno                                
+1     00009800  _g_pui8TxBufferWorkspace              
+1     00009818  _g_pui8RxBufferWorkspace              
+1     00009840  _g_sCDCDevice                         
+1     00009880  _g_pi8USBRxBuffer                     
+1     00009980  _g_pi8USBTxBuffer                     
+1     00009b0c  _g_bUSBTimerInitialized               
+1     00009b0e  _g_ui32CurrentUSBTick                 
+1     00009b10  _g_ui32USBSOFCount                    
+1     00009b12  _g_pfnTickHandlers                    
+1     00009b1e  _g_pvTickInstance                     
+1     00009b2b  _g_iUSBMode                           
+1     00009b2c  _g_eOTGModeState                      
+1     00009b30  _g_ui32PollRate                       
+1     00009b32  _g_ui32WaitTicks                      
+1     00009b34  ___TI_cleanup_ptr                     
+1     00009b36  ___TI_dtors_ptr                       
+1     00009b38  __lock                                
+1     00009b3a  __unlock                              
+1     00009b40  _g_ppsDevInfo                         
+1     00009b44  _g_psDCDInst                          
 1     003d7e80  _PartIdRegs                           
 1     003f7ff8  _CsmPwl                               
 abs   00000004  _RamfuncsLoadSize                     
@@ -1610,4 +1633,4 @@ abs   ffffffff  binit
 abs   ffffffff  etext                                 
 abs   ffffffff  pinit                                 
 
-[490 symbols]
+[498 symbols]

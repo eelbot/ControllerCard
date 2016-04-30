@@ -6,6 +6,9 @@
 #include "F2806x_Examples.h"
 
 #include <stdbool.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include <stdint.h>
 
 #include "inc/hw_ints.h"
@@ -30,12 +33,10 @@ void usb_setup(void);
 void spi_setup(void);
 
 //input buffer
-static char input_string[64] = {0};
+static char USER_PROGRAM[1024] = {0};
 static unsigned long read_index = 0;
-char *pcStr1 = "\nPlease enter a string: ";
-char *pcStr2 = "\n\rYour String was: ";
-
-char *UPLOADED_PROGRAM;
+int program_recieved = 0;
+int program_compiled = 0;
 
 //*****************************************************************************
 //
@@ -758,64 +759,33 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
         //
         //USBUARTPrimeTransmit();
         //UARTIntEnable(UART0_BASE, UART_INT_TXRDY);
-    	unsigned char tempChar = 0xd;
+    	//unsigned char tempChar = 0xd;
         psCDCDevice = (const tUSBDCDCDevice *)pvCBData;
     	pBufferRx = (const tUSBBuffer *)psCDCDevice->pvRxCBData;
     	pBufferTx = (const tUSBBuffer *)psCDCDevice->pvTxCBData;
 
-    	int iIdx = 0;
-    	read_index = 1;
-    	while(USBBufferRead(pBufferRx, (unsigned char *)&input_string[read_index], 1))
+    	read_index = 0;
+    	while(USBBufferRead(pBufferRx, (unsigned char *)&USER_PROGRAM[read_index], 1))
     	{
     		read_index++;
-    		if (read_index > 16){
-    			read_index = 1;
-    			USBBufferFlush(pBufferRx);
+    		if(read_index > 1024){
+
+    			read_index = 0;
     		}
-    		if (input_string[read_index] == input_string[read_index-1]){
-    			USBBufferWrite(pBufferTx, "conf", 4);
+    	}
+    	USBBufferFlush(pBufferRx);
 
-    			USBBufferFlush(pBufferTx);
-    		}
-    		USBBufferWrite(pBufferTx, &input_string[read_index], 1);
-    		USBBufferWrite(pBufferTx, &input_string[read_index-1], 1);
-    		USBBufferWrite(pBufferTx, "H", 1);
-    		//while(pcStr2[iIdx] != 0)
-    		//{
-    		//	while(USBBufferSpaceAvailable(&g_sTxBuffer) < 2){}
-    		//	USBBufferWrite(&g_sTxBuffer, (const unsigned char *)&pcStr2[iIdx], 1);
-
-    		//    iIdx++;
-    		//}
-
-
+    	//int i;
+    	//for(i = 0; i < read_index; i++){
+    	//	while(USBBufferSpaceAvailable(&g_sTxBuffer) < 2){}
+    	//	USBBufferWrite(pBufferTx, &USER_PROGRAM[i], 1);
+    	//}
+    	if(USER_PROGRAM[read_index - 1] == USER_PROGRAM[read_index - 2]){
+    		while(USBBufferSpaceAvailable(&g_sTxBuffer) < 2){}
+    		USBBufferWrite(pBufferTx, "conf", 4);
+    		program_recieved = 1;
     	}
 
-
-
-    	/*char line_feed[] = {0xD, 0xA};
-    	iIdx = 1;
-    	while(iIdx < 64){
-
-    		if(&input_string[iIdx] == '#' && &input_string[iIdx-1] == '#'){
-    			//USBBufferWrite(pBufferTx, "conf", 4);
-    			//break;
-    		}
-    		else{
-    			//USBBufferWrite(pBufferTx, "noconf", 6);
-    		}
-    		iIdx++;
-    	}*/
-
-
-
-    	//while(pcStr1[iIdx] != 0)
-    	//{
-    	//
-    	//	USBBufferWrite(&g_sTxBuffer, (const unsigned char *)&pcStr1[iIdx], 1);
-
-    	//    iIdx++;
-    	//}
         break;
     }
 
@@ -860,7 +830,6 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
     return(0);
 }
 
-
 void SysCtrlInit(void)
 {
 
@@ -896,6 +865,34 @@ void SysCtrlInit(void)
 
     EDIS;
 }
+
+void compile_program(int *program_address, int program_length){
+
+}
+
+int HexConstant(int value){
+
+    return value;
+}
+
+int OctalShiftLeft(int inputBits){
+
+    int outputBits = inputBits << 1;
+    return outputBits;
+}
+
+int OctalShiftRight(int inputBits){
+
+    int outputBits = inputBits >> 1;
+    return outputBits;
+}
+
+int OctalAND(int inputA, int inputB){
+
+    int outputBits = inputA & inputB;
+    return outputBits;
+}
+
 
 void main(void) {
 	//
@@ -988,7 +985,110 @@ void main(void) {
 	    //
 	    // Main application loop.
 	    //
-	while(1){
 
+	    int outputs[1024];
+	    int tile_index = 1;
+	    char function[7];
+	    function[7] = '\0';
+	    int inputs[64];
+	    char input_types[64];
+
+	    // To hold counters
+	    int k = 0;
+	    int f = 0;
+	    int input_counter = 0;
+
+	while(1){
+		if(program_recieved){
+			while(k < read_index){
+				if(f < 6){
+					function[f] = USER_PROGRAM[k];
+			        f++;
+			    }
+
+			    // relative input
+			    if(USER_PROGRAM[k] == 'i' && USER_PROGRAM[k + 1] == 'o'){
+			    	inputs[input_counter] = USER_PROGRAM[k + 2] - '0';
+			        input_types[input_counter] = 'r';
+			        input_counter++;
+			        k += 3;
+			    }
+
+			    //absolute input
+			    else if(USER_PROGRAM[k] == 'i' && USER_PROGRAM[k + 1] != 'o'){
+			    	k++;
+			        char temp[32] = {0};
+			        int temp_i = 0;
+			        while(USER_PROGRAM[k] != 'i' && USER_PROGRAM[k] != 'o'){
+			        	temp[temp_i] = USER_PROGRAM[k];
+			            temp_i++;
+			            k++;
+			        }
+			        char *p;
+			        input_types[input_counter] = 'a';
+			        inputs[input_counter] = strtoul(temp, &p, 16);
+			    }
+
+			    // output
+			    else if(USER_PROGRAM[k] == 'o'){
+			    	tile_index = USER_PROGRAM[k+1] - '0';
+			        k++;
+			    }
+
+			    // End of function call
+			    else if(USER_PROGRAM[k] == '#'){
+
+					// get inputs in order
+					int prepared_inputs[64];
+					int n = 0;
+
+					// preparing the inputs
+					do{
+						if(input_types[n] == 'a'){
+							prepared_inputs[n] = inputs[n];
+						}
+						else if(input_types[n] == 'r'){
+							prepared_inputs[n] = outputs[inputs[n]];
+						}
+						n++;
+					}while(n < input_counter);
+
+					// Select the correct Function and Run
+					if(strcmp(function, "0xA001") == 0){
+						outputs[tile_index] = HexConstant(prepared_inputs[0]);
+						//printf("0xA001 Output: %d\n", outputs[tile_index]);
+					}
+					else if(strcmp("0x8001", function) == 0){
+						outputs[tile_index] = OctalShiftLeft(prepared_inputs[0]);
+						//printf("0x8001 Output: %d\n", outputs[tile_index]);
+					}
+					else if(strcmp("0x8002", function) == 0){
+						outputs[tile_index] = OctalShiftRight(prepared_inputs[0]);
+						//printf("0x8002 Output: %d\n", outputs[tile_index]);
+					}
+					else if(strcmp("0x8003", function) == 0){
+						outputs[tile_index] = OctalAND(prepared_inputs[0], prepared_inputs[1]);
+						//printf("0x8003 Output: %d\n", outputs[tile_index]);
+					}
+					// Test for end of program
+					if(USER_PROGRAM[k + 1] == '#'){
+						//printf("FINAL OUTPUT1: %d", outputs[tile_index]);
+						//printf("\nEND OF PROGRAM\n");
+						f=0;
+						input_counter = 0;
+						k=0;
+						break;
+					}
+					else{
+						f=0;
+						input_counter = 0;
+						k++;
+					}
+				}
+				else{
+					k++;
+				}
+			}
+		}
 	}
 }
