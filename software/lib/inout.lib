@@ -1,0 +1,9 @@
+Input/Output Library
+1
+None
+#SetOutput
+0x4000
+i inputBits int
+o outputBits int
+Set the outputs based on a binary number
+None

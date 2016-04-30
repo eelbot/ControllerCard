@@ -760,6 +760,7 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
         //USBUARTPrimeTransmit();
         //UARTIntEnable(UART0_BASE, UART_INT_TXRDY);
     	//unsigned char tempChar = 0xd;
+    	program_recieved = 1;
         psCDCDevice = (const tUSBDCDCDevice *)pvCBData;
     	pBufferRx = (const tUSBBuffer *)psCDCDevice->pvRxCBData;
     	pBufferTx = (const tUSBBuffer *)psCDCDevice->pvTxCBData;
@@ -775,6 +776,17 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
     	}
     	USBBufferFlush(pBufferRx);
 
+    	EALLOW;
+    	GpioDataRegs.GPBCLEAR.bit.GPIO44 = 1;
+    	GpioDataRegs.GPACLEAR.bit.GPIO3 = 1;
+    	GpioDataRegs.GPACLEAR.bit.GPIO16 = 1;
+    	GpioDataRegs.GPACLEAR.bit.GPIO17 = 1;
+    	GpioDataRegs.GPACLEAR.bit.GPIO13 = 1;
+    	GpioDataRegs.GPBCLEAR.bit.GPIO50 = 1;
+    	GpioDataRegs.GPBCLEAR.bit.GPIO51 = 1;
+    	GpioDataRegs.GPBCLEAR.bit.GPIO55 = 1;
+
+    	EDIS;
     	//int i;
     	//for(i = 0; i < read_index; i++){
     	//	while(USBBufferSpaceAvailable(&g_sTxBuffer) < 2){}
@@ -866,13 +878,94 @@ void SysCtrlInit(void)
     EDIS;
 }
 
-void compile_program(int *program_address, int program_length){
-
-}
-
 int HexConstant(int value){
 
     return value;
+}
+
+int SetOutput(int inputBits){
+	if (inputBits & 1){
+		EALLOW;
+		GpioDataRegs.GPBSET.bit.GPIO44 = 1;
+		EDIS;
+	}
+	else{
+		EALLOW;
+		GpioDataRegs.GPBCLEAR.bit.GPIO44 = 1;
+		EDIS;
+	}
+	if (inputBits & 2){
+		EALLOW;
+		GpioDataRegs.GPASET.bit.GPIO3 = 1;
+		EDIS;
+	}
+	else{
+		EALLOW;
+		GpioDataRegs.GPACLEAR.bit.GPIO3 = 1;
+		EDIS;
+	}
+	if (inputBits & 4){
+		EALLOW;
+		GpioDataRegs.GPASET.bit.GPIO16 = 1;
+		EDIS;
+	}
+	else{
+		EALLOW;
+		GpioDataRegs.GPACLEAR.bit.GPIO16 = 1;
+		EDIS;
+	}
+	if (inputBits & 8){
+		EALLOW;
+		GpioDataRegs.GPASET.bit.GPIO17 = 1;
+		EDIS;
+	}
+	else{
+		EALLOW;
+		GpioDataRegs.GPACLEAR.bit.GPIO17 = 1;
+		EDIS;
+	}
+	if (inputBits & 16){
+		EALLOW;
+		GpioDataRegs.GPASET.bit.GPIO13 = 1;
+		EDIS;
+	}
+	else{
+		EALLOW;
+		GpioDataRegs.GPACLEAR.bit.GPIO13 = 1;
+		EDIS;
+	}
+	if (inputBits & 32){
+		EALLOW;
+		GpioDataRegs.GPBSET.bit.GPIO50 = 1;
+		EDIS;
+	}
+	else{
+		EALLOW;
+		GpioDataRegs.GPBCLEAR.bit.GPIO50 = 1;
+		EDIS;
+	}
+	if (inputBits & 64){
+		EALLOW;
+		GpioDataRegs.GPBSET.bit.GPIO51 = 1;
+		EDIS;
+	}
+	else{
+		EALLOW;
+		GpioDataRegs.GPBCLEAR.bit.GPIO51 = 1;
+		EDIS;
+	}
+	if (inputBits & 128){
+		EALLOW;
+		GpioDataRegs.GPBSET.bit.GPIO55 = 1;
+		EDIS;
+	}
+	else{
+		EALLOW;
+		GpioDataRegs.GPBCLEAR.bit.GPIO55 = 1;
+		EDIS;
+	}
+
+	return inputBits;
 }
 
 int OctalShiftLeft(int inputBits){
@@ -980,6 +1073,41 @@ void main(void) {
 	    IntEnable(INT_SCITXINTA);
 	    IntEnable(INT_SCIRXINTA);
 
+	    EALLOW;
+	    GpioCtrlRegs.GPBMUX1.bit.GPIO44 = 0;
+	    GpioCtrlRegs.GPBDIR.bit.GPIO44 = 1;
+	    GpioDataRegs.GPBCLEAR.bit.GPIO44 = 1;
+
+	    GpioCtrlRegs.GPAMUX1.bit.GPIO3 = 0;
+	    GpioCtrlRegs.GPADIR.bit.GPIO3 = 1;
+	    GpioDataRegs.GPACLEAR.bit.GPIO3 = 1;
+
+	   	GpioCtrlRegs.GPAMUX2.bit.GPIO16 = 0;
+	   	GpioCtrlRegs.GPADIR.bit.GPIO16 = 1;
+	   	GpioDataRegs.GPACLEAR.bit.GPIO16 = 1;
+
+	   	GpioCtrlRegs.GPAMUX2.bit.GPIO17 = 0;
+	    GpioCtrlRegs.GPADIR.bit.GPIO17 = 1;
+	   	GpioDataRegs.GPACLEAR.bit.GPIO17 = 1;
+
+	   	GpioCtrlRegs.GPAMUX1.bit.GPIO13 = 0;
+	   	GpioCtrlRegs.GPADIR.bit.GPIO13 = 1;
+	   	GpioDataRegs.GPACLEAR.bit.GPIO13 = 1;
+
+	   	GpioCtrlRegs.GPBMUX2.bit.GPIO50 = 0;
+	   	GpioCtrlRegs.GPBDIR.bit.GPIO50 = 1;
+	   	GpioDataRegs.GPBCLEAR.bit.GPIO50 = 1;
+
+	   	GpioCtrlRegs.GPBMUX2.bit.GPIO51 = 0;
+	    GpioCtrlRegs.GPBDIR.bit.GPIO51 = 1;
+	   	GpioDataRegs.GPBCLEAR.bit.GPIO51 = 1;
+
+	   	GpioCtrlRegs.GPBMUX2.bit.GPIO55 = 0;
+	   	GpioCtrlRegs.GPBDIR.bit.GPIO55 = 1;
+	   	GpioDataRegs.GPBCLEAR.bit.GPIO55 = 1;
+
+	    EDIS;
+
 	    IntMasterEnable();
 
 	    //
@@ -989,7 +1117,7 @@ void main(void) {
 	    int outputs[1024];
 	    int tile_index = 1;
 	    char function[7];
-	    function[7] = '\0';
+	    function[6] = '\0'; // There was an error here... index of 7 instead of 6
 	    int inputs[64];
 	    char input_types[64];
 
@@ -1058,6 +1186,10 @@ void main(void) {
 						outputs[tile_index] = HexConstant(prepared_inputs[0]);
 						//printf("0xA001 Output: %d\n", outputs[tile_index]);
 					}
+					if(strcmp(function, "0x4000") == 0){
+						outputs[tile_index] = SetOutput(prepared_inputs[0]);
+						//printf("0xA001 Output: %d\n", outputs[tile_index]);
+					}
 					else if(strcmp("0x8001", function) == 0){
 						outputs[tile_index] = OctalShiftLeft(prepared_inputs[0]);
 						//printf("0x8001 Output: %d\n", outputs[tile_index]);
@@ -1089,6 +1221,19 @@ void main(void) {
 					k++;
 				}
 			}
+		}
+		else{
+			EALLOW;
+			GpioDataRegs.GPBCLEAR.bit.GPIO44 = 1;
+			GpioDataRegs.GPACLEAR.bit.GPIO3 = 1;
+			GpioDataRegs.GPACLEAR.bit.GPIO16 = 1;
+			GpioDataRegs.GPACLEAR.bit.GPIO17 = 1;
+			GpioDataRegs.GPACLEAR.bit.GPIO13 = 1;
+			GpioDataRegs.GPBCLEAR.bit.GPIO50 = 1;
+			GpioDataRegs.GPBCLEAR.bit.GPIO51 = 1;
+			GpioDataRegs.GPBCLEAR.bit.GPIO55 = 1;
+
+			EDIS;
 		}
 	}
 }
