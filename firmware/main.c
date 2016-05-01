@@ -967,6 +967,20 @@ int SetOutput(int inputBits){
 
 	return inputBits;
 }
+int ReadInput(){
+
+	int outputBits = 0;
+	outputBits |= (GpioDataRegs.GPADAT.bit.GPIO1);
+	outputBits |= ((GpioDataRegs.GPADAT.bit.GPIO19) << 7);
+	outputBits |= ((GpioDataRegs.GPADAT.bit.GPIO0) << 6);
+	outputBits |= ((GpioDataRegs.GPBDAT.bit.GPIO32) << 5);
+	outputBits |= ((GpioDataRegs.GPBDAT.bit.GPIO33) << 4);
+	outputBits |= ((GpioDataRegs.GPADAT.bit.GPIO22) << 3);
+	outputBits |= ((GpioDataRegs.GPADAT.bit.GPIO18) << 2);
+	outputBits |= ((GpioDataRegs.GPADAT.bit.GPIO12) << 1);
+
+	return outputBits;
+}
 
 int OctalShiftLeft(int inputBits){
 
@@ -1128,7 +1142,13 @@ void main(void) {
 
 	while(1){
 		if(program_recieved){
+
 			while(k < read_index){
+				//if(GpioDataRegs.GPADAT.bit.GPIO1 || GpioDataRegs.GPADAT.bit.GPIO12){
+				//	EALLOW;
+				//	GpioDataRegs.GPBSET.bit.GPIO55 = 1;
+				//	EDIS;
+				//}
 				if(f < 6){
 					function[f] = USER_PROGRAM[k];
 			        f++;
@@ -1190,6 +1210,10 @@ void main(void) {
 						outputs[tile_index] = SetOutput(prepared_inputs[0]);
 						//printf("0xA001 Output: %d\n", outputs[tile_index]);
 					}
+	                else if(strcmp("0x2000", function) == 0){
+	                    outputs[tile_index] = ReadInput();
+	                    //printf("0x2000 Output: %d\n", outputs[tile_index]);
+	                }
 					else if(strcmp("0x8001", function) == 0){
 						outputs[tile_index] = OctalShiftLeft(prepared_inputs[0]);
 						//printf("0x8001 Output: %d\n", outputs[tile_index]);

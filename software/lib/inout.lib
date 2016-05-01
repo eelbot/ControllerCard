@@ -1,9 +1,14 @@
 Input/Output Library
-1
+2
 None
 #SetOutput
 0x4000
 i inputBits int
 o outputBits int
 Set the outputs based on a binary number
+None
+#ReadInput
+0x2000
+o outputBits int
+Read the inputs and output a binary number
 None

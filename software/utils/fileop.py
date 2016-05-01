@@ -264,8 +264,6 @@ def compile_program(parent, work_path, workspace):
     x.pop()
     x.reverse()
 
-    print(x)
-
     """
     IF OUTPUT IS PRESENT TWICE, IT COMPILES TWICE
     THIS IS AN ERROR!!!
