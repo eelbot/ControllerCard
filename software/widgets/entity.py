@@ -29,6 +29,8 @@ class tile(QtGui.QPushButton):
 
         super(tile, self).__init__(parent)
 
+        self.clicked.connect(self.delete_tile)
+
         # Position the tile in the open file
         self.setGeometry(self.xpos, self.ypos, width, height)
 
@@ -157,11 +159,19 @@ class tile(QtGui.QPushButton):
                 except KeyError:
                     break
 
-    def connect_lib_function():
-        pass
+    def delete_tile(self):
+        modifier = QtGui.QApplication.keyboardModifiers()
+        if modifier == QtCore.Qt.ControlModifier:
+            for arrow in self.arrows:
+                arrow.deleteLater()
+            self.fileChange.emit()
+            self.deleteLater()
+
 
 
 class arrow(QtGui.QWidget):
+
+    fileChange = QtCore.pyqtSignal()
 
     def __init__(self, inix, iniy, finx, finy, in_ref, out_ref, sel_in):
         super(arrow, self).__init__()
@@ -175,6 +185,8 @@ class arrow(QtGui.QWidget):
         self.sel_in = sel_in
 
         self.setGeometry(0, 0, 2000, 2000)
+
+        #self.clicked.connect(self.delete_tile)
 
     def paintEvent(self, e):
 
@@ -197,3 +209,13 @@ class arrow(QtGui.QWidget):
         qp.setBrush(QtCore.Qt.NoBrush)
         qp.drawLine(self.inix, self.iniy, self.finx, self.finy)
         qp.end()
+
+    def mouseReleaseEvent(self, e):
+        modifier = QtGui.QApplication.keyboardModifiers()
+        if modifier == QtCore.Qt.ControlModifier:
+            tiles = self.parentWidget().findChildren(tile)
+            for v in tiles:
+                if self in v.arrows:
+                    v.arrows.remove(self)
+            self.fileChange.emit()
+            self.deleteLater()

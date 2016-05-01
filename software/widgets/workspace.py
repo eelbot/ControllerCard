@@ -90,6 +90,7 @@ class Workspace(QtGui.QTabWidget):
                         new_arrow.setParent(added_file)
                         new_arrow.lower()
                         new_arrow.show()
+                        new_arrow.fileChange.connect(lambda: self.save_state_change(False))
                         tiles = added_file.findChildren(tile)
                         for i in tiles:
                             if i.ref == int(params[5]) or i.ref == int(params[6]):
