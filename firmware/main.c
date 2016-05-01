@@ -970,14 +970,14 @@ int SetOutput(int inputBits){
 int ReadInput(){
 
 	int outputBits = 0;
-	outputBits |= (GpioDataRegs.GPADAT.bit.GPIO1);
-	outputBits |= ((GpioDataRegs.GPADAT.bit.GPIO19) << 7);
-	outputBits |= ((GpioDataRegs.GPADAT.bit.GPIO0) << 6);
-	outputBits |= ((GpioDataRegs.GPBDAT.bit.GPIO32) << 5);
-	outputBits |= ((GpioDataRegs.GPBDAT.bit.GPIO33) << 4);
-	outputBits |= ((GpioDataRegs.GPADAT.bit.GPIO22) << 3);
-	outputBits |= ((GpioDataRegs.GPADAT.bit.GPIO18) << 2);
-	outputBits |= ((GpioDataRegs.GPADAT.bit.GPIO12) << 1);
+	outputBits |= ((GpioDataRegs.GPADAT.bit.GPIO1) << 7);
+	outputBits |= ((GpioDataRegs.GPADAT.bit.GPIO19) << 6);
+	outputBits |= ((GpioDataRegs.GPADAT.bit.GPIO0) << 5);
+	outputBits |= ((GpioDataRegs.GPBDAT.bit.GPIO32) << 4);
+	outputBits |= ((GpioDataRegs.GPBDAT.bit.GPIO33) << 3);
+	outputBits |= ((GpioDataRegs.GPADAT.bit.GPIO22) << 2);
+	outputBits |= ((GpioDataRegs.GPADAT.bit.GPIO18) << 1);
+	outputBits |= ((GpioDataRegs.GPADAT.bit.GPIO12));
 
 	return outputBits;
 }

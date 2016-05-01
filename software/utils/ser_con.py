@@ -8,6 +8,8 @@ CONNECTION_INFO = []
 
 
 def detect_and_connect(master_app):
+
+    CONNECTION_INFO = []
     available_ports = list(serial.tools.list_ports.comports())
     for port in available_ports:
         if "USB Serial Device" in port[1]:
@@ -24,6 +26,8 @@ def detect_and_connect(master_app):
     ser.close()
 
 def upload(master_app):
+
+    CONNECTION_INFO = []
     available_ports = list(serial.tools.list_ports.comports())
     for port in available_ports:
         if "USB Serial Device" in port[1]:

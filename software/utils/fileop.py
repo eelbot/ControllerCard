@@ -264,10 +264,13 @@ def compile_program(parent, work_path, workspace):
     x.pop()
     x.reverse()
 
-    """
-    IF OUTPUT IS PRESENT TWICE, IT COMPILES TWICE
-    THIS IS AN ERROR!!!
-    """
+    already_compiled = []
+    for comp in x:
+        for a in comp:
+            if a in already_compiled:
+                comp.remove(a)
+            else:
+                already_compiled.append(a)
 
     # Create a .upl file based on this information
     # Function reference

@@ -24,6 +24,7 @@ class tile(QtGui.QPushButton):
         self.parent = parent
         self.ref = ref
         self.func_dict = {}
+        self.func_dict['FunctionReference'] = "0x0000"
         self.set_value = "None"
         self.arrows = []
 
@@ -147,6 +148,8 @@ class tile(QtGui.QPushButton):
             items.append(option['FunctionName'])
         function_name = QtGui.QInputDialog.getItem(self.parent, "Select Block Function", "Function", items, 0, False)
 
+        self.fileChange.emit()
+
         for option in self.parent.libs:
             if option['FunctionName'] == function_name[0] and function_name[1] == True:
                 self.func_dict = option
@@ -162,8 +165,8 @@ class tile(QtGui.QPushButton):
     def delete_tile(self):
         modifier = QtGui.QApplication.keyboardModifiers()
         if modifier == QtCore.Qt.ControlModifier:
-            for arrow in self.arrows:
-                arrow.deleteLater()
+            while self.arrows != []:
+                self.arrows[0].delete_arrow()
             self.fileChange.emit()
             self.deleteLater()
 
@@ -185,8 +188,6 @@ class arrow(QtGui.QWidget):
         self.sel_in = sel_in
 
         self.setGeometry(0, 0, 2000, 2000)
-
-        #self.clicked.connect(self.delete_tile)
 
     def paintEvent(self, e):
 
@@ -213,6 +214,9 @@ class arrow(QtGui.QWidget):
     def mouseReleaseEvent(self, e):
         modifier = QtGui.QApplication.keyboardModifiers()
         if modifier == QtCore.Qt.ControlModifier:
+            self.delete_arrow()
+
+    def delete_arrow(self):
             tiles = self.parentWidget().findChildren(tile)
             for v in tiles:
                 if self in v.arrows:
