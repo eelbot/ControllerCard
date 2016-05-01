@@ -59,10 +59,12 @@ body {
     background-color:#2ECC71;
     padding-bottom:20px;
     padding-top:20px;
+    border-bottom: 1px solid #202020;
 }
 .sub-temp a{
     text-decoration:none;
     color: #202020;
+
 }
 .sub-temp a:hover{
     color:#F0F0F0;
