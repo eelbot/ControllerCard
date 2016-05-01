@@ -760,7 +760,7 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
         //USBUARTPrimeTransmit();
         //UARTIntEnable(UART0_BASE, UART_INT_TXRDY);
     	//unsigned char tempChar = 0xd;
-    	program_recieved = 1;
+    	program_recieved = 0;
         psCDCDevice = (const tUSBDCDCDevice *)pvCBData;
     	pBufferRx = (const tUSBBuffer *)psCDCDevice->pvRxCBData;
     	pBufferTx = (const tUSBBuffer *)psCDCDevice->pvTxCBData;

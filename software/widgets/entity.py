@@ -150,6 +150,7 @@ class tile(QtGui.QPushButton):
                 self.func_dict = option
                 self.setToolTip(self.func_dict['ToolTip'])
                 self.setText(self.func_dict['FunctionName'])
+                self.fileChange.emit()
                 if self.func_dict['Input1'][-3:] == "set":
                     set_value = QtGui.QInputDialog.getText(self.parent, "Set Value", "Input set value")
                     self.set_value = set_value[0]

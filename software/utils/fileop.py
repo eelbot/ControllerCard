@@ -264,6 +264,13 @@ def compile_program(parent, work_path, workspace):
     x.pop()
     x.reverse()
 
+    print(x)
+
+    """
+    IF OUTPUT IS PRESENT TWICE, IT COMPILES TWICE
+    THIS IS AN ERROR!!!
+    """
+
     # Create a .upl file based on this information
     # Function reference
     # Input type (either absolute or relative)
@@ -273,7 +280,7 @@ def compile_program(parent, work_path, workspace):
         for tile_ref in v:
             upl_text += tiles[int(tile_ref) - 1][4]
             if tiles[int(tile_ref) - 1][5] != "None":
-                upl_text += "i" + tiles[int(tile_ref) - 1][5][2:]
+                upl_text += "i" + tiles[int(tile_ref) - 1][5]
             else:
                 for arrow in arrows:
                     if arrow[6] == tile_ref:
