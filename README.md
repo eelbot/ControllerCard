@@ -25,4 +25,4 @@ repo. Below are some of the changes that I am in the midst of planning.
 
 ## Documentation and Reports
 All current documentation and reports can be found at 
-[eelbot.github.io/PicoCommander](eelbot.github.io/PicoCommander)
+[eelbot.github.io/PicoCommander](https://eelbot.github.io/PicoCommander/)
